@@ -30,16 +30,15 @@ MyGame = ig.Game.extend({
 		
 		
 		// Add your own drawing code here
-		var x = ig.system.width/2,
-			y = ig.system.height/2;
+		var x = ig.system.width / 2,
+			y = ig.system.height / 2;
 		
-		this.font.draw( 'It Works!', x, y, ig.Font.ALIGN.CENTER );
+		this.font.draw( 'Sheeeiiiit nigga!', x, y, ig.Font.ALIGN.CENTER );
 	}
 });
 
 
-// Start the Game with 60fps, a resolution of 320x240, scaled
-// up by a factor of 2
-ig.main( '#canvas', MyGame, 60, 320, 240, 2 );
+// Start the Game with 60fps, a resolution of 800x640, not scaled. 
+ig.main( '#canvas', MyGame, 60, 800, 640, 1 );
 
 });
