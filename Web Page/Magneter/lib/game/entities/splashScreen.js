@@ -8,6 +8,7 @@ ig.module(
 {
 	EntitySplashScreen = ig.Entity.extend(
 	{
+		nextScreen: null,
 		size: {x:800, y:640},
 		// _wmDrawBox: true,
 		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
@@ -26,7 +27,7 @@ ig.module(
 		{
 			if( ig.input.pressed('enter') ) 
 			{
-				ig.game.loadNextLevel( 'SplashScreen', false );
+				ig.game.loadLevel( this.nextScreen, false );
 			}
 		}
 	});

@@ -18,7 +18,11 @@ EntityPlayer = ig.Entity.extend({
 
 	update: function() 
 	{
-
+		if(ig.input.pressed('right'))
+		{
+			this.pos.x += 5;
+			console.log("newpos: " + this.pos.x);
+		}
 	}, 
 
 	setSpawnPoint: function(x, y, nick)

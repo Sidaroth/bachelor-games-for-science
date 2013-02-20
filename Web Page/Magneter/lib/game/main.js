@@ -2,12 +2,22 @@ ig.module(
 	'game.main' 
 )
 .requires(
+	// Impact
 	'impact.game',
 	'impact.font',
-	
+
+	// Entities
+	'game.entities.player',
+	'game.entities.magnet',
+	'game.entities.button',
+	'game.entities.trigger',
+
+	// Levels
+	'game.levels.level1',
 	'game.levels.splashScreen'
 )
-.defines(function(){
+.defines(function()
+{
 
 MyGame = ig.Game.extend(
 	{
@@ -20,7 +30,8 @@ MyGame = ig.Game.extend(
     buttons: {},
 	//array with all levels
 	levels: {
-		'SplashScreen': LevelSplashScreen
+		'SplashScreen': LevelSplashScreen,
+		'Level1': LevelLevel1
 	},
 	
 	init: function() 
@@ -28,26 +39,26 @@ MyGame = ig.Game.extend(
 		// Initialize your game here; bind keys etc.
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1' );
 		ig.input.bind( ig.KEY.ENTER, 'enter');
+		ig.input.bind( ig.KEY.RIGHT_ARROW, 'right');
 		
-		this.loadLevel( LevelSplashScreen );
+		this.loadLevel( "SplashScreen", true );
 	},
 	
-	update: function() {
+	update: function() 
+	{
 		// Update all entities and backgroundMaps
 		this.parent();
 		
 		// Add your own, additional update code here
 	},
-	
-	loadNextLevel: function(levelKey, gameScreen) 
+
+	// Takes a string that describes which level is to be loaded, and a boolean that 
+	// represents if it's an ingame screen, or something like a menu. 
+	loadLevel: function(levelKey, gameScreen) 
 	{
-		 this.loadLevel(this.levels[levelKey], gameScreen);
-	},
-	
-	loadLevel: function(level, gameScreen) 
-	{
-		this.parent(level);
+		this.parent(this.levels[levelKey]);
 		console.log("loaded level");
+
         if(gameScreen === true)
         {
             
