@@ -9,15 +9,22 @@ ig.module(
 )
 .defines(function(){
 
-MyGame = ig.Game.extend({
+MyGame = ig.Game.extend(
+	{
 	
 	// Load a font
 	font: new ig.Font( 'media/04b03.font.png' ),
+	//button selected in the menu
+	selectedButton: 0,
+	//array with all the buttons
+    buttons: {},
+	//array with all levels
 	levels: {
 		'SplashScreen': LevelSplashScreen
 	},
 	
-	init: function() {
+	init: function() 
+	{
 		// Initialize your game here; bind keys etc.
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1' );
 		ig.input.bind( ig.KEY.ENTER, 'enter');
@@ -32,30 +39,33 @@ MyGame = ig.Game.extend({
 		// Add your own, additional update code here
 	},
 	
-	loadNextLevel: function(levelKey, gameScreen) {
+	loadNextLevel: function(levelKey, gameScreen) 
+	{
 		 this.loadLevel(this.levels[levelKey], gameScreen);
 	},
 	
-	loadLevel: function(level, gameScreen) {
+	loadLevel: function(level, gameScreen) 
+	{
 		this.parent(level);
-		console.log("load level!!!");
+		console.log("loaded level");
         if(gameScreen === true)
         {
             
         }
         else
         {
-            // this.selectedButton = 0;
-            // this.buttons = this.getEntitiesByType(EntityButton);
-// 
-            // if(this.buttons.length > 0)
-            // {
-                // this.buttons[this.selectedButton].highlight(this.selectedButton);
-            // }
+			this.selectedButton = 0;
+			this.buttons = this.getEntitiesByType(EntityButton);
+			
+			if(this.buttons.length > 0)
+			{
+		    	this.buttons[this.selectedButton].highlight(this.selectedButton);
+			}
         }
 	},
 	
-	draw: function() {
+	draw: function() 
+	{
 		// Draw all entities and backgroundMaps
 		this.parent();
 		
