@@ -18,6 +18,8 @@ EntityButton = ig.Entity.extend(
 	collides: ig.Entity.COLLIDES.NEVER,
 	goToLevel: null,
 
+	gravityFactor: 0,
+	
 	size: {x: 100, y:100},
 	highlighted: false,
 
