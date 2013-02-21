@@ -97,22 +97,37 @@ ig.module(
 					this.buttons[this.selectedButton].goToNextLevel();
 				}
 				
-				this.buttons[this.selectedButton].highlight();
-				
 				//check if mouse is clicked and if it clicks on a button, if yes, level is run.
-				if(ig.input.pressed('mouse1'))
+				for (var i = 0; i < this.buttons.length; i++)
 				{
-					for (var i = 0; i < this.buttons.length; i++)
+					if(this.isMouseOnButton(i))
 					{
-						if(	ig.input.mouse.x >= this.buttons[i].pos.x && ig.input.mouse.x <= (this.buttons[i].pos.x + this.buttons[i].size.x)
-						 && ig.input.mouse.y >= this.buttons[i].pos.y && ig.input.mouse.y <= (this.buttons[i].pos.y + this.buttons[i].size.y))
-					 	{
-							this.buttons[i].goToNextLevel();
-					 	}
-						
+						if(ig.input.pressed('mouse1'))
+						{
+							this.buttons[i].goToNextLevel();	
+						}
+						else
+						{
+							this.selectedButton = i;
+						}
 					}
 				}
+				this.buttons[this.selectedButton].highlight();
+			}
+		},
+		
+		isMouseOnButton: function(i)
+		{
+			if(	ig.input.mouse.x >= this.buttons[i].pos.x && ig.input.mouse.x <= (this.buttons[i].pos.x + this.buttons[i].size.x)
+			 && ig.input.mouse.y >= this.buttons[i].pos.y && ig.input.mouse.y <= (this.buttons[i].pos.y + this.buttons[i].size.y))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
+		
 	});
 });
