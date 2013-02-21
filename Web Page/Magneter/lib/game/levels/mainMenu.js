@@ -1,5 +1,5 @@
 ig.module( 'game.levels.mainMenu' )
-.requires( 'impact.image' )
+.requires( 'impact.image','game.entities.button','game.entities.mainMenu' )
 .defines(function(){
-LevelMainMenu=/*JSON[*/{"entities":[],"layer":[]}/*]JSON*/;
+LevelMainMenu=/*JSON[*/{"entities":[{"type":"EntityButton","x":50,"y":200,"settings":{"goToLevel":"MainMenu"}},{"type":"EntityMainMenu","x":92,"y":128},{"type":"EntityButton","x":200,"y":200,"settings":{"goToLevel":"Level1"}},{"type":"EntityButton","x":350,"y":200},{"type":"EntityButton","x":500,"y":200},{"type":"EntityButton","x":650,"y":200},{"type":"EntityButton","x":50,"y":350},{"type":"EntityButton","x":200,"y":350},{"type":"EntityButton","x":350,"y":350},{"type":"EntityButton","x":500,"y":350},{"type":"EntityButton","x":650,"y":350},{"type":"EntityButton","x":50,"y":500},{"type":"EntityButton","x":200,"y":500},{"type":"EntityButton","x":350,"y":500},{"type":"EntityButton","x":500,"y":500},{"type":"EntityButton","x":650,"y":500}],"layer":[]}/*]JSON*/;
 });

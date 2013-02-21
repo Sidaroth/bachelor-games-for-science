@@ -14,7 +14,8 @@ ig.module(
 
 	// Levels
 	'game.levels.level1',
-	'game.levels.splashScreen'
+	'game.levels.splashScreen',
+	'game.levels.mainMenu'
 )
 .defines(function()
 {
@@ -24,14 +25,11 @@ MyGame = ig.Game.extend(
 	
 	// Load a font
 	font: new ig.Font( 'media/04b03.font.png' ),
-	//button selected in the menu
-	selectedButton: 0,
-	//array with all the buttons
-    buttons: {},
 	//array with all levels
 	levels: {
 		'SplashScreen': LevelSplashScreen,
-		'Level1': LevelLevel1
+		'Level1': LevelLevel1,
+		'MainMenu' : LevelMainMenu
 	},
 	
 	init: function() 
@@ -40,6 +38,9 @@ MyGame = ig.Game.extend(
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1' );
 		ig.input.bind( ig.KEY.ENTER, 'enter');
 		ig.input.bind( ig.KEY.RIGHT_ARROW, 'right');
+		ig.input.bind( ig.KEY.LEFT_ARROW, 'left');
+		ig.input.bind( ig.KEY.UP_ARROW, 'up');
+		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
 		
 		this.loadLevel( "SplashScreen", true );
 	},
@@ -65,13 +66,7 @@ MyGame = ig.Game.extend(
         }
         else
         {
-			this.selectedButton = 0;
-			this.buttons = this.getEntitiesByType(EntityButton);
-			
-			if(this.buttons.length > 0)
-			{
-		    	this.buttons[this.selectedButton].highlight(this.selectedButton);
-			}
+
         }
 	},
 	

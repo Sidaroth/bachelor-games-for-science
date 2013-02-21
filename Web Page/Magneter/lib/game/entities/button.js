@@ -4,9 +4,11 @@ ig.module(
 .requires(
 	'impact.entity'
 )
-.defines(function(){
+.defines(function()
+{
 
-EntityButton = ig.Entity.extend({
+EntityButton = ig.Entity.extend(
+	{
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 255, 0, 0.7)',
@@ -14,49 +16,46 @@ EntityButton = ig.Entity.extend({
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER,
-	id: 1,
+	goToLevel: null,
 
-	size: {x: 145, y:28},
+	size: {x: 100, y:100},
 	highlighted: false,
 
-	//animSheet: new ig.AnimationSheet( 'media/Buttons.png', 145, 28 ),
+	animSheet: new ig.AnimationSheet( 'media/menu/buttons.png', 100, 100 ),
 
-	init: function(x, y, settings){
+	init: function(x, y, settings)
+	{
 		this.parent(x, y, settings);
+		
+		this.addAnim('unselected', .1, [0]);
+		this.addAnim('selected', .1, [1]);
+		
+		this.currentAnim = this.anims['unselected'];
 	},
 	
-	highlight: function(id){
+	highlight: function()
+	{
 		if(this.highlighted === true)
 		{
-			this.currentAnim = this.anims['unselected' + this.id];
+			this.currentAnim = this.anims['unselected'];
 			this.highlighted = false;
 		}
 		else
 		{
-			this.currentAnim = this.anims['selected' + this.id];
+			this.currentAnim = this.anims['selected'];
 			this.highlighted = true;
 		}
 	},
 	
-	click: function(id)
+	goToNextLevel: function()
 	{
-		switch(this.id)
+		if(this.goToLevel !== null)
 		{
-			case 0: // Start Game
-			ig.game.loadNextLevel('introScreen', false);
-			break;
-
-			case 1: // Credits
-			ig.game.loadNextLevel('credits', false);
-			break;
-
-			case 2: // Menu
-			ig.game.loadNextLevel('titleScreen', false);
-			break;
-
-			default: // Something went wrong.
-			console.log("Default case triggered in button.click()");
-			break;
+			ig.game.loadLevel( this.goToLevel, true );
+		}
+		else
+		{
+			console.log("Set the variable goToLevel to the level you want it to go to");
 		}
 	}
 });
