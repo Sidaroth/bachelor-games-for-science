@@ -30,11 +30,9 @@ ig.module(
 		
 		update: function() 
 		{
-			console.log(this.timer.delta());
 			//load in all the buttons into the buttons array
 			if(this.buttons === null)
 			{
-				//console.log(this.buttons.length);
 				this.selectedButton = 0;
 				
 				this.buttons = ig.game.getEntitiesByType(EntityButton);
@@ -100,6 +98,20 @@ ig.module(
 				}
 				
 				this.buttons[this.selectedButton].highlight();
+				
+				//check if mouse is clicked and if it clicks on a button, if yes, level is run.
+				if(ig.input.pressed('mouse1'))
+				{
+					for (var i = 0; i < this.buttons.length; i++)
+					{
+						if(	ig.input.mouse.x >= this.buttons[i].pos.x && ig.input.mouse.x <= (this.buttons[i].pos.x + this.buttons[i].size.x)
+						 && ig.input.mouse.y >= this.buttons[i].pos.y && ig.input.mouse.y <= (this.buttons[i].pos.y + this.buttons[i].size.y))
+					 	{
+							this.buttons[i].goToNextLevel();
+					 	}
+						
+					}
+				}
 			}
 		}
 	});
