@@ -1,0 +1,22 @@
+<game>
+	<mainmenu>
+		<title>Magnets</title>
+		<buttons>
+			<button> one </button>
+			<button> two </button>
+			<button> three </button>
+			<button> four </button>
+			<button> five </button>
+			<button> six </button>
+			<button> seven </button>
+			<button> eigth </button>
+			<button> nine </button>
+			<button> ten </button>
+			<button> eleven </button>
+			<button> twelve </button>
+			<button> thirteen </button>
+			<button> fourteen </button>
+			<button> fifteen </button>
+		</buttons>
+	</mainmenu>
+</game>
