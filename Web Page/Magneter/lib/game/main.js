@@ -21,10 +21,13 @@ ig.module(
 {
 
 MyGame = ig.Game.extend(
-	{
-	
+{
+
+	gravity: 500,
+		
 	// Load a font
 	font: new ig.Font( 'media/04b03.font.png' ),
+	
 	//array with all levels
 	levels: {
 		'SplashScreen': LevelSplashScreen,

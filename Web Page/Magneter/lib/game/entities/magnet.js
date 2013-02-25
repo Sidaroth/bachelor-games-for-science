@@ -2,7 +2,9 @@ ig.module(
 	'game.entities.magnet'
 )
 .requires(
-	'impact.entity'
+	'impact.entity',
+
+	'game.entities.player'
 )
 .defines(function(){
 
@@ -15,16 +17,16 @@ EntityMagnet = ig.Entity.extend({
 	size: {x: 10, y: 10},
 	//offset: {x: 0, y:0 },
 
-	fieldRadius: 50,		// Radius of the circle the magnet will have an effect on.
+	fieldRadius: 100,		// Radius of the circle the magnet will have an effect on.
 	fieldStrength: 10,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: 0,		// Polarities are represented as (1, 0, -1)(North, Neutral, South). 
-	ringColor: 'rgba(255, 255, 255, 1)',
+	ringColor: 'rgba(123, 123, 123, 1)',
 
 	player: null,
 
 	init: function( x, y, settings )
 	{
-		this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
+		//this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
 	},
 
 
@@ -35,22 +37,22 @@ EntityMagnet = ig.Entity.extend({
 			this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
 		}
 
-		if(ig.input.pressed('right'))
+		if(ig.input.state('right'))
 		{
 			this.pos.x += 10;
 		}
 
-		if(ig.input.pressed('left'))
+		if(ig.input.state('left'))
 		{
 			this.pos.x -= 10;
 		}
 
-		if(ig.input.pressed('up'))
+		if(ig.input.state('up'))
 		{
 			this.pos.y -= 10;
 		}
 
-		if(ig.input.pressed('down'))
+		if(ig.input.state('down'))
 		{
 			this.pos.y += 10;
 		}
