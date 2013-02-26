@@ -79,9 +79,10 @@ MyGame = ig.Game.extend(
 		this.parent();
 		
 		
-		// Add your own drawing code here
-		// var 	x = ig.system.width / 2,
-		// 		y = ig.system.height / 2;
+/*		Add your own drawing code here
+		var 	x = ig.system.width / 2,
+				y = ig.system.height / 2;
+		this.font.draw( 'Sheeeiiiit nigga!', x, y, ig.Font.ALIGN.CENTER );*/
 	}
 });
 
