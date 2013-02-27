@@ -13,6 +13,7 @@ ig.module(
 		// _wmDrawBox: true,
 		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
 		// _wmScalable: true,
+		gravityFactor: 0,
 		
 		animSheet: new ig.AnimationSheet( 'media/menu/splashScreen.png', 800, 640 ),
 		
@@ -25,6 +26,7 @@ ig.module(
 		
 		update: function() 
 		{
+			this.parent();
 			if( ig.input.pressed('enter') ) 
 			{
 				ig.game.loadLevel( this.nextScreen, false );

@@ -1,0 +1,27 @@
+<game>
+	<shield>
+		<yes> Ja </yes>
+		<no> Nei </no>
+	</shield>
+	<mainmenu>
+		<title>Magneter </title>
+		<language> Er du sikker paa at du vil bytte spraak til engelsk? </language>
+		<buttons>
+			<button> en </button>
+			<button> to </button>
+			<button> tre </button>
+			<button> fire </button>
+			<button> fem </button>
+			<button> seks </button>
+			<button> sju </button>
+			<button> aatte </button>
+			<button> ni </button>
+			<button> ti </button>
+			<button> eleve </button>
+			<button> tolv </button>
+			<button> treten </button>
+			<button> fjorten </button>
+			<button> femten </button>
+		</buttons>
+	</mainmenu>
+</game>
