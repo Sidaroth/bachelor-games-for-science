@@ -11,11 +11,16 @@ ig.module(
 	'game.entities.magnet',
 	'game.entities.button',
 	'game.entities.trigger',
+	'game.entities.language',
+	'game.entities.shield',
 
 	// Levels
 	'game.levels.level1',
 	'game.levels.splashScreen',
-	'game.levels.mainMenu'
+	'game.levels.mainMenu',
+
+	//xml
+	'game.xml.getXmlString'
 )
 .defines(function()
 {
@@ -24,7 +29,7 @@ MyGame = ig.Game.extend(
 {
 
 	gravity: 500,
-		
+	
 	// Load a font
 	font: new ig.Font( 'media/04b03.font.png' ),
 	
@@ -34,6 +39,20 @@ MyGame = ig.Game.extend(
 		'Level1': LevelLevel1,
 		'MainMenu' : LevelMainMenu
 	},
+
+	//chosen language, default Norwegian(NO)
+	language: "NO",
+	//paused if true and will only run pauseEntity
+	paused: false,
+	pauseEntity: null,
+
+	//ig.game.xml.loadTextFromXML(label, index, document)
+	//label is the name of the xml bracket you want the info from
+	//index is the number of that index you want, 0 if there is only one
+	//document is which document you want to get the xml string from
+	//example this.myString = ig.game.xml.loadTextFromXML("myString", 0, "lib/game/xml/strings"+ ig.game.language +".xml")
+	//this will return the string "Magneter"
+	xml: new getXmlString( 0, 0, 0 ),
 	
 	init: function() 
 	{
@@ -50,6 +69,11 @@ MyGame = ig.Game.extend(
 	
 	update: function() 
 	{
+		if(this.paused)
+		{
+			this.pauseEntity.update();
+			return;
+		}
 		// Update all entities and backgroundMaps
 		this.parent();
 		

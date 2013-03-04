@@ -1,6 +1,11 @@
 <game>
+	<shield>
+		<yes> Yes </yes>
+		<no> No </no>
+	</shield>
 	<mainmenu>
-		<title>Magnets</title>
+		<title> Magnets </title>
+		<language> Do you want to change the language to Norwegian? </language>
 		<buttons>
 			<button> one </button>
 			<button> two </button>

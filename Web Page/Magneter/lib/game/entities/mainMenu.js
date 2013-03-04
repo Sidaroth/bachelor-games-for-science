@@ -14,7 +14,9 @@ ig.module(
 		//next screen to load
 		nextScreen: null,
 		//size of entity
-		size: {x:10, y:10},
+		size: {x:800, y:640},
+		//background image for the main menu
+		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 800, 640 ),
 		//array with buttons
 		buttons: null,
 		//button selcted in menu
@@ -30,14 +32,16 @@ ig.module(
 		title: "",
 		//array with text for buttons, loaded from xml
 		buttonsText: null,
-		//chosen language, default English(EN)
-		language: "EN",
+		//how much the gravity impacts the enity, set to 0 so the background don't fall out of the screen
+		gravityFactor: 0,
+		//chosen language, if this is not equal to ig.game.language, it will reload the strings
+		language: "NO",
 		
 		init: function( x, y, settings ) 
 		{
 			this.parent( x, y, settings );
 			this.timer.set(0.5);
-			//this.addAnim( 'idle', 1, [0] );
+			this.addAnim( 'idle', 1, [0] );
 		},
 		
 		update: function() 
@@ -52,8 +56,8 @@ ig.module(
 
 				this.buttons.sort(function(a,b) { return parseFloat(a.id) - parseFloat(b.id) } );
 
-				this.loadTextToEntities("lib/game/xml/strings" + this.language + ".xml");
-				
+				this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
+
 				if(this.buttons.length > 0)
 				{
 					this.buttons[this.selectedButton].highlight();
@@ -63,6 +67,11 @@ ig.module(
 			//check for input if there are any buttons loaded in
 			if(this.buttons.length > 0)
 			{
+				if(this.language != ig.game.language)
+				{
+					this.language = ig.game.language;
+					this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
+				}
 				//remove highlight on button selected, will be lit again in the end, in case selected button is changed
 				this.buttons[this.selectedButton].highlight();
 				
@@ -137,10 +146,10 @@ ig.module(
 		
 		draw: function()
 		{
+			this.parent();
 			var 	x = ig.system.width / 2,
 					y = ig.system.height / 4;
 			this.font.draw( this.title, x, y, [ig.Font.ALIGN.CENTER] );
-			this.parent();
 		},
 
 		isMouseOnButton: function(i)
@@ -158,22 +167,12 @@ ig.module(
 
 		loadTextToEntities: function(document)
 		{
-			this.title = this.loadTextFromXML("title", 0, document);
+			this.title =  ig.game.xml.loadTextFromXML("title", 0, document);
 
 			for (var i = 0; i < this.buttons.length; i++)
 			{
-				this.buttons[i].buttonText = this.loadTextFromXML("button", i, document);
+				this.buttons[i].buttonText = ig.game.xml.loadTextFromXML("button", i, document);
 			}
-		},
-
-		loadTextFromXML: function(label, index, document)
-		{
-			var xmlHTTP = new XMLHttpRequest();
-			xmlHTTP.open("GET", document, false);
-			xmlHTTP.send();
-			var xmlDoc = xmlHTTP.responseXML; 
-			var nodes = xmlDoc.querySelectorAll(label);
-			return nodes[index].textContent;
-		}		
+		}
 	});
 });
