@@ -28,7 +28,7 @@ EntityPlayer = ig.Entity.extend({
 		// }
 
 
-		console.log("Velocity (x, y): " + this.vel.x + ", " + this.vel.y);
+		//console.log("Velocity (x, y): " + this.vel.x + ", " + this.vel.y);
 		this.parent();
 	}, 
 

@@ -88,47 +88,33 @@ EntityMagnet = ig.Entity.extend({
 	/// Checks if the player is within the circle. 
 	/// Distance = squareRoot( |player.x - magnet.x|^2 + |player.y - magnet.y|^2 )
 	/// If inside field effect radius, apply exponential decay function:
-	/// e^(-x/z) --- Where x equals distance from center of the magnetic field
-	/// and z equals 1/5th of the fields radius. 
+	/// e^(-x/z) --- Where x equals distance from center of the magnetic field.
 	checkDistance: function()
-	{
-		var x = this.player.pos.x - this.pos.x;
-		var y = this.player.pos.y - this.pos.y;
-
-		var xDist = Math.abs(x);
-		var yDist = Math.abs(y);
+	{		
+		var xDist = Math.abs(this.player.pos.x - this.pos.x);
+		var yDist = Math.abs(this.player.pos.y - this.pos.y);
 
 		var dist = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2)); 
 
+		// If within magnetic field
 		if(dist <= this.fieldRadius)
-		{
-			// Apply decay function to player. 
+		{	
+			var forceCoefficient = 250;
+			var z = Math.floor(this.fieldRadius / 5);
 
-			
-			var z = Math.floor(this.fieldRadius / 2);
+			var force = forceCoefficient * Math.exp(-dist / z);
 
-			var xForce = Math.exp( -xDist/z ); 
-			var yForce = Math.exp( -yDist/z );
+			var xRatio = Math.sin(xDist / dist);
+			var yRatio = Math.cos(yDist / dist);
 
-			//console.log("(x, y): " + x + ", " + y);
+			var xForce = xRatio * force;
+			var yForce = yRatio * force;
 
-			if(x > 0)
-			{
-				this.player.vel.x -= 500 * xForce;
-			}
-			else
-			{
-				this.player.vel.x += 500 * xForce;
-			}
+			this.player.vel.x = this.player.vel.x + xForce;
+			this.player.vel.y = this.player.vel.y + yForce;
 
-			if(y > 0)
-			{
-				this.player.vel.y -= 500 * yForce;
-			}
-			else
-			{
-				this.player.vel.y += yForce;
-			}
+			console.log("x: " + xRatio + ", " + xForce);
+			console.log("y: " + yRatio + ", " + yForce);
 		}
 	},
 
