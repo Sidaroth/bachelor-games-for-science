@@ -15,6 +15,7 @@ ig.module(
 			xmlHTTP.send();
 			var xmlDoc = xmlHTTP.responseXML; 
 			var nodes = xmlDoc.querySelectorAll(label);
+			//console.log(nodes);
 			return nodes[index].textContent;
 		}
 	});

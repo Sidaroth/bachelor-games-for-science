@@ -1,10 +1,13 @@
 <game>
+	<splashScreen>
+		<info> Press 'enter' eller venste museknapp for aa forsette </info>
+	</splashScreen>
 	<shield>
 		<yes> Ja </yes>
 		<no> Nei </no>
 	</shield>
-	<mainmenu>
-		<title>Magneter </title>
+	<mainMenu>
+		<title> Magneter </title>
 		<language> Er du sikker paa at du vil bytte spraak til engelsk? </language>
 		<buttons>
 			<button> en </button>
@@ -23,5 +26,9 @@
 			<button> fjorten </button>
 			<button> femten </button>
 		</buttons>
-	</mainmenu>
+	</mainMenu>
+	<levelOneInfoScreen>
+		<info> Dette er informasjonen for den foerste info skjermen </info>
+		<image>media/infoScreen/infoScreenOneImage.png </image>
+	</levelOneInfoScreen>
 </game>

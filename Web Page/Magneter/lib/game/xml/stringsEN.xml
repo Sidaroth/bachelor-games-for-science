@@ -1,9 +1,12 @@
 <game>
+	<splashScreen>
+		<info>Press 'enter' or left mouse button to continue</info>
+	</splashScreen>
 	<shield>
 		<yes> Yes </yes>
 		<no> No </no>
 	</shield>
-	<mainmenu>
+	<mainMenu>
 		<title> Magnets </title>
 		<language> Do you want to change the language to Norwegian? </language>
 		<buttons>
@@ -23,5 +26,9 @@
 			<button> fourteen </button>
 			<button> fifteen </button>
 		</buttons>
-	</mainmenu>
+	</mainMenu>
+	<levelOneInfoScreen>
+		<info> This is the info displayed on the first info screen </info>
+		<image>media/infoScreen/infoScreenOneImage.png </image>
+	</levelOneInfoScreen>
 </game>
