@@ -18,13 +18,13 @@ ig.module(
 		// _wmScalable: true,
 		gravityFactor: 0,
 		//name for the image in the xml ex. game>levelOneInfoScreen>image
-		imageName: null,
+		imageName: "",
 		//name for the info in the xml ex. game>splashScreen>info
-		messageName: null,
+		messageName: "",
 		//path to the image gotten from the xml
-		imagePath: null,
+		imagePath: "",
 		//the message to be written on the screen
-		message: null,
+		message: "",
 		//xmlDocument path
 		xmlDocument: "",
 		
@@ -43,7 +43,7 @@ ig.module(
 		{
 			this.parent();
 			this.font.draw( this.message, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 4), [ig.Font.ALIGN.CENTER] );
-			if(this.imagePath != null)
+			if(this.imagePath != "")
 			{
 				this.imagePath.draw(this.pos.x + (this.size.x / 2) - (this.imagePath.height/2), this.pos.y + ((this.size.y / 4) * 3) - (this.imagePath.width/2));
 			}
@@ -53,12 +53,12 @@ ig.module(
 		{
 			this.parent();
 
-			if(this.messageName != null && this.message == null)
+			if(this.messageName != "" && this.message == "")
 			{
 				this.message =  ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
 			}
 
-			if(this.imageName != null && this.imagePath == null)
+			if(this.imageName != "" && this.imagePath == "")
 			{
 				this.imagePath =  new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
 				console.log(this.imagePath);

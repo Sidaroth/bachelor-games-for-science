@@ -13,9 +13,11 @@ ig.module(
 	'game.entities.trigger',
 	'game.entities.language',
 	'game.entities.shield',
+	'game.entities.infoScreen',
 
 	// Levels
 	'game.levels.level1',
+	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
 
@@ -37,6 +39,7 @@ MyGame = ig.Game.extend(
 	levels: {
 		'SplashScreen': LevelSplashScreen,
 		'Level1': LevelLevel1,
+		'Level1Info': LevelLevel1Info,
 		'MainMenu' : LevelMainMenu
 	},
 
