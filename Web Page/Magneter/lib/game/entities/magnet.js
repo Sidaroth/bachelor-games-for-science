@@ -104,17 +104,18 @@ EntityMagnet = ig.Entity.extend({
 
 			var force = forceCoefficient * Math.exp(-dist / z);
 
-			var xRatio = Math.sin(xDist / dist);
-			var yRatio = Math.cos(yDist / dist);
+			var xRatio = Math.acos(xDist / dist);
+			var yRatio = Math.asin(yDist / dist);
+			console.log("Degrees(x, y): " + (xRatio * 180 / Math.PI) + ", " + (yRatio * 180 / Math.PI));
 
 			var xForce = xRatio * force;
 			var yForce = yRatio * force;
 
-			this.player.vel.x = this.player.vel.x + xForce;
-			this.player.vel.y = this.player.vel.y + yForce;
-
-			console.log("x: " + xRatio + ", " + xForce);
-			console.log("y: " + yRatio + ", " + yForce);
+			//this.player.vel.x = this.player.vel.x + xForce;
+			//this.player.vel.y = this.player.vel.y + yForce;
+			//console.log("dist: (x, y, total)" + xDist + ", " + yDist + ", " + dist);
+			console.log("(x, y) ratio: " + xRatio + ", " + yRatio);
+		//	console.log("(x, y) force: " + xForce + ", " + yForce);
 		}
 	},
 
