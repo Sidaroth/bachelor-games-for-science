@@ -91,10 +91,10 @@ EntityMagnet = ig.Entity.extend({
 	/// e^(-x/z) --- Where x equals distance from center of the magnetic field.
 	checkDistance: function()
 	{		
-		var xDist = Math.abs(this.player.pos.x - this.pos.x);
-		var yDist = Math.abs(this.player.pos.y - this.pos.y);
+		var xDist = this.player.pos.x - this.pos.x;
+		var yDist = this.player.pos.y - this.pos.y;
 
-		var dist = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2)); 
+		var dist = Math.sqrt(Math.pow(Math.abs(xDist), 2) + Math.pow(Math.abs(yDist), 2)); 
 
 		// If within magnetic field
 		if(dist <= this.fieldRadius)
@@ -104,9 +104,14 @@ EntityMagnet = ig.Entity.extend({
 
 			var force = forceCoefficient * Math.exp(-dist / z);
 
-			var xRatio = Math.acos(xDist / dist);
-			var yRatio = Math.asin(yDist / dist);
-			console.log("Degrees(x, y): " + (xRatio * 180 / Math.PI) + ", " + (yRatio * 180 / Math.PI));
+			var angle = Math.acos(xDist / dist);
+
+			console.log("Angle (Rad, Deg): " + angle + ", " + angle * 180 / Math.PI);
+
+			var xRatio = Math.cos(angle);
+			var yRatio = Math.sin(angle);
+
+			console.log("Ratio (x, y): " + xRatio + ", " + yRatio);
 
 			var xForce = xRatio * force;
 			var yForce = yRatio * force;
@@ -114,7 +119,7 @@ EntityMagnet = ig.Entity.extend({
 			//this.player.vel.x = this.player.vel.x + xForce;
 			//this.player.vel.y = this.player.vel.y + yForce;
 			//console.log("dist: (x, y, total)" + xDist + ", " + yDist + ", " + dist);
-			console.log("(x, y) ratio: " + xRatio + ", " + yRatio);
+			//console.log("(x, y) ratio: " + xRatio + ", " + yRatio);
 		//	console.log("(x, y) force: " + xForce + ", " + yForce);
 		}
 	},
