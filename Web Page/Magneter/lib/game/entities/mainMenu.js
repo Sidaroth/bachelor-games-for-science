@@ -131,7 +131,10 @@ ig.module(
 					{
 						if(ig.input.pressed('mouse1'))
 						{
-							this.buttons[i].goToNextLevel();	
+							if(ig.game.unlockedLevels[i])
+							{	
+								this.buttons[i].goToNextLevel();	
+							}
 						}
 						else
 						{

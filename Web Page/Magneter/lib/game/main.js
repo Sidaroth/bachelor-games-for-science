@@ -43,8 +43,13 @@ MyGame = ig.Game.extend(
 		'MainMenu' : LevelMainMenu
 	},
 
-	//chosen language, default Norwegian(NO)
-	language: "NO",
+	//true and false for levels unlocked, see save.xml for details
+	unlockedLevels: [	true, false, false, false, false,
+						false, false, false, false, false,
+						false, false, false, false, false	],
+	saveFile: "lib/game/xml/save.xml",
+	//chosen language, default Norwegian(NO), see save.xml for saved language
+	language: "",
 	//paused if true and will only run pauseEntity
 	paused: false,
 	pauseEntity: null,
@@ -59,14 +64,29 @@ MyGame = ig.Game.extend(
 	
 	init: function() 
 	{
+		//load save from save.xml
+		this.language = ig.game.xml.loadTextFromXML("language", 0, this.saveFile);
+		for (var i = 0; i < this.unlockedLevels.length; i++)
+		{
+			if(ig.game.xml.loadTextFromXML("level", i, this.saveFile) == "true")
+			{
+				this.unlockedLevels[i] = true;
+			}
+			else
+			{
+				this.unlockedLevels[i] = false;
+			}
+		}
+
 		// Initialize your game here; bind keys etc.
-		ig.input.bind( ig.KEY.MOUSE1, 'mouse1' );
+		ig.input.bind( ig.KEY.MOUSE1, 'mouse1');
 		ig.input.bind( ig.KEY.ENTER, 'enter');
 		ig.input.bind( ig.KEY.RIGHT_ARROW, 'right');
 		ig.input.bind( ig.KEY.LEFT_ARROW, 'left');
 		ig.input.bind( ig.KEY.UP_ARROW, 'up');
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
 		
+		//run first level
 		this.loadLevel( "SplashScreen", true );
 	},
 	
@@ -88,16 +108,6 @@ MyGame = ig.Game.extend(
 	loadLevel: function(levelKey, gameScreen) 
 	{
 		this.parent(this.levels[levelKey]);
-		console.log("loaded level");
-
-        if(gameScreen === true)
-        {
-            
-        }
-        else
-        {
-
-        }
 	},
 	
 	draw: function() 
