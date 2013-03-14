@@ -18,7 +18,7 @@ EntityMagnet = ig.Entity.extend({
 	//offset: {x: 0, y:0 },
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
-	fieldStrength: 10,  // The strength of the magnetic field (Used to calculate the strength at a location)
+	fieldMagnitude: 300,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: 0,		// Polarities are represented as (1, 0, -1)(North, Neutral, South). 
 	ringColor: 'rgba(123, 123, 123, 1)',
 
@@ -84,43 +84,44 @@ EntityMagnet = ig.Entity.extend({
 		this.drawFieldEffectRing();
 	},
 
-
-	/// Checks if the player is within the circle. 
-	/// Distance = squareRoot( |player.x - magnet.x|^2 + |player.y - magnet.y|^2 )
-	/// If inside field effect radius, apply exponential decay function:
-	/// e^(-x/z) --- Where x equals distance from center of the magnetic field.
 	checkDistance: function()
-	{		
-		var xDist = this.player.pos.x - this.pos.x;
-		var yDist = this.player.pos.y - this.pos.y;
+	{
+		var distanceVector = 
+		{
+			x: this.player.pos.x - this.pos.x,
+			y: this.player.pos.y - this.pos.y
+		};
 
-		var dist = Math.sqrt(Math.pow(Math.abs(xDist), 2) + Math.pow(Math.abs(yDist), 2)); 
+		// Standard pythagorean theorem -- Length of vector. 
+		var distanceVecLength = Math.sqrt( Math.pow( Math.abs(distanceVector.x), 2 ) + Math.pow( Math.abs(distanceVector.y), 2 ) );
 
-		// If within magnetic field
-		if(dist <= this.fieldRadius)
-		{	
-			var forceCoefficient = 250;
+		// If within the field. 
+		if(distanceVecLength <= this.fieldRadius)
+		{
+			var unitDistVec = 
+			{
+				x: distanceVector.x / distanceVecLength,
+				y: distanceVector.y / distanceVecLength,
+			};
+
+			var mass = 1; //// TEEEEEEMPORARY.. simulate own gravity?
 			var z = Math.floor(this.fieldRadius / 5);
 
-			var force = forceCoefficient * Math.exp(-dist / z);
 
-			var angle = Math.acos(xDist / dist);
 
-			console.log("Angle (Rad, Deg): " + angle + ", " + angle * 180 / Math.PI);
+			//var magneticForce = 1 / Math.pow( distanceVecLength, 2 );
+			var magneticForce = Math.exp( -distanceVecLength / z );
+			console.log(magneticForce);
 
-			var xRatio = Math.cos(angle);
-			var yRatio = Math.sin(angle);
+			var acceleration = 
+			{
+				x: -1 * ((magneticForce * unitDistVec.x * this.fieldMagnitude) / mass), // + gravity... 0 in X.
+				y: -1 *  ((magneticForce * unitDistVec.y * this.fieldMagnitude) / mass), // + gravity... g(0, -1) * G (magnitude). 
+			};
 
-			console.log("Ratio (x, y): " + xRatio + ", " + yRatio);
 
-			var xForce = xRatio * force;
-			var yForce = yRatio * force;
-
-			//this.player.vel.x = this.player.vel.x + xForce;
-			//this.player.vel.y = this.player.vel.y + yForce;
-			//console.log("dist: (x, y, total)" + xDist + ", " + yDist + ", " + dist);
-			//console.log("(x, y) ratio: " + xRatio + ", " + yRatio);
-		//	console.log("(x, y) force: " + xForce + ", " + yForce);
+			this.player.vel.x = this.player.vel.x + acceleration.x * 0.0166666667;
+			this.player.vel.y = this.player.vel.y + acceleration.y * 0.0166666667;
 		}
 	},
 
