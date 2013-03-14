@@ -13,7 +13,7 @@ ig.module(
 		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
 		// _wmScalable: true,
 
-		font: new ig.Font( 'media/04b03.font.png' ),
+		font: new ig.Font( 'media/calibri-16pt.png' ),
 		message: "",
 		yes: "",
 		no: "",

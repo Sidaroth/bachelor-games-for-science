@@ -10,7 +10,7 @@ ig.module(
 	EntityMainMenu = ig.Entity.extend(
 	{
 		//font for displaying title
-		font: new ig.Font( 'media/04b03.font.png' ),
+		font: new ig.Font( 'media/calibri-16pt.png' ),
 		//next screen to load
 		nextScreen: null,
 		//size of entity

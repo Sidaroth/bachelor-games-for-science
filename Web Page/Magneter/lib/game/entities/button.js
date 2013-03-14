@@ -13,7 +13,7 @@ EntityButton = ig.Entity.extend(
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 255, 0, 0.7)',
 
-	font: new ig.Font( 'media/04b03.font.png' ),
+	font: new ig.Font( 'media/calibri-16pt.png' ),
 
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,

@@ -33,7 +33,7 @@ MyGame = ig.Game.extend(
 	gravity: 0,
 	
 	// Load a font
-	font: new ig.Font( 'media/04b03.font.png' ),
+	font: new ig.Font( 'media/calibri-16pt.png' ),
 	
 	//array with all levels
 	levels: {
@@ -104,12 +104,6 @@ MyGame = ig.Game.extend(
 	{
 		// Draw all entities and backgroundMaps
 		this.parent();
-		
-		
-/*		Add your own drawing code here
-		var 	x = ig.system.width / 2,
-				y = ig.system.height / 2;
-		this.font.draw( 'Sheeeiiiit nigga!', x, y, ig.Font.ALIGN.CENTER );*/
 	}
 });
 

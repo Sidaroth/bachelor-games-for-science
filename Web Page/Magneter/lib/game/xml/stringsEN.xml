@@ -1,14 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <game>
 	<splashScreen>
 		<info>Press 'enter' or left mouse button to continue</info>
 	</splashScreen>
+	<popUpMessageTemp>
+		<info> Test test test</info>
+		<image>media/popUpMessage/popUpMessageImage.png </image>
+	</popUpMessageTemp>
 	<shield>
 		<yes> Yes </yes>
 		<no> No </no>
 	</shield>
 	<mainMenu>
 		<title> Magnets </title>
-		<language> Do you want to change the language to Norwegian? </language>
+		<language> Do you want to change
+the language to Norwegian?
+		</language>
 		<buttons>
 			<button> one </button>
 			<button> two </button>

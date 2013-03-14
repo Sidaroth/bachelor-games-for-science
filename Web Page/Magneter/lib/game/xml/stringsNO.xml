@@ -1,14 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <game>
 	<splashScreen>
-		<info> Press 'enter' eller venste museknapp for aa forsette </info>
+		<info> Press 'enter' eller venste museknapp for å forsette </info>
 	</splashScreen>
+	<popUpMessageTemp>
+		<info> Test test test test test </info>
+		<image>media/popUpMessage/popUpMessageImage.png </image>
+	</popUpMessageTemp>
 	<shield>
 		<yes> Ja </yes>
 		<no> Nei </no>
 	</shield>
 	<mainMenu>
 		<title> Magneter </title>
-		<language> Er du sikker paa at du vil bytte spraak til engelsk? </language>
+		<language> Er du sikker på at du vil 
+bytte språk til engelsk? 
+		</language>
 		<buttons>
 			<button> en </button>
 			<button> to </button>
@@ -17,18 +24,18 @@
 			<button> fem </button>
 			<button> seks </button>
 			<button> sju </button>
-			<button> aatte </button>
+			<button> åtte </button>
 			<button> ni </button>
 			<button> ti </button>
 			<button> eleve </button>
 			<button> tolv </button>
-			<button> treten </button>
+			<button> tretten </button>
 			<button> fjorten </button>
 			<button> femten </button>
 		</buttons>
 	</mainMenu>
 	<levelOneInfoScreen>
-		<info> Dette er informasjonen for den foerste info skjermen </info>
+		<info> Dette er informasjonen for den første info skjermen </info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
 </game>
