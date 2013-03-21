@@ -2,11 +2,11 @@ ig.module(
 	'game.entities.player'
 )
 .requires(
-	'impact.entity'
+	'plugins.box2d.entity'
 )
 .defines(function(){
 
-EntityPlayer = ig.Entity.extend({
+EntityPlayer = ig.Box2DEntity.extend({
 
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 0, 0.7)',
@@ -15,20 +15,36 @@ EntityPlayer = ig.Entity.extend({
 
 	init: function( x, y, settings ) 
 	{
-		this.pos.x = 400;
-		this.pos.y = 300;
+		this.parent(x, y, settings);
+	},
+
+	handleEvents: function()
+	{
+		if(ig.input.state('right'))
+		{
+			this.pos.x += 10;
+		}
+
+		if(ig.input.state('left'))
+		{
+			this.pos.x -= 10;
+		}
+
+		if(ig.input.state('up'))
+		{
+			this.pos.y -= 10;
+		}
+
+		if(ig.input.state('down'))
+		{
+			this.pos.y += 10;
+		}
 	},
 
 	update: function() 
 	{
-		// if(ig.input.pressed('right'))
-		// {
-		// 	this.pos.x += 5;
-		// 	console.log("newpos: " + this.pos.x);
-		// }
+		this.handleEvents();
 
-
-		//console.log("Velocity (x, y): " + this.vel.x + ", " + this.vel.y);
 		this.parent();
 	}, 
 
@@ -68,23 +84,23 @@ EntityPlayer = ig.Entity.extend({
 
 });
 
-EntityBox = ig.Entity.extend({
+// EntityBox = ig.Entity.extend({
     
-    init: function (x, y, settings) 
-    {
+//     init: function (x, y, settings) 
+//     {
 
-    },
+//     },
 
 
-    update: function() 
-    {
+//     update: function() 
+//     {
     	
-    },
+//     },
 
-    check: function(other) 
-    {
+//     check: function(other) 
+//     {
 
-    },
-});
+//     },
+// });
 
 });

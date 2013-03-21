@@ -6,6 +6,9 @@ ig.module(
 	'impact.game',
 	'impact.font',
 
+	// Box2d
+	'plugins.box2d.game',
+
 	// Entities
 	'game.entities.player',
 	'game.entities.magnet',
@@ -27,13 +30,14 @@ ig.module(
 .defines(function()
 {
 
-MyGame = ig.Game.extend(
+MyGame = ig.Box2DGame.extend(
 {
 
-	gravity: 0,
+	gravity: 100,
 	
 	// Load a font
 	font: new ig.Font( 'media/calibri-16pt.png' ),
+	clearColor: '#1b2026',
 	
 	//array with all levels
 	levels: {
@@ -108,6 +112,9 @@ MyGame = ig.Game.extend(
 	loadLevel: function(levelKey, gameScreen) 
 	{
 		this.parent(this.levels[levelKey]);
+		for( var i = 0; i < this.backgroundMaps.length; i++ ) {
+			this.backgroundMaps[i].preRender = true;
+		}
 	},
 	
 	draw: function() 
