@@ -14,31 +14,45 @@ EntityMagnet = ig.Box2DEntity.extend({
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 255, 0.7)',
 
-	size: {x: 10, y: 10},
+	type: ig.Entity.TYPE.A,
+	checkAgainst: ig.Entity.TYPE.NONE,
+	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
+
+	size: {x: 50, y: 50},
 	//offset: {x: 0, y:0 },
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
-	fieldMagnitude: 450,  // The strength of the magnetic field (Used to calculate the strength at a location)
+	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: -1,		// Polarities are represented as (1, 0, -1)(Attract, Neutral, Repel). 
 	ringColor: 'rgba(123, 123, 123, 1)',
 
-	objectsToTest: {},
+	objectsToTest: null,
 
+	animSheet: new ig.AnimationSheet( 'media/magnets/magnet-north.png', 50, 50),
 	player: null,
 
 	init: function( x, y, settings )
 	{
-		 this.parent(x, y, settings);
+		this.parent(x, y, settings);
 
-		// console.log(ig.game.getEntitiesByType(EntityMagnet));
-		// this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
-		// this.objectsToTest.push(this.player);
-	},
+		this.addAnim( 'idle', 1, [0] );
+		this.currentAnim = this.anims['idle'];
 
+		if( !ig.global.wm )
+		{
+			var shapeDef = new b2.PolygonDef();
+			shapeDef.SetAsBox(
+			 	this.size.x / 2 * b2.SCALE,
+				this.size.y / 2 * b2.SCALE
+			);
 
-	handleEvents: function()
-	{
+			shapeDef.density = 0;
+			shapeDef.friction = 5;
+			shapeDef.restitution = 0.5;
 
+			this.body.CreateShape( shapeDef );
+			this.body.SetMassFromShapes();
+		}
 	},
 
 	update: function()
@@ -48,35 +62,27 @@ EntityMagnet = ig.Box2DEntity.extend({
 			this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
 		}
 
-		this.handleEvents();
-
-		for(var entity in this.objectsToTest)
+		//console.log(this.objectsToTest.length);
+		if(this.objectsToTest === null)
 		{
-			console.log(this.objectsToTest);
-			this.checkDistance(entity);
+			this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
+			this.objectsToTest.push( this.player );
 
+			console.log(this.objectsToTest);
 		}
 
-		//this.checkDistance(); // check if ball is within field effect circle. 
-		
-		//console.log("ig.game: " + ig.game.getEntitiesByType(EntityPlayer)[0].pos.x);
+		for( var i = 0; i < this.objectsToTest.length; i++ )
+		{
+			//console.log(this.objectsToTest[i]);
+			this.checkDistance(this.objectsToTest[i]);
+		}
+
 		this.parent();
 	},
 
 	draw: function()
 	{
 		this.parent();
-
-		var context = ig.system.context;
-
-		context.beginPath();
-		context.arc( ig.system.getDrawPos( this.pos.x - ig.game.screen.x ),
-					 ig.system.getDrawPos( this.pos.y - ig.game.screen.y ),
-					 15 * ig.system.scale,
-					 0, Math.PI * 2);
-
-		context.fill();
-
 		this.drawFieldEffectRing();
 	},
 
@@ -84,8 +90,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		var distanceVector = 
 		{
-			x: this.entity.pos.x - this.pos.x,
-			y: this.entity.pos.y - this.pos.y
+			x: entity.pos.x - this.pos.x,
+			y: entity.pos.y - this.pos.y
 		};
 
 		// Standard pythagorean theorem -- Length of vector. 
@@ -105,7 +111,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 		//	var magneticForce = 1 / Math.pow( distanceVecLength, 2 );
 			var magneticForce = Math.exp( -distanceVecLength / z );
-			console.log(magneticForce);
+			//console.log(magneticForce);
 
 			var acceleration = 
 			{
@@ -113,8 +119,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 				y: this.polarity * ((magneticForce * unitDistVec.y * this.fieldMagnitude) / mass), // + gravity... g(0, -1) * G (magnitude). 
 			};
 
-			this.entity.vel.x = this.entity.vel.x + acceleration.x * 0.0166666667;
-			this.entity.vel.y = this.entity.vel.y + acceleration.y * 0.0166666667;
+			//entity.body.ApplyImpulse( acceleration.x * ig.system.tick );
+
+			entity.body.ApplyForce( new b2.Vec2(acceleration.x, acceleration.y), entity.body.GetPosition() );
+			//this.entity.vel.x = this.entity.vel.x + acceleration.x * ig.system.tick;
+			//this.entity.vel.y = this.entity.vel.y + acceleration.y * ig.system.tick;
 		}
 	},
 
@@ -127,8 +136,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 		context.strokeStyle = this.ringColor; 
 		context.beginPath();
 		context.lineWidth = 2;
-		context.arc( ig.system.getDrawPos( this.pos.x - ig.game.screen.x ),
-					ig.system.getDrawPos( this.pos.y - ig.game.screen.y ),
+		context.arc( ig.system.getDrawPos( this.pos.x + (this.size.x / 2) - ig.game.screen.x ),
+					ig.system.getDrawPos( this.pos.y + (this.size.y / 2) - ig.game.screen.y ),
 					this.fieldRadius * ig.system.scale,
 					0, Math.PI * 2);
 

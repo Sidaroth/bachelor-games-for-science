@@ -30,17 +30,17 @@ ig.Box2DEntity = ig.Entity.extend({
 		
 		this.body = ig.world.CreateBody(bodyDef);
 		
-		var shapeDef = new b2.PolygonDef();
-		shapeDef.SetAsBox(
-			this.size.x / 2 * b2.SCALE,
-			this.size.y / 2 * b2.SCALE
-		);
+		// var shapeDef = new b2.PolygonDef();
+		// shapeDef.SetAsBox(
+		// 	this.size.x / 2 * b2.SCALE,
+		// 	this.size.y / 2 * b2.SCALE
+		// );
 		
-		shapeDef.density = 1;
-		//shapeDef.restitution = 0.0;
-		//shapeDef.friction = 0.9;
-		this.body.CreateShape(shapeDef);
-		this.body.SetMassFromShapes();
+		// shapeDef.density = 1;
+		// //shapeDef.restitution = 0.0;
+		// //shapeDef.friction = 0.9;
+		// this.body.CreateShape(shapeDef);
+		// this.body.SetMassFromShapes();
 	},
 	
 	update: function() {		

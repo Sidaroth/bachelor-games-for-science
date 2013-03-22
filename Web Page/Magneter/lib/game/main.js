@@ -8,6 +8,7 @@ ig.module(
 
 	// Box2d
 	'plugins.box2d.game',
+	'plugins.box2d.debug',
 
 	// Entities
 	'game.entities.player',
@@ -33,7 +34,7 @@ ig.module(
 MyGame = ig.Box2DGame.extend(
 {
 
-	gravity: 100,
+	gravity: 400,
 	
 	// Load a font
 	font: new ig.Font( 'media/calibri-16pt.png' ),
@@ -91,7 +92,9 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
 		
 		//run first level
-		this.loadLevel( "SplashScreen", true );
+		this.loadLevel( "Level1", true );
+
+		this.debugDrawer = new ig.Box2DDebug( ig.world );
 	},
 	
 	update: function() 
@@ -121,6 +124,8 @@ MyGame = ig.Box2DGame.extend(
 	{
 		// Draw all entities and backgroundMaps
 		this.parent();
+
+		this.debugDrawer.draw();
 	}
 });
 

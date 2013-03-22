@@ -11,96 +11,48 @@ EntityPlayer = ig.Box2DEntity.extend({
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 0, 0.7)',
 
-	//animSheet: new ig.AnimationSheet( 'media/ball/'),
+	size: { x: 50, y: 50 },
+
+	type: ig.Entity.TYPE.A,
+	checkAgainst: ig.Entity.TYPE.NONE,
+	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
+
+	animSheet: new ig.AnimationSheet( 'media/ball/ball.png', 50, 50),
 
 	init: function( x, y, settings ) 
 	{
 		this.parent(x, y, settings);
-	},
 
-	handleEvents: function()
-	{
-		if(ig.input.state('right'))
-		{
-			this.pos.x += 10;
-		}
+		this.addAnim( 'idle', 1, [0] );
 
-		if(ig.input.state('left'))
-		{
-			this.pos.x -= 10;
-		}
+		this.currentAnim = this.anims['idle'];
 
-		if(ig.input.state('up'))
-		{
-			this.pos.y -= 10;
-		}
+		//this.body.DestroyShape();
 
-		if(ig.input.state('down'))
+
+		if( !ig.global.wm )
 		{
-			this.pos.y += 10;
+			var shapeDef = new b2.CircleDef();
+			shapeDef.radius = (this.size.x / 2) * b2.SCALE;
+			shapeDef.friction = 5;
+			shapeDef.density = 1;
+			shapeDef.restitution = 0.5;
+			//current = this;
+
+			this.body.CreateShape( shapeDef );
+			this.body.SetMassFromShapes();
 		}
 	},
 
 	update: function() 
 	{
-		this.handleEvents();
-
 		this.parent();
 	}, 
-
-	setSpawnPoint: function(x, y, nick)
-	{
-
-	},
-
-	check: function (other) 
-	{
-
-	},
-
-	die: function() 
-	{
-	
-	},
 
 	draw: function()
 	{
 		this.parent();
-		var context = ig.system.context;
-
-		context.fillStyle = 'rgba(0, 255, 0, 1)'; 
-		context.beginPath();
-		context.arc( ig.system.getDrawPos( this.pos.x - ig.game.screen.x ),
-					ig.system.getDrawPos( this.pos.y - ig.game.screen.y ),
-					25 * ig.system.scale,
-					0, Math.PI * 2);
-		context.fill();
-
-		// border
-		context.lineWidth = 5;
-		context.strokeStyle = '#00CC00';
-		context.stroke();
 	}
 
 });
-
-// EntityBox = ig.Entity.extend({
-    
-//     init: function (x, y, settings) 
-//     {
-
-//     },
-
-
-//     update: function() 
-//     {
-    	
-//     },
-
-//     check: function(other) 
-//     {
-
-//     },
-// });
-
 });

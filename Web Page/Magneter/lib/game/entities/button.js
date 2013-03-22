@@ -37,7 +37,7 @@ EntityButton = ig.Entity.extend(
 		
 		this.currentAnim = this.anims['unselected'];
 
-		console.log(this.pos);
+		//console.log(this.pos);
 	},
 	
 	highlight: function()

@@ -54,7 +54,7 @@ ig.module(
 				
 				this.buttons = ig.game.getEntitiesByType(EntityButton);
 
-				console.log(this.buttons);
+				//console.log(this.buttons);
 
 				this.buttons.sort(function(a,b) { return parseFloat(a.id) - parseFloat(b.id) } );
 
