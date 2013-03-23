@@ -92,7 +92,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
 		
 		//run first level
-		this.loadLevel( "Level1", true );
+		this.loadLevel( "SplashScreen", true );
 
 		this.debugDrawer = new ig.Box2DDebug( ig.world );
 	},
