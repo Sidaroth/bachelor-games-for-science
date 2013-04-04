@@ -4,9 +4,9 @@
 <p>This is a Bachelor project, created at GUC(Gjøvik University College) by</p>
 
 <ul>
-    <li>Chritian Holt</li>
+    <li>Christian Holt</li>
     <li>Øyvind Nordli</li>
-    <li>Chritian Stokkebekk</li>
+    <li>Christian Stokkebekk</li>
     <li>Morten Møller Andersen</li>
 </ul>
 

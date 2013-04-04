@@ -9,9 +9,6 @@ ig.module(
 	EntityShield = ig.Entity.extend(
 	{
 		size: {x:300, y:200},
-		// _wmDrawBox: true,
-		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
-		// _wmScalable: true,
 
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		message: "",
@@ -19,6 +16,8 @@ ig.module(
 		no: "",
 		creator: null,
 		animSheet: new ig.AnimationSheet( 'media/menu/shield.png', 300, 200 ),
+		zIndex: 2,
+		gravityFactor: 0,
 		
 		init: function( x, y, settings ) 
 		{
@@ -36,6 +35,7 @@ ig.module(
 		
 		update: function() 
 		{
+			this.parent();
 			this.currentAnim = this.anims['none'];
 			if(ig.input.mouse.y >= this.pos.y + this.size.y - 50 && ig.input.mouse.y <= this.pos.y + this.size.y)
 			{
