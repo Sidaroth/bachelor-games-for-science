@@ -46,7 +46,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 				this.size.y / 2 * b2.SCALE
 			);
 
-			shapeDef.density = 0;
+			shapeDef.density = 0.5;
 			shapeDef.friction = 5;
 			shapeDef.restitution = 0.5;
 
@@ -73,7 +73,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 		for( var i = 0; i < this.objectsToTest.length; i++ )
 		{
-			//console.log(this.objectsToTest[i]);
+			//console.log("i: " + i + ", " + this.objectsToTest[i]);
 			this.checkDistance(this.objectsToTest[i]);
 		}
 
