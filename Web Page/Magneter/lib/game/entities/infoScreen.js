@@ -8,27 +8,20 @@ ig.module(
 {
 	EntityInfoScreen = ig.Entity.extend(
 	{
-		//font to use on the message
 		font: new ig.Font( 'media/calibri-16pt.png' ),
-		//Level to load and run when 'enter' or 'mouse1' is pressed
 		nextScreen: null,
 		size: {x:800, y:640},
-		// _wmDrawBox: true,
-		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
-		// _wmScalable: true,
 		gravityFactor: 0,
 		//name for the image in the xml ex. game>levelOneInfoScreen>image
 		imageName: "",
 		//name for the info in the xml ex. game>splashScreen>info
 		messageName: "",
-		//image loaded from the path in the xml
 		image: null,
-		//the message to be written on the screen
 		message: "",
-		//xmlDocument path
 		xmlDocument: "",
 		//true if infoScreen, false if popUpMessage
 		infoScreen: true,
+		zIndex: 2,
 		
 		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 800, 640 ),
 		

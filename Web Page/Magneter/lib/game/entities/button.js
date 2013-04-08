@@ -22,6 +22,7 @@ EntityButton = ig.Entity.extend(
 	buttonText: "",
 
 	gravityFactor: 0,
+	zIndex: 1,
 	
 	size: {x: 100, y:100},
 	highlighted: false,

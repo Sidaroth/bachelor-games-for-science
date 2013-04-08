@@ -36,7 +36,6 @@ MyGame = ig.Box2DGame.extend(
 
 	gravity: 400,
 	
-	// Load a font
 	font: new ig.Font( 'media/calibri-16pt.png' ),
 	clearColor: '#1b2026',
 	
@@ -123,6 +122,11 @@ MyGame = ig.Box2DGame.extend(
 	draw: function() 
 	{
 		// Draw all entities and backgroundMaps
+		if(this.paused)
+		{
+			this.pauseEntity.draw();
+			return;
+		}
 		this.parent();
 
 		this.debugDrawer.draw();
