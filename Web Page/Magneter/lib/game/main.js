@@ -38,6 +38,8 @@ MyGame = ig.Box2DGame.extend(
 	
 	font: new ig.Font( 'media/calibri-16pt.png' ),
 	clearColor: '#1b2026',
+
+	currentTrackKey: null,
 	
 	//array with all levels
 	levels: {
@@ -47,6 +49,7 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : LevelMainMenu
 	},
 
+	// Which background music should be played for which level (screen)
 	musicDB: {
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
@@ -142,8 +145,17 @@ MyGame = ig.Box2DGame.extend(
 		// console.log(this.musicDB[levelKey]);
 
 		if(this.musicDB[levelKey] != 'none')
+		{	
+			// Does not restart if it's the same song playing.
+			if(this.musicDB[levelKey] != this.currentTrackKey)
+			{
+				this.currentTrackKey = this.musicDB[levelKey];
+				ig.music.play(this.musicDB[levelKey]);
+			}
+		}
+		else
 		{
-			ig.music.play(this.musicDB[levelKey]);
+			//ig.music.stop();
 		}
 	},
 	
