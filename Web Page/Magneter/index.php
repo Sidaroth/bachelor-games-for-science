@@ -103,7 +103,7 @@ if(isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/custom.css" media="all">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-wysihtml5-0.0.2.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-wysihtml5-0.0.2.css"> -->
         <?php
 
         // if(isset($_COOKIE['style']))
@@ -124,8 +124,8 @@ if(isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfi
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/dropdown.js"></script>
-        <script src="js/wysihtml5-0.3.0.js"></script>
-        <script src="js/bootstrap-wysihtml5-0.0.2.js"></script>
+         <!-- // <script src="js/wysihtml5-0.3.0.js"></script> -->
+        <!-- // <script src="js/bootstrap-wysihtml5-0.0.2.js"></script> -->
         <script src="js/prettify.js"></script>
         <!-- // <script type="text/javascript" src="lib/impact/impact.js"></script> -->
         <!-- // <script type="text/javascript" src="lib/game/main.js"></script> -->
