@@ -47,6 +47,13 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : LevelMainMenu
 	},
 
+	musicDB: {
+		'SplashScreen': 'none',
+		'MainMenu': 'menuBGSoundtrack',
+		'Level1Info': 'menuBGSoundtrack',
+		'Level1': 'level1BGSoundtrack'
+	},
+
 	//true and false for levels unlocked, see save.xml for details
 	unlockedLevels: [	true, false, false, false, false,
 						false, false, false, false, false,
@@ -90,10 +97,20 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.UP_ARROW, 'up');
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
 		
-		//run first level
-		this.loadLevel( "Level1", true );
 
-		this.debugDrawer = new ig.Box2DDebug( ig.world );
+		ig.music.add('media/sound/menuBGSoundtrack.*', 'menuBGSoundtrack');
+		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
+
+		//ig.music.currentTrack = ig.music.tracks[0];
+		ig.music.volume = 0.5;
+		ig.music.loop = true;
+
+
+		//ig.music.play('menuBGSoundtrack');
+		//run first level
+		this.loadLevel( "SplashScreen", true );
+
+		//this.debugDrawer = new ig.Box2DDebug( ig.world );
 	},
 	
 	update: function() 
@@ -114,8 +131,19 @@ MyGame = ig.Box2DGame.extend(
 	loadLevel: function(levelKey, gameScreen) 
 	{
 		this.parent(this.levels[levelKey]);
-		for( var i = 0; i < this.backgroundMaps.length; i++ ) {
+
+		for( var i = 0; i < this.backgroundMaps.length; i++ ) 
+		{
 			this.backgroundMaps[i].preRender = true;
+		}
+
+		// console.log(levelKey);
+		// console.log(this.musicDB);
+		// console.log(this.musicDB[levelKey]);
+
+		if(this.musicDB[levelKey] != 'none')
+		{
+			ig.music.play(this.musicDB[levelKey]);
 		}
 	},
 	
@@ -129,7 +157,7 @@ MyGame = ig.Box2DGame.extend(
 		}
 		this.parent();
 
-		this.debugDrawer.draw();
+		//this.debugDrawer.draw();
 	}
 });
 
