@@ -9,6 +9,7 @@ ig.module(
 {
 	EntityLanguage = ig.Entity.extend(
 	{
+		soundDB: {"errorSound": new ig.Sound("media/sound/errorSound.*")},
 		nextScreen: null,
 		size: {x:64, y:64},
 		// _wmDrawBox: true,
@@ -31,6 +32,7 @@ ig.module(
 
 			this.currentAnim = this.anims[this.flag];
 
+			this.soundDB["errorSound"].volume = ig.game.defaultSoundLevel;
 		},
 		
 		update: function() 
@@ -62,7 +64,12 @@ ig.module(
 					ig.game.paused = true;
 					ig.game.pauseEntity = this.shield;
 				}
+				else
+				{
+					this.soundDB["errorSound"].play();
+				}
 			}
+			
 		},
 
 		draw: function()

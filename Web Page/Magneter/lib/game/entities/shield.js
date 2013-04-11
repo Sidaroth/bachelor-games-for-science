@@ -48,7 +48,7 @@ ig.module(
 						this.creator.shieldResponse = true;
 					}
 				}
-				else if(ig.input.mouse.x > this.pos.x + (this.size.x / 2) && this.pos.x + this.size.x)
+				else if(ig.input.mouse.x > this.pos.x + (this.size.x / 2) && ig.input.mouse.x < this.pos.x + this.size.x)
 				{
 					this.currentAnim = this.anims['no'];
 					if(ig.input.pressed('mouse1'))

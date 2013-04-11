@@ -1,6 +1,6 @@
 <?php
 define ('SALT', 'abc!"#$%&kjhG');
-define ('SITEKEY', 'ASiteSpecificArbitraryLengthStringThatIsUsedToSeedTheHashingAlgorithm');
+define ('SITEKEY', 'FivehUndredyEarsintheFutureareNegadecreWaboardasmAllspaCecraftTriestOsurviveastHeytraveLtheunknownpArtsoFthegalaxyanDevadewarRingfactionsaswelLasauThorityaGentsoUttogetThem.');
 
 /**
  * This class handles all user handling operations, login state, login/logout, new user creation, changing password.

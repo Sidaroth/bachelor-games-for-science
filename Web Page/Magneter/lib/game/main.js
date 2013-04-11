@@ -45,7 +45,7 @@ MyGame = ig.Box2DGame.extend(
 
 	currentTrackKey: null,
 
-	defaultSoundLevel: 0.5,
+	defaultSoundLevel: 1,
 	
 	//array with all levels
 	levels: {
