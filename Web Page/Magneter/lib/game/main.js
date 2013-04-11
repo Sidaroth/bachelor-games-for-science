@@ -18,6 +18,7 @@ ig.module(
 	'game.entities.language',
 	'game.entities.shield',
 	'game.entities.infoScreen',
+	'game.entities.gate',
 
 	// Levels
 	'game.levels.level1',
