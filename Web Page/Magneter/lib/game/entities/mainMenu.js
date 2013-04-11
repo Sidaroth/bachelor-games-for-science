@@ -146,8 +146,15 @@ ig.module(
 				}
 				else if( ig.input.pressed('enter') && this.timer.delta() > 0 ) 
 				{
-					this.soundDB['buttonClick'].play();
-					this.buttons[this.selectedButton].goToNextLevel();
+					if(ig.game.unlockedLevels[this.selectedButton])
+					{
+						this.soundDB['buttonClick'].play();
+						this.buttons[this.selectedButton].goToNextLevel();
+					}
+					else
+					{
+						this.soundDB['errorSound'].play();
+					}
 				}
 				
 				//check if mouse is clicked and if it clicks on a button, if yes, level is run.
@@ -165,6 +172,7 @@ ig.module(
 							else
 							{
 								this.soundDB['errorSound'].play();
+								console.log("Set the variable goToLevel to the level you want it to go to");
 							}
 						}
 						else
