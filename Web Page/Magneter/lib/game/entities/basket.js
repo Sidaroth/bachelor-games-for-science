@@ -19,6 +19,10 @@ EntityBasket = ig.Box2DEntity.extend({
 	size: {x: 100, y: 50},
 	
 	pointsValue: 100, //what value the basket gives as a base for the final score
+	message: 'You fell in the basket with value!', //message that will tell the player what hapened.
+	killTimer: null,
+	font: new ig.Font('media/04b03.font.png'),
+
 
 	animSheet: new ig.AnimationSheet( 'media/basket/basket_floor.png', 100, 50),
 
@@ -62,6 +66,11 @@ EntityBasket = ig.Box2DEntity.extend({
 
 	draw: function()
 	{
+		if(this.killTimer && this.killTimer.delta() < 0)
+		{
+			this.font.draw(this.message, ig.system.width/2, ig.system.hight/2);
+		}
+		
 		this.parent();
 	}
 	

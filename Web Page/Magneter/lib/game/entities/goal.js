@@ -18,6 +18,10 @@ EntityGoal = ig.Box2DEntity.extend({
 	
 	size: {x: 100, y: 100},
 
+	message: 'Congratulation on completing the level!',
+	killTimer: null,
+	font: new ig.Font('media/04b03.font.png'),
+
 	animSheet: new ig.AnimationSheet( 'media/goal/goal_flag.png', 100, 100),
 
 	init: function( x, y, settings ) 
@@ -55,11 +59,17 @@ EntityGoal = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.kill();	  
+		other.kill();
+		this.killTimer = new ig.Timer(2);	  
 	},
 
 	draw: function()
 	{
+		if(this.killTimer && this.killTimer.delta() < 0)
+		{
+			this.font.draw( this.message, ig.system.width/2, ig.system.hight/2);
+		}
+		
 		this.parent();
 	}
 	
