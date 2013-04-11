@@ -19,7 +19,9 @@ ig.module(
 	'game.entities.shield',
 	'game.entities.infoScreen',
 	'game.entities.gate',
-
+	'game.entities.goal',
+	'game.entities.basket',
+	
 	// Levels
 	'game.levels.level1',
 	'game.levels.level1Info',
@@ -106,7 +108,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = 0;
+		ig.music.volume = 0.2;
 		ig.music.loop = true;
 
 

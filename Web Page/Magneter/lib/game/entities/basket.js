@@ -1,24 +1,26 @@
 ig.module(
-	'game.entities.gate'
+	'game.entities.basket'
 )
 .requires(
 	'plugins.box2d.entity'
 )
 .defines(function(){
 
-EntityGate = ig.Box2DEntity.extend({
+EntityBasket = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,
-	_wmBoxColor: 'rgba(0, 255, 0, 0.5)',
+	_wmBoxColor: 'rgba(150, 0, 255, 0.5)',
 	//_wmScalable: true,
 	
 	type: ig.Entity.TYPE.A,
 	checkAgainst: ig.Entity.TYPE.A,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
-	size: {x: 50, y: 100},
+	size: {x: 100, y: 50},
+	
+	pointsValue: 100, //what value the basket gives as a base for the final score
 
-	animSheet: new ig.AnimationSheet( 'media/gate/gate_slab.png', 50, 100),
+	animSheet: new ig.AnimationSheet( 'media/basket/basket_floor.png', 100, 50),
 
 	init: function( x, y, settings ) 
 	{

@@ -1,24 +1,24 @@
 ig.module(
-	'game.entities.gate'
+	'game.entities.goal'
 )
 .requires(
 	'plugins.box2d.entity'
 )
 .defines(function(){
 
-EntityGate = ig.Box2DEntity.extend({
+EntityGoal = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,
-	_wmBoxColor: 'rgba(0, 255, 0, 0.5)',
+	_wmBoxColor: 'rgba(0, 255, 150, 0.5)',
 	//_wmScalable: true,
 	
 	type: ig.Entity.TYPE.A,
 	checkAgainst: ig.Entity.TYPE.A,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
-	size: {x: 50, y: 100},
+	size: {x: 100, y: 100},
 
-	animSheet: new ig.AnimationSheet( 'media/gate/gate_slab.png', 50, 100),
+	animSheet: new ig.AnimationSheet( 'media/goal/goal_flag.png', 100, 100),
 
 	init: function( x, y, settings ) 
 	{
