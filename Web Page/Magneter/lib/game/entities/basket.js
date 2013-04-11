@@ -61,14 +61,15 @@ EntityBasket = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.kill();	  
+		other.kill();
+		this.killTimer = new ig.Timer(2);	  
 	},
 
 	draw: function()
 	{
 		if(this.killTimer && this.killTimer.delta() < 0)
 		{
-			this.font.draw(this.message, ig.system.width/2, ig.system.hight/2);
+			this.font.draw(this.message, 250, 180);
 		}
 		
 		this.parent();
