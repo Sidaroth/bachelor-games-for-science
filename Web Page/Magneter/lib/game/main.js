@@ -18,6 +18,9 @@ ig.module(
 	'game.entities.language',
 	'game.entities.shield',
 	'game.entities.infoScreen',
+	'game.entities.gate',
+	'game.entities.goal',
+	'game.entities.basket',
 	'game.entities.muteButton',
 
 	// Levels

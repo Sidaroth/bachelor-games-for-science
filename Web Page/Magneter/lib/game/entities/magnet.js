@@ -14,7 +14,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 255, 0.7)',
 
-	type: ig.Entity.TYPE.A,
+	type: ig.Entity.TYPE.B,
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 
@@ -30,7 +30,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnet-north.png', 50, 50),
 	player: null,
-
+	gate: null,
+	
 	init: function( x, y, settings )
 	{
 		this.parent(x, y, settings);
@@ -62,11 +63,17 @@ EntityMagnet = ig.Box2DEntity.extend({
 			this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
 		}
 
+		if(this.gate === null)
+		{
+			this.gate = ig.game.getEntitiesByType(EntityGate)[0];
+		}
+		
 		//console.log(this.objectsToTest.length);
 		if(this.objectsToTest === null)
 		{
 			this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
 			this.objectsToTest.push( this.player );
+			this.objectsToTest.push( this.gate );
 
 			console.log(this.objectsToTest);
 		}
