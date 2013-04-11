@@ -18,6 +18,7 @@ ig.module(
 	'game.entities.language',
 	'game.entities.shield',
 	'game.entities.infoScreen',
+	'game.entities.muteButton',
 
 	// Levels
 	'game.levels.level1',
@@ -40,6 +41,8 @@ MyGame = ig.Box2DGame.extend(
 	clearColor: '#1b2026',
 
 	currentTrackKey: null,
+
+	defaultSoundLevel: 0.5,
 	
 	//array with all levels
 	levels: {
@@ -105,7 +108,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = 0;
+		ig.music.volume = this.defaultSoundLevel;
 		ig.music.loop = true;
 
 

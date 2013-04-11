@@ -16,6 +16,8 @@ ig.module(
 			'errorSound': new ig.Sound( 'media/sound/errorSound.*' )
 		},
 
+		muteButton: null,
+
 		//font for displaying title
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		//next screen to load
@@ -50,8 +52,8 @@ ig.module(
 			this.timer.set(0.5);
 			this.addAnim( 'idle', 1, [0] );
 
-			this.soundDB['buttonClick'].volume = 0.5;
-			this.soundDB['errorSound'].volume = 0.8;
+			this.soundDB['buttonClick'].volume = ig.game.defaultSoundLevel;
+			this.soundDB['errorSound'].volume = ig.game.defaultSoundLevel;
 		},
 		
 		update: function() 
@@ -74,6 +76,11 @@ ig.module(
 				{
 					this.buttons[this.selectedButton].highlight();
 				}
+			}
+
+			if(this.muteButton === null)
+			{
+				this.muteButton = ig.game.getEntitiesByType(EntityMuteButton)[0];
 			}
 			
 			// Highlighting of buttons was changed by Christian H because buttons were highlighted on and off every frame
@@ -186,6 +193,15 @@ ig.module(
 								this.buttons[this.selectedButton].highlight();
 							}
 						}
+					}
+				}
+
+				if( ig.input.mouse.x >= this.muteButton.pos.x && ig.input.mouse.x <= (this.muteButton.pos.x + this.muteButton.size.x)
+				&&  ig.input.mouse.y >= this.muteButton.pos.y && ig.input.mouse.y <= (this.muteButton.pos.y + this.muteButton.size.y))
+				{
+					if(ig.input.pressed( 'mouse1' ))
+					{
+						this.muteButton.changeVolumeStatus();
 					}
 				}
 
