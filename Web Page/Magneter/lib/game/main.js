@@ -105,7 +105,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = 0.5;
+		ig.music.volume = 0;
 		ig.music.loop = true;
 
 
@@ -144,6 +144,7 @@ MyGame = ig.Box2DGame.extend(
 		// console.log(this.musicDB);
 		// console.log(this.musicDB[levelKey]);
 
+		// If a background music has been specified / is wanted. 
 		if(this.musicDB[levelKey] != 'none')
 		{	
 			// Does not restart if it's the same song playing.

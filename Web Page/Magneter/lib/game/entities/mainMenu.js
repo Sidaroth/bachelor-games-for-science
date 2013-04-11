@@ -9,6 +9,13 @@ ig.module(
 {
 	EntityMainMenu = ig.Entity.extend(
 	{
+		// Sounds used for sound effectss
+		soundDB: 
+		{
+			'buttonClick': new ig.Sound( ' media/sound/buttonClick.*' ),
+			'errorSound': new ig.Sound( 'media/sound/errorSound.*' )
+		},
+
 		//font for displaying title
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		//next screen to load
@@ -42,6 +49,9 @@ ig.module(
 			this.parent( x, y, settings );
 			this.timer.set(0.5);
 			this.addAnim( 'idle', 1, [0] );
+
+			this.soundDB['buttonClick'].volume = 0.5;
+			this.soundDB['errorSound'].volume = 0.8;
 		},
 		
 		update: function() 
@@ -66,6 +76,10 @@ ig.module(
 				}
 			}
 			
+			// Highlighting of buttons was changed by Christian H because buttons were highlighted on and off every frame
+			// which caused buttons to spam play the sound effects. This is why they are now dehighlighted and highlighted when
+			// an input is taken. 
+
 			//check for input if there are any buttons loaded in
 			if(this.buttons.length > 0)
 			{
@@ -74,11 +88,13 @@ ig.module(
 					this.language = ig.game.language;
 					this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
 				}
+				
 				//remove highlight on button selected, will be lit again in the end, in case selected button is changed
-				this.buttons[this.selectedButton].highlight();
+				//this.buttons[this.selectedButton].highlight();
 				
 				if( ig.input.pressed('left') ) 
 				{
+					this.buttons[this.selectedButton].highlight();
 					if(this.selectedButton > 0)
 					{
 						this.selectedButton -= 1;
@@ -87,9 +103,11 @@ ig.module(
 					{
 						this.selectedButton = this.buttons.length - 1;
 					}
+					this.buttons[this.selectedButton].highlight();
 				}
 				else if( ig.input.pressed('right') ) 
 				{
+					this.buttons[this.selectedButton].highlight();
 					if(this.selectedButton < this.buttons.length - 1)
 					{
 						this.selectedButton += 1;
@@ -98,9 +116,11 @@ ig.module(
 					{
 						this.selectedButton = 0;
 					}
+					this.buttons[this.selectedButton].highlight();
 				}
 				else if( ig.input.pressed('up') ) 
 				{
+					this.buttons[this.selectedButton].highlight();
 					if(this.selectedButton > this.rowSize - 1)
 					{
 						this.selectedButton -= this.rowSize;
@@ -109,9 +129,11 @@ ig.module(
 					{
 						this.selectedButton = this.buttons.length - this.rowSize + this.selectedButton;
 					}
+					this.buttons[this.selectedButton].highlight();
 				}
 				else if( ig.input.pressed('down') ) 
 				{
+					this.buttons[this.selectedButton].highlight();
 					if(this.selectedButton < this.buttons.length - this.rowSize)
 					{
 						this.selectedButton += this.rowSize;
@@ -120,9 +142,11 @@ ig.module(
 					{
 						this.selectedButton %= this.rowSize;
 					}
+					this.buttons[this.selectedButton].highlight();
 				}
 				else if( ig.input.pressed('enter') && this.timer.delta() > 0 ) 
 				{
+					this.soundDB['buttonClick'].play();
 					this.buttons[this.selectedButton].goToNextLevel();
 				}
 				
@@ -135,17 +159,30 @@ ig.module(
 						{
 							if(ig.game.unlockedLevels[i])
 							{	
+								this.soundDB['buttonClick'].play();
 								this.buttons[i].goToNextLevel();	
+							}
+							else
+							{
+								this.soundDB['errorSound'].play();
 							}
 						}
 						else
 						{
-							this.selectedButton = i;
+							// This if has to be here or the Highlight will keep spamming when the mouse is still
+							// on the same button. 
+							if(this.selectedButton != i)
+							{
+								this.buttons[this.selectedButton].highlight();
+								this.selectedButton = i;
+								this.buttons[this.selectedButton].highlight();
+							}
 						}
 					}
 				}
+
 				//highlight selected button
-				this.buttons[this.selectedButton].highlight();
+				//this.buttons[this.selectedButton].highlight();
 			}
 		},
 		

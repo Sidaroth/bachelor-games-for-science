@@ -26,7 +26,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	polarity: -1,		// Polarities are represented as (1, 0, -1)(Attract, Neutral, Repel). 
 	ringColor: 'rgba(123, 123, 123, 1)',
 
-	objectsToTest: null,
+	objectsToTest: null, // Any object added here will be tested and affected by magnetism. 
 
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnet-north.png', 50, 50),
 	player: null,

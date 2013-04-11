@@ -9,6 +9,11 @@ ig.module(
 
 EntityButton = ig.Entity.extend(
 	{
+
+	soundDB: 
+	{
+		'buttonHighlight': new ig.Sound( 'media/sound/buttonHighlight.*' )
+	},
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 255, 0, 0.7)',
@@ -38,20 +43,24 @@ EntityButton = ig.Entity.extend(
 		
 		this.currentAnim = this.anims['unselected'];
 
+		this.soundDB['buttonHighlight'].volume = 1.0;
+
 		//console.log(this.pos);
 	},
 	
 	highlight: function()
 	{
-		if(this.highlighted === true)
-		{
-			this.currentAnim = this.anims['unselected'];
-			this.highlighted = false;
-		}
-		else
+		if(this.highlighted === false)
 		{
 			this.currentAnim = this.anims['selected'];
 			this.highlighted = true;
+		}
+		else
+		{
+			this.soundDB['buttonHighlight'].play();
+			this.currentAnim = this.anims['unselected'];
+			this.highlighted = false;
+			
 		}
 	},
 
