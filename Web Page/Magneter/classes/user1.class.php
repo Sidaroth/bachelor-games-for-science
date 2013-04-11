@@ -1,5 +1,5 @@
 <?php
-define ('SALT', 'abc!"#$%&kjhG');
+define ('SALT', 'ahj)#=!)"(#/%!#)=%"(€}@ksai@£34kd');
 define ('SITEKEY', 'FivehUndredyEarsintheFutureareNegadecreWaboardasmAllspaCecraftTriestOsurviveastHeytraveLtheunknownpArtsoFthegalaxyanDevadewarRingfactionsaswelLasauThorityaGentsoUttogetThem.');
 
 /**
