@@ -28,15 +28,34 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	objectsToTest: null, // Any object added here will be tested and affected by magnetism. 
 
-	animSheet: new ig.AnimationSheet( 'media/magnets/magnet-north.png', 50, 50),
+	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
 	player: null,
 	gate: null,
-	
+
+	targetted: false,
+
+
+	updateTargetStatus: function()
+	{
+		console.log("Updating: " + this.targetted);
+		if(this.targetted === false)
+		{
+			this.currentAnim = this.anims['targetted'];
+			this.targetted = true;
+		}
+		else
+		{
+			this.currentAnim = this.anims['idle'];
+			this.targetted = false;
+		}
+	},
+
 	init: function( x, y, settings )
 	{
 		this.parent(x, y, settings);
 
 		this.addAnim( 'idle', 1, [0] );
+		this.addAnim( 'targetted', 1, [1]);
 		this.currentAnim = this.anims['idle'];
 
 		if( !ig.global.wm )

@@ -8,6 +8,12 @@ ig.module(
 {
 	EntityPopUpMessage = EntityInfoScreen.extend(
 	{
+
+		soundDB: 
+		{
+			'popUpSound': new ig.Sound( 'media/sound/popUpSound.*' )
+		},
+
 		size: {x:400, y:100},
 		infoScreen: false,
 		closeButton: new ig.Image('media/popUpMessage/popUpMessageCloseButton.png'),
@@ -19,6 +25,13 @@ ig.module(
 			this.parent( x, y, settings );
 			this.pos.x = ig.system.width/2- this.size.x/2;
 			this.pos.y = ig.system.height;// - this.size.y;
+
+			if( !ig.global.wm )
+			{
+				this.soundDB['popUpSound'].volume = ig.game.defaultSoundLevel;
+				this.soundDB['popUpSound'].play();
+			}
+			
 		},
 		
 		draw: function() 

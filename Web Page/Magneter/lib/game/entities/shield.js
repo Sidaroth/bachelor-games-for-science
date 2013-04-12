@@ -10,6 +10,11 @@ ig.module(
 	{
 		size: {x:300, y:200},
 
+		soundDB: 
+		{
+			'buttonClick': new ig.Sound( 'media/sound/buttonClick.*' )
+		},
+
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		message: "",
 		yes: "",
@@ -29,6 +34,10 @@ ig.module(
 
 			this.currentAnim = this.anims.none;
 
+			this.soundDB['buttonClick'].volume = ig.game.defaultSoundLevel;
+
+			this.soundDB['buttonClick'].play();
+
 			this.yes = ig.game.xml.loadTextFromXML("yes", 0, "lib/game/xml/strings"+ ig.game.language +".xml")
 			this.no = ig.game.xml.loadTextFromXML("no", 0, "lib/game/xml/strings"+ ig.game.language +".xml")
 		},
@@ -44,6 +53,7 @@ ig.module(
 					this.currentAnim = this.anims['yes'];
 					if(ig.input.pressed('mouse1'))
 					{
+						this.soundDB['buttonClick'].play();
 						ig.game.paused = false;
 						this.creator.shieldResponse = true;
 					}
@@ -53,6 +63,7 @@ ig.module(
 					this.currentAnim = this.anims['no'];
 					if(ig.input.pressed('mouse1'))
 					{
+						this.soundDB['buttonClick'].play();
 						ig.game.paused = false;
 						this.creator.shieldResponse = false;
 					}
