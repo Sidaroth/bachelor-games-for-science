@@ -14,7 +14,7 @@ class User {
 	var $uid = -1;												// User ID for currently logged in user
 	var $error = '';											// Error in login
 	var $db;													// Handle to the database object
-	var $success = '';										// Success messages
+	var $success = '';											// Success messages
 
 	/**
 	 * Constructor for the class, handles login/logout and carry forward of login status.
@@ -120,7 +120,7 @@ class User {
 		if ($sth->rowCount()==0) {							// No user created, probably because the user name is not unique
 			$this->db->rollBack();								// Rollback (well, nothing has been done :)
 			$this->db->query ('UNLOCK TABLES');					// Unlock the tables
-			throw new Exception('<strong>Oh snap!</strong> User name is taken! Try again.');	// Throw exception
+			throw new Exception('<strong> User name is taken! Try again.</strong>');	// Throw exception
 		}
 		$sth->closeCursor();									// Prepare to find the id of the new user
 		$sth = $this->db->prepare ('SELECT LAST_INSERT_ID() AS uid');
@@ -130,9 +130,9 @@ class User {
 		else {													// uid not found
 			$this->db->rollBack();								// Rollback, remove the user
 			$this->db->query ('UNLOCK TABLES');
-			throw new Exception('<strong>Oh snap!</strong> Something went wrong. Try again.');	// Throw an exception
+			throw new Exception('<strong> Something went wrong. Try again.</strong>');	// Throw an exception
 		}
-		$sth->closeCursor ();
+		$sth->closeCursor();
 		$sql = 'UPDATE users SET pwd=:pwd WHERE uid=:uid';		// Set the password for the new user
 		$sth = $this->db->prepare ($sql);
 		$sth->bindParam (':uid', $uid);
@@ -142,13 +142,13 @@ class User {
 		if ($sth->rowCount()==0) {								// No password set
 			$this->db->rollBack();								// Remove the user
 			$this->db->query ('UNLOCK TABLES');
-			throw new Exception('<strong>Oh snap!</strong> Something went wrong. Try again.');	// Throw an exception
+			throw new Exception('<strong> Something went wrong. Try again.</strong>');	// Throw an exception
 		}
 		$this->db->commit();
 		$this->success = "<strong>Congrats!</strong> You are now registered as " . $uname . ". Please log in.";
-	} catch(Exception $e) {
+		} catch(Exception $e) {
 				$this->error = $e->getMessage();
-			}
+		}
 
 	}
 

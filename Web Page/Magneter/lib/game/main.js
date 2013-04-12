@@ -64,10 +64,10 @@ MyGame = ig.Box2DGame.extend(
 	},
 
 	//true and false for levels unlocked, see save.xml for details
-	unlockedLevels: [	true, false, false, false, false,
+	unlockedLevels: [	false, false, false, false, false,
 						false, false, false, false, false,
 						false, false, false, false, false	],
-	saveFile: "lib/game/xml/save.xml",
+	save: null,
 	//chosen language, default Norwegian(NO), see save.xml for saved language
 	language: "",
 	//paused if true and will only run pauseEntity
@@ -82,21 +82,24 @@ MyGame = ig.Box2DGame.extend(
 	//this will return the string "Magneter"
 	xml: new getXmlString( 0, 0, 0 ),
 	
-	init: function() 
-	{
-		//load save from save.xml
-		this.language = ig.game.xml.loadTextFromXML("language", 0, this.saveFile);
-		for (var i = 0; i < this.unlockedLevels.length; i++)
-		{
-			if(ig.game.xml.loadTextFromXML("level", i, this.saveFile) == "true")
-			{
-				this.unlockedLevels[i] = true;
-			}
-			else
-			{
-				this.unlockedLevels[i] = false;
-			}
-		}
+	init: function() {
+
+	    var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/getsave.php",
+		  data: { 
+		        	uid: "1" 
+		    	},
+		  //success: ig.game.startLevel(),
+		  async:false
+		});
+
+		request.done(function (response, textStatus, jqXHR){
+        	ig.game.startLevel(response);
+        console.log(response);
+    });
+
+
 
 		// Initialize your game here; bind keys etc.
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1');
@@ -117,7 +120,6 @@ MyGame = ig.Box2DGame.extend(
 
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
-		this.loadLevel( "SplashScreen", true );
 
 		//this.debugDrawer = new ig.Box2DDebug( ig.world );
 	},
@@ -177,6 +179,22 @@ MyGame = ig.Box2DGame.extend(
 		this.parent();
 
 		//this.debugDrawer.draw();
+	},
+
+	startLevel: function(response)
+	{
+		this.save = JSON.parse(response);
+
+		console.log(this.save.save[0].language);
+
+		this.language = this.save.save[0].language;
+		for (var i = 0; i < this.save.save[0].level; i++)
+		{
+			this.unlockedLevels[i] = true;
+		}
+		console.log(this.unlockedLevels);
+
+		this.loadLevel( "SplashScreen", true );
 	}
 });
 

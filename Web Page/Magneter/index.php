@@ -7,13 +7,7 @@ session_set_cookie_params(2*7*24*60*60); // Set cookie duration to 2 weeks.
 session_start();
 
 // vars
-try {
-$indexDb = new PDO('mysql:host=localhost;dbname=hpv13gfs;charset=UTF8', $_SERVER['DBUSER'], $_SERVER['DBPASS']);
-$db = $indexDb;
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}
+include('pages/connect.php');
 
 // includes
 require_once('classes/user1.class.php');
