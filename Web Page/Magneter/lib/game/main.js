@@ -83,7 +83,7 @@ MyGame = ig.Box2DGame.extend(
 	xml: new getXmlString( 0, 0, 0 ),
 	
 	init: function() {
-		if(userId)
+		if(userId > 0)
 		{
 		    var request = $.ajax({
 			  type: 'POST',
