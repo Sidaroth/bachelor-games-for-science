@@ -88,7 +88,7 @@ MyGame = ig.Box2DGame.extend(
 		  type: 'POST',
 		  url: "pages/getsave.php",
 		  data: { 
-		        	uid: "1" 
+		        	uid: userId 
 		    	},
 		  //success: ig.game.startLevel(),
 		  async:false
@@ -98,8 +98,6 @@ MyGame = ig.Box2DGame.extend(
         	ig.game.startLevel(response);
         console.log(response);
     });
-
-
 
 		// Initialize your game here; bind keys etc.
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1');
