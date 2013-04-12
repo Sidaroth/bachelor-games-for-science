@@ -69,7 +69,7 @@ MyGame = ig.Box2DGame.extend(
 						false, false, false, false, false	],
 	save: null,
 	//chosen language, default Norwegian(NO), see save.xml for saved language
-	language: "",
+	language: "NO",
 	//paused if true and will only run pauseEntity
 	paused: false,
 	pauseEntity: null,
@@ -83,21 +83,23 @@ MyGame = ig.Box2DGame.extend(
 	xml: new getXmlString( 0, 0, 0 ),
 	
 	init: function() {
+		if(userId)
+		{
+		    var request = $.ajax({
+			  type: 'POST',
+			  url: "pages/getsave.php",
+			  data: { 
+			        	uid: userId 
+			    	},
+			  //success: ig.game.startLevel(),
+			  async:false
+			});
 
-	    var request = $.ajax({
-		  type: 'POST',
-		  url: "pages/getsave.php",
-		  data: { 
-		        	uid: userId 
-		    	},
-		  //success: ig.game.startLevel(),
-		  async:false
-		});
-
-		request.done(function (response, textStatus, jqXHR){
-        	ig.game.startLevel(response);
-        console.log(response);
-    });
+			request.done(function (response, textStatus, jqXHR){
+	        	ig.game.startLevel(response);
+	        console.log(response);
+	    	});
+		}
 
 		// Initialize your game here; bind keys etc.
 		ig.input.bind( ig.KEY.MOUSE1, 'mouse1');
@@ -118,7 +120,9 @@ MyGame = ig.Box2DGame.extend(
 
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
-
+		if(userId == 0){
+			this.loadLevel( "SplashScreen", true );
+		}
 		//this.debugDrawer = new ig.Box2DDebug( ig.world );
 	},
 	
@@ -179,6 +183,7 @@ MyGame = ig.Box2DGame.extend(
 		//this.debugDrawer.draw();
 	},
 
+	//called after the post request to get save is done
 	startLevel: function(response)
 	{
 		this.save = JSON.parse(response);

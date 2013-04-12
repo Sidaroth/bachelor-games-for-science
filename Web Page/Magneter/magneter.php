@@ -3,7 +3,12 @@
 	<script type="text/javascript" language="javascript">
 		<!--
 		<?php
-			echo "userId = ". $user->getID();
+			if($user->loggedOn()){
+				echo "userId = ". $user->getID();
+			}
+			else{
+				echo "userId = 0";
+			}
 		?>
 		// -->
 	</script>
