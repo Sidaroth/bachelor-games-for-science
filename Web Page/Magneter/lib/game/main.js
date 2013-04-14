@@ -64,7 +64,7 @@ MyGame = ig.Box2DGame.extend(
 	},
 
 	//true and false for levels unlocked, see save.xml for details
-	unlockedLevels: [	false, false, false, false, false,
+	unlockedLevels: [	true, false, false, false, false,
 						false, false, false, false, false,
 						false, false, false, false, false	],
 	save: null,
@@ -97,7 +97,6 @@ MyGame = ig.Box2DGame.extend(
 
 			request.done(function (response, textStatus, jqXHR){
 	        	ig.game.startLevel(response);
-	        console.log(response);
 	    	});
 		}
 
@@ -195,7 +194,7 @@ MyGame = ig.Box2DGame.extend(
 		{
 			this.unlockedLevels[i] = true;
 		}
-		console.log(this.unlockedLevels);
+		//console.log(this.unlockedLevels);
 
 		this.loadLevel( "SplashScreen", true );
 	}

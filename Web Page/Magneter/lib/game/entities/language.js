@@ -48,6 +48,19 @@ ig.module(
 				if(this.shieldResponse == true)
 				{
 					ig.game.language = this.flag;
+					if(userId > 0)
+					{
+				    	var request = $.ajax({
+						  	type: 'POST',
+						  	url: "pages/save.php",
+						  	data:
+						  	{ 
+						  		uid: userId,
+					        	language: this.flag
+						    },
+						  	async:true
+						});
+					}
 				}
 				this.shieldResponse = null;
 				this.shield.kill();

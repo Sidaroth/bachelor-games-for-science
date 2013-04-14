@@ -2,13 +2,14 @@
 
 <?php
 	if(isset($_POST['uid'])){
+		//global $db;
 		$uid = $_POST['uid'];
 		if(isset($_POST['language'])){
 			$language = $_POST['language'];
 			include('connect.php');
 		    $sql = 'UPDATE saves
 		    		SET language=:language
-		    		WHERE uid=:uid'
+		    		WHERE uid=:uid';
 		    $sth = $db->prepare($sql);
 		    $sth->bindParam (':uid', $uid);
 		    $sth->bindParam (':language', $language);
@@ -20,7 +21,7 @@
 			include('connect.php');
 		    $sql = 'UPDATE saves
 		    		SET level=:level
-		    		WHERE uid=:uid'
+		    		WHERE uid=:uid';
 		    $sth = $db->prepare($sql);
 		    $sth->bindParam (':uid', $uid);
 		    $sth->bindParam (':level', $level);

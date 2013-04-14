@@ -34,6 +34,9 @@ EntityMuteButton = ig.Entity.extend(
 		this.addAnim('on', .1, [1]);
 		
 		this.currentAnim = this.anims['on'];
+
+		//REMOVE THIS BEFORE RELEASE!!!
+		this.changeVolumeStatus();
 	},
 
 	changeVolumeStatus: function()

@@ -18,30 +18,21 @@ ig.module(
 
 		muteButton: null,
 
-		//font for displaying title
 		font: new ig.Font( 'media/calibri-16pt.png' ),
-		//next screen to load
 		nextScreen: null,
-		//size of entity
 		size: {x:800, y:640},
-		//background image for the main menu
 		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 800, 640 ),
-		//array with buttons
 		buttons: null,
 		//button selcted in menu
 		selectedButton: 0,
-		//draw a color for the entity in the level editor
 		_wmDrawBox: true,
 		_wmDrawColor: 'rgba(255, 0, 255, 0.7)',
 		//number of buttons on each row in the menu
 		rowSize: 5,
 		//timer to make sure 'enter' button is not pushed immediatly when loading level
 		timer: new ig.Timer(),
-		//title for the main menu, loaded from xml
 		title: "",
-		//array with text for buttons, loaded from xml
 		buttonsText: null,
-		//how much the gravity impacts the enity, set to 0 so the background don't fall out of the screen
 		gravityFactor: 0,
 		//chosen language, if this is not equal to ig.game.language, it will reload the strings
 		language: "NO",
