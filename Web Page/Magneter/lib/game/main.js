@@ -46,6 +46,16 @@ MyGame = ig.Box2DGame.extend(
 	currentTrackKey: null,
 
 	defaultSoundLevel: 1,
+
+	version: 1.0,
+
+	metricStart: null,
+	playStart: null,
+	serialNumber: "",
+	metricMD5: null,
+	playMD5: null,
+
+
 	
 	//array with all levels
 	levels: {
@@ -130,6 +140,8 @@ MyGame = ig.Box2DGame.extend(
 			this.loadLevel( "SplashScreen", true );
 		}
 		//this.debugDrawer = new ig.Box2DDebug( ig.world );
+
+		ig.game.startMetricSession();
 	},
 	
 	update: function() 
@@ -151,6 +163,8 @@ MyGame = ig.Box2DGame.extend(
 	loadLevel: function(levelKey, gameScreen) 
 	{
 		this.parent(this.levels[levelKey]);
+
+		ig.game.logEvent();
 
 		for( var i = 0; i < this.backgroundMaps.length; i++ ) 
 		{
@@ -195,7 +209,7 @@ MyGame = ig.Box2DGame.extend(
 	{
 		this.save = JSON.parse(response);
 
-		console.log(this.save.save[0].language);
+		//console.log(this.save.save[0].language);
 
 		this.language = this.save.save[0].language;
 		for (var i = 0; i < this.save.save[0].level; i++)
@@ -205,6 +219,81 @@ MyGame = ig.Box2DGame.extend(
 		//console.log(this.unlockedLevels);
 
 		this.loadLevel( "SplashScreen", true );
+	},
+
+	logEvent: function()
+	{
+		
+	},
+
+	startPlaySession: function()
+	{
+		this.playStart = ig.game.getTime();
+		this.playMD5 = CryptoJS.MD5(this.serialNumber + this.playStart).toString();
+	    var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/playsession.php",
+		  data: { 
+		        	playMD5: this.playMD5,
+		        	metricMD5: this.metricMD5 
+		    	},
+		  async:true
+		});
+	},
+
+	startMetricSession: function()
+	{
+		this.metricStart = ig.game.getTime();
+		this.serialNumber = userId + BrowserDetect.browser + BrowserDetect.version + BrowserDetect.OS;
+		this.metricMD5 = CryptoJS.MD5(this.serialNumber + this.metricStart).toString();
+	    var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/metricsession.php",
+		  data: { 
+		        	serialNumber: this.serialNumber,
+		        	metricMD5: this.metricMD5 
+		    	},
+		  async:true
+		});
+	},
+
+	endPlaySession: function()
+	{
+		var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/endplaysession.php",
+		  data: { 
+		        	playMD5: this.playMD5,
+		        	metricMD5: this.metricMD5 
+		    	},
+		  async:true
+		});
+	},
+
+	endMetricSession: function()
+	{
+		var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/endmetricsession.php",
+		  data: { 
+		        	serialNumber: this.serialNumber,
+		        	metricMD5: this.metricMD5 
+		    	},
+		  async:true
+		});
+	},
+
+	getTime: function()
+	{
+		var currentdate = new Date(); 
+		var datetime 	= currentdate.getDate() + "/"
+                		+ (currentdate.getMonth()+1)  + "/" 
+                		+ currentdate.getFullYear() + "-"  
+                		+ currentdate.getHours() + ":"  
+                		+ currentdate.getMinutes() + ":" 
+                		+ currentdate.getSeconds();
+
+        return datetime;
 	}
 });
 
