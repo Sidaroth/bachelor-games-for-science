@@ -63,6 +63,13 @@ MyGame = ig.Box2DGame.extend(
 		'Level1': 'level1BGSoundtrack'
 	},
 
+	// Used for mouse targetting and changing magnet radius etc. 
+	closestMagnetToMouse: 
+	{
+		'magnet': null,
+		'distance': 999999,
+	},
+
 	//true and false for levels unlocked, see save.xml for details
 	unlockedLevels: [	true, false, false, false, false,
 						false, false, false, false, false,
@@ -127,6 +134,7 @@ MyGame = ig.Box2DGame.extend(
 	
 	update: function() 
 	{
+		this.closestMagnetToMouse['distance'] = 999999;
 		if(this.paused)
 		{
 			this.pauseEntity.update();

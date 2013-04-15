@@ -9,11 +9,6 @@ ig.module(
 .defines(function(){
 
 EntityMagnet = ig.Box2DEntity.extend({
-
-	// TODO!!
-	// Add text description of what stat the slider is affecting!
-	// Make the slider actually affect the variable. 
-
 	// weltmeister 
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 255, 0.7)',
@@ -25,10 +20,25 @@ EntityMagnet = ig.Box2DEntity.extend({
 	size: {x: 50, y: 50},
 	//offset: {x: 0, y:0 },
 
+	fieldRadiusMax: 300,
+	fieldRadiusMin: 50,
+
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
 	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: -1,		// Polarities are represented as (1, 0, -1)(Attract, Neutral, Repel). 
-	ringColor: 'rgba(123, 123, 123, 1)',
+
+	drag:
+	{
+		'distance': null,
+		'state': false
+	},
+
+	ringColor: 
+	{
+		'current': 'rgba(123, 123, 123, 1)',
+		'targetted': 'rgba(0, 0, 255, 1)',
+		'untargetted': 'rgba(123, 123, 123, 1)'
+	},
 
 	objectsToTest: null, // Any object added here will be tested and affected by magnetism. 
 
@@ -41,7 +51,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	updateTargetStatus: function()
 	{
-		console.log("Updating: " + this.targetted);
+		//console.log("Updating: " + this.targetted);
 		if(this.targetted === false)
 		{
 			this.currentAnim = this.anims['targetted'];
@@ -79,8 +89,78 @@ EntityMagnet = ig.Box2DEntity.extend({
 		}
 	},
 
+
+
+	// NEED TO FIX TARGETTING BUGS. 
 	update: function()
 	{
+		var distanceToMouse = Math.sqrt( Math.pow ( Math.abs( ig.input.mouse.x - (this.pos.x + (this.size.x / 2))), 2) + Math.pow( Math.abs( ig.input.mouse.y - (this.pos.y + (this.size.y / 2))), 2) );
+
+		if(distanceToMouse < ig.game.closestMagnetToMouse['distance'])
+		{
+			if(distanceToMouse <= this.fieldRadius)
+			{
+				this.ringColor['current'] = this.ringColor['targetted'];
+				ig.game.closestMagnetToMouse['magnet'] = this;
+				ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
+			}
+			else
+			{
+				if(!this.drag['state'])
+				{
+					this.ringColor['current'] = this.ringColor['untargetted'];
+				}
+			}
+		}
+		else
+		{
+			if(!this.drag['state'])
+			{
+				this.ringColor['current'] = this.ringColor['untargetted'];
+			}
+		}
+
+		if(ig.input.pressed('mouse1'))
+		{
+			if(ig.game.closestMagnetToMouse['magnet'] == this)
+			{
+				this.drag['state'] = true;
+				this.drag['distance'] = distanceToMouse;
+			}
+		}
+
+		if(ig.input.released( 'mouse1' ))
+		{
+			this.drag['state'] = false;
+		}
+
+		if(this.drag['state'] === true)
+		{
+			console.log(this.fieldRadius);
+			if(distanceToMouse > this.drag['distance'])
+			{
+				this.fieldRadius += distanceToMouse - this.drag['distance'];
+				this.drag['distance'] = distanceToMouse;
+
+				if(this.fieldRadius > this.fieldRadiusMax)
+				{
+					this.fieldRadius = this.fieldRadiusMax;
+				}
+			}
+
+			if(distanceToMouse < this.drag['distance'])
+			{
+				this.fieldRadius -= this.drag['distance'] - distanceToMouse;
+				this.drag['distance'] = distanceToMouse;
+
+				if(this.fieldRadius < this.fieldRadiusMin)
+				{
+					this.fieldRadius = this.fieldRadiusMin;
+				}
+			}
+		}
+
+		
 		if(this.player === null)
 		{
 			this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
@@ -122,8 +202,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		var distanceVector = 
 		{
-			x: entity.pos.x - this.pos.x,
-			y: entity.pos.y - this.pos.y
+			x: entity.pos.x + (entity.size.x / 2) - this.pos.x + (this.size.x / 2) - ig.game.screen.x,
+			y: entity.pos.y + (entity.size.y / 2) - this.pos.y + (this.size.y / 2) - ig.game.screen.y
 		};
 
 		// Standard pythagorean theorem -- Length of vector. 
@@ -165,7 +245,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		var context = ig.system.context;
 
-		context.strokeStyle = this.ringColor; 
+		context.strokeStyle = this.ringColor['current']; 
 		context.beginPath();
 		context.lineWidth = 2;
 		context.arc( ig.system.getDrawPos( this.pos.x + (this.size.x / 2) - ig.game.screen.x ),

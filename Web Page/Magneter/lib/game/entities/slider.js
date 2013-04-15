@@ -143,10 +143,18 @@ EntitySlider = ig.Entity.extend(
 
 		// console.log((this.slider['box'].xpos - this.slider['bar'].xpos));
 		// console.log((this.slider['box'].xpos - this.slider['bar'].xpos) / this.sliderLength * 100 + "%");
-		var newPercent = (this.slider['box'].xpos - this.slider['bar'].xpos) / this.sliderLength * 100;
+		var newPercent = (this.slider['box'].xpos - this.slider['bar'].xpos) / this.sliderLength; // * 100;
 		if(this.sliderPercent != newPercent)
 		{
 			this.sliderPercent = newPercent;
+			if(this.targetVar == 'fieldRadius')
+			{
+				
+			}
+			else if(this.targetVar == 'fieldMagnitude')
+			{
+
+			}
 			//this.target.updateForce(this.sliderPercent);
 		}
 	},
