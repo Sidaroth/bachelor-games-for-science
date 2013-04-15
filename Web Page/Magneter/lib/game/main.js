@@ -231,7 +231,6 @@ MyGame = ig.Box2DGame.extend(
 		    	},
 		  async:true
 		});
-		this.endPlaySession();
 	},
 
 	startMetricSession: function()
@@ -248,7 +247,6 @@ MyGame = ig.Box2DGame.extend(
 		    	},
 		  async:true
 		});
-		this.startPlaySession();
 	},
 
 	endPlaySession: function()
@@ -262,7 +260,6 @@ MyGame = ig.Box2DGame.extend(
 		    	},
 		  async:true
 		});
-		this.endMetricSession();
 	},
 
 	endMetricSession: function()
