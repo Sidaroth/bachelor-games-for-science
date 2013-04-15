@@ -65,12 +65,12 @@ EntityGoal = ig.Box2DEntity.extend({
 
 	draw: function()
 	{
+		this.parent();
+		
 		if(this.killTimer && this.killTimer.delta() < 0)
 		{
 			this.font.draw( this.message, 250, 180);
 		}
-		
-		this.parent();
 	}
 	
 });
