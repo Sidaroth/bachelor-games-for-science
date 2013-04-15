@@ -10,6 +10,10 @@ ig.module(
 
 EntityMagnet = ig.Box2DEntity.extend({
 
+	// TODO!!
+	// Add text description of what stat the slider is affecting!
+	// Make the slider actually affect the variable. 
+
 	// weltmeister 
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 0, 255, 0.7)',

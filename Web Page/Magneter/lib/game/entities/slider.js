@@ -26,6 +26,11 @@ EntitySlider = ig.Entity.extend(
 	sliderLength: 0, 
 
 	sliderTarget: null, 
+	targetVar: null,
+
+	drag: false,
+
+	sliders: null,
 
 	slider: 
 	{
@@ -53,9 +58,19 @@ EntitySlider = ig.Entity.extend(
 		{
 			this.magnets = ig.game.getEntitiesByType( EntityMagnet );
 			this.sliderTarget = this.magnets[0];
-			this.sliderTarget.updateTargetStatus();
+
+			// in case of several sliders. 
+			if(this.sliderTarget.targetted === false)
+			{
+				this.sliderTarget.updateTargetStatus();
+			}
 
 			//console.log(this.sliderTarget);
+		}
+
+		if(this.sliders === null)
+		{
+			this.sliders = ig.game.getEntitiesByType ( EntitySlider );
 		}
 
 		// if mouse1 down
@@ -66,13 +81,24 @@ EntitySlider = ig.Entity.extend(
 			if( ig.input.mouse.x >= this.slider['box'].xpos && ig.input.mouse.x <= (this.slider['box'].xpos + this.slider['box'].image.width)
 			&&  ig.input.mouse.y >= this.slider['box'].ypos && ig.input.mouse.y <= (this.slider['box'].ypos + this.slider['box'].image.height))
 			{
-				
-				// console.log(ig.input.mouse.x)
+				var noOtherDrag = true;
+				for(var i = 0; i < this.sliders.length; i++ )
+				{
+					if(this.sliders[i].drag === true)
+					{
+						noOtherDrag = false;
+					}
+				}
 
+				if(noOtherDrag)
+				{
+					this.drag = true;
+				}
+			}
+
+			if(this.drag)
+			{
 				this.slider['box'].xpos = ig.input.mouse.x - (this.slider['box'].image.width / 2);
-
-				// console.log(this.slider['box'].xpos);
-				// console.log(this.slider['bar'].xpos);
 
 				if(this.slider['box'].xpos < this.slider['bar'].xpos)
 				{
@@ -83,6 +109,11 @@ EntitySlider = ig.Entity.extend(
 					this.slider['box'].xpos = (this.slider['bar'].xpos + this.sliderLength);
 				}
 			}
+		}
+
+		if( ig.input.released ( 'mouse1' ))
+		{
+			this.drag = false;
 		}
 
 		// If pressed, not held down as state is used to check. 
@@ -99,9 +130,12 @@ EntitySlider = ig.Entity.extend(
 				{
 					if(tempTarget != this.sliderTarget)
 					{
-						this.sliderTarget.updateTargetStatus(); // Remove target highlight.
-						this.sliderTarget = tempTarget;
-						this.sliderTarget.updateTargetStatus(); // Set new target highlight. 
+						if(tempTarget.targetted === false)
+						{
+							this.sliderTarget.updateTargetStatus(); // Remove target highlight.
+							this.sliderTarget = tempTarget;
+							this.sliderTarget.updateTargetStatus(); // Set new target highlight. 	
+						}
 					}
 				}
 			}
