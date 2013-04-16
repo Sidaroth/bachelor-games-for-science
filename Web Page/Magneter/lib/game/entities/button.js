@@ -60,7 +60,6 @@ EntityButton = ig.Entity.extend(
 			this.soundDB['buttonHighlight'].play();
 			this.currentAnim = this.anims['unselected'];
 			this.highlighted = false;
-			
 		}
 	},
 

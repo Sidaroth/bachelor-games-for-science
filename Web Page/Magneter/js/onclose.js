@@ -1,0 +1,1 @@
+$(window).on('beforeunload', function(){ ig.game.endMetricSession(); });
