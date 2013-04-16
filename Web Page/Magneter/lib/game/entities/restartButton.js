@@ -44,7 +44,6 @@ EntityRestartButton = ig.Entity.extend(
 	{
 		this.player = ig.game.getEntitiesByType( EntityPlayer )[0];
 		this.buttonText = ig.game.xml.loadTextFromXML( 'game>restartButton>buttonText', 0, 'lib/game/xml/strings'+ ig.game.language +'.xml');
-		//console.log(this.player);
 	},
 
 	update: function()
@@ -58,7 +57,15 @@ EntityRestartButton = ig.Entity.extend(
 
 			if(ig.input.pressed( 'mouse1' ))
 			{
-				// restart the players position and such..
+				var entitiesLength = ig.game.entities.length;
+
+				for(var i = 0; i < entitiesLength; i++)
+				{
+					if(ig.game.entities[i].resetable != undefined && ig.game.entities[i].resetable == 1)
+					{
+						ig.game.entities[i].reset();
+					}
+				}
 			}
 		}
 		else if(this.currentAnim == this.anims['highlight'])

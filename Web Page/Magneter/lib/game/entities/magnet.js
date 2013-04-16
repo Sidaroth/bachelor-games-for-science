@@ -20,6 +20,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 	size: {x: 50, y: 50},
 	//offset: {x: 0, y:0 },
 
+	resetable: 0, // by default the magnets will not reset. 
+
 	fieldRadiusMax: 300,
 	fieldRadiusMin: 50,
 
