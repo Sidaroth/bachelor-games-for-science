@@ -103,16 +103,21 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			//body and fixture defs - the common parts
 			//  b2BodyDef bodyDef;
 			var shapeDef = new b2.CircleDef();
-			shapeDef.radius = (this.size.x / 2) * b2.SCALE;
+			shapeDef.radius = 0.5;
 			shapeDef.friction = 5;
 			shapeDef.density = 0;
 			shapeDef.restitution = 0.5;
 			//current = this;
+			
+			
 			var circleBd = new b2.BodyDef();
-			circleBd.AddShape(shapeDef);
-			circleBd.position.Set(100, 100)
+			console.log(circleBd);
+			//circleBd.AddShape(shapeDef);
+			circleBd.position.Set(20, 20)
 			var circleBody = ig.world.CreateBody(circleBd)
 			console.log(circleBody);
+			circleBody.CreateShape(shapeDef);
+			circleBody.SetMassFromShapes();
 			//this.body.CreateShape( shapeDef );
 			//this.body.SetMassFromShapes();
 			
@@ -124,24 +129,34 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			);
 
 			shapeDef.friction = 5;
-			shapeDef.density = 0;
+			shapeDef.density = 0.5;
 			shapeDef.restitution = 0.5;
 			
 			var boxBd = new b2.BodyDef();
-			boxBd.AddShape(shapeDef);
-			boxBd.position.Set(100, 100)
+			console.log(boxBd);
+			//boxBd.AddShape(shapeDef);
+			boxBd.position.Set(10, 10)
 			var boxBody = ig.world.CreateBody(boxBd)
+			console.log(boxBody);
+			boxBody.CreateShape(shapeDef);
+			boxBody.SetMassFromShapes();
 			
 		    	
     		var jointDef = new b2.RevoluteJointDef();
-    		jointDef.bodyA = boxBody;
-    		jointDef.bodyB = circleBody;
+    		console.log(jointDef);
+    		//jointDef.bodyA = boxBody;
+    		//jointDef.bodyB = circleBody;
+
+    		jointDef.body1 = boxBody;
+    		jointDef.body2 = circleBody;
+    		
+    		jointDef.collideConnected = false;
      
-		    jointDef.localAnchorA = new b2.Vec2(0, 0);
-		    jointDef.localAnchorB = new b2.Vec2(0, 0);
+		    jointDef.localAnchor1 = new b2.Vec2(-8.5, -0.5);
+		    jointDef.localAnchor2 = new b2.Vec2(0, 0);
     		
     		//add the joint to the world
-    		//ig.world.CreateJoint(jointDef);
+    		ig.world.CreateJoint(jointDef);
     	
     	}
     	
@@ -165,8 +180,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 	{
 		this.parent();
 		
-		this.board['ball'].image.draw( this.board['ball'].xpos, this.board['ball'].ypos );
-		this.board['box'].image.draw( this.board['box'].xpos, this.board['box'].ypos );
+		//this.board['ball'].image.draw( this.board['ball'].xpos, this.board['ball'].ypos );
+		//this.board['box'].image.draw( this.board['box'].xpos, this.board['box'].ypos );
 	}
 	
 	
