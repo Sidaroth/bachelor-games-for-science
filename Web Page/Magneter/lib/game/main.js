@@ -23,6 +23,7 @@ ig.module(
 	'game.entities.basket',
 	'game.entities.spring_board',
 	'game.entities.muteButton',
+	'game.entities.menuButton',
 
 	// Levels
 	'game.levels.level1',
@@ -75,6 +76,13 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1': 'level1BGSoundtrack'
+	},
+
+	logLevel: {
+		'SplashScreen': false,
+		'Level1': true,
+		'Level1Info': false,
+		'MainMenu' : false
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -150,14 +158,6 @@ MyGame = ig.Box2DGame.extend(
 	
 	update: function() 
 	{
-		console.log(this.closestMagnetToMouse['magnet']);
-
-		// if(this.closestMagnetToMouse['magnet'] != null && this.closestMagnetToMouse['magnet'].drag['state'] === false)
-		// {
-		// 	this.closestMagnetToMouse['distance'] = 999999;
-		// 	this.closestMagnetToMouse['magnet'] = null;
-		// }
-	
 		if(this.paused)
 		{
 			this.pauseEntity.update();
@@ -181,6 +181,17 @@ MyGame = ig.Box2DGame.extend(
 			this.backgroundMaps[i].preRender = true;
 		}
 
+		if(this.playMD5 != null)
+		{
+			ig.game.endPlaySession();
+			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Ended level " + ig.game.currentLevel);
+		}
+
+		if(this.logLevel[levelKey])
+		{
+			ig.game.startPlaySession();
+			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Started level " + levelKey);
+		}
 		// console.log(levelKey);
 		// console.log(this.musicDB);
 		// console.log(this.musicDB[levelKey]);

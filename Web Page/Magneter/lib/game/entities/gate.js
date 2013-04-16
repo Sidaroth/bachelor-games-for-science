@@ -18,6 +18,8 @@ EntityGate = ig.Box2DEntity.extend({
 	
 	size: {x: 50, y: 100},
 
+	resetable: 0,
+
 	animSheet: new ig.AnimationSheet( 'media/gate/gate_slab.png', 50, 100),
 
 	init: function( x, y, settings ) 
@@ -55,7 +57,7 @@ EntityGate = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.kill();	  
+		other.reset();	  
 	},
 
 	draw: function()

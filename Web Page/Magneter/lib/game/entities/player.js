@@ -12,6 +12,9 @@ EntityPlayer = ig.Box2DEntity.extend({
 	_wmBoxColor: 'rgba(255, 0, 0, 0.7)',
 
 	size: { x: 50, y: 50 },
+	spawn: { x: 0, y: 0},
+
+	resetable: 1, // by default the player will reset
 
 	type: ig.Entity.TYPE.A,
 	checkAgainst: ig.Entity.TYPE.NONE,
@@ -26,6 +29,9 @@ EntityPlayer = ig.Box2DEntity.extend({
 		this.addAnim( 'idle', 1, [0] );
 
 		this.currentAnim = this.anims['idle'];
+
+		this.spawn.x = this.pos.x;
+		this.spawn.y = this.pos.y;
 
 		//this.body.DestroyShape();
 
@@ -47,12 +53,19 @@ EntityPlayer = ig.Box2DEntity.extend({
 	update: function() 
 	{
 		this.parent();
+	//	console.log(this.body.GetPosition());
 	}, 
 
 	draw: function()
 	{
 		this.parent();
-	}
+	},
 
+	reset: function()
+	{
+		console.log(this.body.GetPosition());
+		ig.game.spawnEntity(EntityPlayer, this.spawn.x, this.spawn.y, null);
+		this.kill();
+	}
 });
 });

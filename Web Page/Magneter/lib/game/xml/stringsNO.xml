@@ -38,4 +38,11 @@ bytte språk til engelsk?
 		<info> Dette er informasjonen for den første info skjermen </info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
+	<restartButton>
+		<buttonText> Restart </buttonText>
+	</restartButton>
+	<menuButton>
+		<buttonText>Meny</buttonText>
+		<shieldText>Vil du gå tilbake til menyen?</shieldText>
+	</menuButton>	
 </game>

@@ -47,33 +47,30 @@ ig.module(
 			this.soundDB['errorSound'].volume = ig.game.defaultSoundLevel;
 		},
 		
-		update: function() 
+		ready: function()
 		{
-			this.parent();
 			//load in all the buttons into the buttons array
-			if(this.buttons === null)
-			{
-				this.selectedButton = 0;
-				
-				this.buttons = ig.game.getEntitiesByType(EntityButton);
 
-				//console.log(this.buttons);
-
-				this.buttons.sort(function(a,b) { return parseFloat(a.id) - parseFloat(b.id) } );
-
-				this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
-
-				if(this.buttons.length > 0)
-				{
-					this.buttons[this.selectedButton].highlight();
-				}
-			}
-
-			if(this.muteButton === null)
-			{
-				this.muteButton = ig.game.getEntitiesByType(EntityMuteButton)[0];
-			}
+			this.selectedButton = 0;
 			
+			this.buttons = ig.game.getEntitiesByType(EntityButton);
+
+			//console.log(this.buttons);
+
+			this.buttons.sort(function(a,b) { return parseFloat(a.id) - parseFloat(b.id) } );
+
+			this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
+
+			if(this.buttons.length > 0)
+			{
+				this.buttons[this.selectedButton].highlight();
+			}
+
+			this.muteButton = ig.game.getEntitiesByType(EntityMuteButton)[0];
+		},
+
+		update: function() 
+		{			
 			// Highlighting of buttons was changed by Christian H because buttons were highlighted on and off every frame
 			// which caused buttons to spam play the sound effects. This is why they are now dehighlighted and highlighted when
 			// an input is taken. 
