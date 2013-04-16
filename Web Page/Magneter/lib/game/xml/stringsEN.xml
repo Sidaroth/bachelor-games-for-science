@@ -41,4 +41,8 @@ the language to Norwegian?
 	<restartButton>
 		<buttonText> Restart </buttonText>
 	</restartButton>
+	<menuButton>
+		<buttonText>Menu</buttonText>
+		<shieldText>Return to the main menu?</shieldText>
+	</menuButton>
 </game>

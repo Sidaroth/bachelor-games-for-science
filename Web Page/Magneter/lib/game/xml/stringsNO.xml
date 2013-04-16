@@ -41,4 +41,8 @@ bytte språk til engelsk?
 	<restartButton>
 		<buttonText> Restart </buttonText>
 	</restartButton>
+	<menuButton>
+		<buttonText>Meny</buttonText>
+		<shieldText>Vil du gå tilbake til menyen?</shieldText>
+	</menuButton>	
 </game>
