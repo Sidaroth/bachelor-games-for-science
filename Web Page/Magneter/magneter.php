@@ -16,5 +16,8 @@
 	<script type="text/javascript" src="lib/game/versiondetection/versiondetection.js"></script>
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>
+	<script type="text/javascript" src="js/onclose.js"> </script>
 	<canvas id="canvas"></canvas>
 </div>
+<!-- <body onbeforeunload="ConfirmClose()" onunload="HandleOnClose()"> -->
+<!-- </body> -->
