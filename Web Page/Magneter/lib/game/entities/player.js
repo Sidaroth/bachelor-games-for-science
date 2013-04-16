@@ -21,6 +21,7 @@ EntityPlayer = ig.Box2DEntity.extend({
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 
 	animSheet: new ig.AnimationSheet( 'media/ball/ball.png', 50, 50),
+	pushedToMagnets: false,
 
 	init: function( x, y, settings ) 
 	{
@@ -53,6 +54,10 @@ EntityPlayer = ig.Box2DEntity.extend({
 	update: function() 
 	{
 		this.parent();
+		if(this.pushedToMagnets === false)
+		{
+			this.ready();
+		}
 	//	console.log(this.body.GetPosition());
 	}, 
 
@@ -66,6 +71,18 @@ EntityPlayer = ig.Box2DEntity.extend({
 		console.log(this.body.GetPosition());
 		ig.game.spawnEntity(EntityPlayer, this.spawn.x, this.spawn.y, null);
 		this.kill();
+	},
+
+	ready: function()
+	{
+		this.parent();
+		var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
+		for (var i = 0; i < magnetsToPush.length; i++) {
+			magnetsToPush[i].objectsToTest.push(this);
+		}
+		this.pushedToMagnets = true;
 	}
+
+
 });
 });

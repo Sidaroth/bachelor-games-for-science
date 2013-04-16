@@ -59,7 +59,7 @@ EntityGoal = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.kill();
+		other.reset();
 		this.killTimer = new ig.Timer(2);	  
 	},
 

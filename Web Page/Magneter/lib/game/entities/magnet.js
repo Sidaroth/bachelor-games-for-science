@@ -42,7 +42,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 		'untargetted': 'rgba(123, 123, 123, 1)'
 	},
 
-	objectsToTest: null, // Any object added here will be tested and affected by magnetism. 
+	objectsToTest: [], // Any object added here will be tested and affected by magnetism. 
 
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
 	player: null,
@@ -94,13 +94,20 @@ EntityMagnet = ig.Box2DEntity.extend({
 	// runs when all entities have finished loading. 
 	ready: function()
 	{
-		this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
+		 this.parent();
+		 this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
 
-		this.gate = ig.game.getEntitiesByType(EntityGate)[0];
+		 this.gate = ig.game.getEntitiesByType(EntityGate)[0];
 		
-		this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
-		this.objectsToTest.push( this.player );
-		this.objectsToTest.push( this.gate );	
+		for(var i = 0; i < ig.game.getEntitiesByType(EntityMagnet).length; i++)
+		{
+			this.objectsToTest.push(ig.game.getEntitiesByType(EntityMagnet)[i]);
+			console.log(i);
+		}
+
+		//this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
+		//this.objectsToTest.push( this.player );
+		//this.objectsToTest.push( this.gate );	
 	},
 
 
@@ -177,6 +184,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			if(distanceToMouse > this.drag['distance'])
 			{
 				this.fieldRadius += distanceToMouse - this.drag['distance'];
+				this.fieldMagnitude += ((distanceToMouse - this.drag['distance'])*50);
 				this.drag['distance'] = distanceToMouse;
 
 				if(this.fieldRadius > this.fieldRadiusMax)
@@ -188,6 +196,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			if(distanceToMouse < this.drag['distance'])
 			{
 				this.fieldRadius -= this.drag['distance'] - distanceToMouse;
+				this.fieldMagnitude -= ((distanceToMouse - this.drag['distance'])*50);
 				this.drag['distance'] = distanceToMouse;
 
 				if(this.fieldRadius < this.fieldRadiusMin)

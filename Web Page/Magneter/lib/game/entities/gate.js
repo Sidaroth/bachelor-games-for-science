@@ -17,10 +17,12 @@ EntityGate = ig.Box2DEntity.extend({
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
 	size: {x: 50, y: 100},
+	spawn: { x: 0, y: 0},
 
-	resetable: 0,
+	resetable: 1,
 
 	animSheet: new ig.AnimationSheet( 'media/gate/gate_slab.png', 50, 100),
+	pushedToMagnets: false,
 
 	init: function( x, y, settings ) 
 	{
@@ -29,6 +31,9 @@ EntityGate = ig.Box2DEntity.extend({
 		this.addAnim( 'idle', 1, [0] );
 
 		this.currentAnim = this.anims['idle'];
+
+		this.spawn.x = this.pos.x;
+		this.spawn.y = this.pos.y;
 
 		//this.body.DestroyShape();
 
@@ -53,16 +58,39 @@ EntityGate = ig.Box2DEntity.extend({
 	update: function() 
 	{
 		this.parent();
+		if(this.pushedToMagnets === false)
+		{
+			this.ready();
+		}
 	},
 	
 	check: function(other)
 	{
-		other.reset();	  
+		//other.reset();
+		//this.reset();	  
 	},
 
 	draw: function()
 	{
 		this.parent();
+	},
+
+	reset: function()
+	{
+		console.log(this.body.GetPosition());
+		ig.game.spawnEntity(EntityGate, this.spawn.x, this.spawn.y, null);
+		this.kill();
+	},
+
+	ready: function()
+	{
+		this.parent();
+		var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
+
+		for (var i = 0; i < magnetsToPush.length; i++) {
+			magnetsToPush[i].objectsToTest.push(this);
+		}
+		this.pushedToMagnets = true;
 	}
 	
 });
