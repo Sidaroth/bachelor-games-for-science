@@ -60,6 +60,7 @@ ig.module(
 						    },
 						  	async:true
 						});
+						ig.game.logEvent(1, 0, 0, 0, 0, 1, "Changed language to " + this.flag);
 					}
 				}
 				this.shieldResponse = null;

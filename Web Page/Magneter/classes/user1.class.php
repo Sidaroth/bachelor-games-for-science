@@ -149,7 +149,38 @@ class User {
 		} catch(Exception $e) {
 				$this->error = $e->getMessage();
 		}
+		$this->createSave();
+	}
 
+	function createSave()
+	{
+		if($this->loggedOn())
+		{
+		    $sql = 'INSERT INTO saves(uid) VALUES(:uid)';
+		    $sth = $this->db->prepare ($sql);
+		    $sth->bindParam (':uid', $this->uid);
+		    $sth->execute();
+		    if ($sth->rowCount()==0) {
+				//throw new Exception('<strong> Something went wrong. Try again.</strong>');	// Throw an exception
+			}
+		    $sth->closeCursor();
+		}
+	}
+
+	function checkSave()
+	{
+		if($this->loggedOn())
+		{
+		    $sql = 'SELECT * FROM saves WHERE uid=:uid';
+		    $sth = $this->db->prepare ($sql);
+		    $sth->bindParam (':uid', $this->uid);
+		    $sth->execute();
+		    if ($sth->rowCount()==0) {
+		    	return false;
+			}
+			else {return true;}
+		    $sth->closeCursor();
+		}
 	}
 
 	/**
@@ -369,3 +400,4 @@ if (isset ($needLogin) && !$user->loggedOn())					// check login statuss
 
 
 ?>
+

@@ -133,6 +133,10 @@ if(isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfi
           // }(document, 'script', 'facebook-jssdk'));</script>
 
         <?php
+        if($user->checkSave() == false)
+        {
+            $user->createSave();
+        }
         // $ban = getBanState($user->getID());
         if($ban[0]['banned'] == 1) {
 
@@ -147,8 +151,6 @@ if(isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfi
         } else {
 
         ?>
-
-
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">

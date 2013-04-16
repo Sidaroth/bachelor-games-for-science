@@ -49,11 +49,14 @@ MyGame = ig.Box2DGame.extend(
 
 	version: 1.0,
 
+	currentLevel: 1,
+
 	metricStart: null,
 	playStart: null,
 	serialNumber: "",
 	metricMD5: null,
 	playMD5: null,
+	timeInLevel: new ig.Timer(),
 
 
 	
@@ -154,7 +157,6 @@ MyGame = ig.Box2DGame.extend(
 		}
 		// Update all entities and backgroundMaps
 		this.parent();
-		
 		// Add your own, additional update code here
 	},
 
@@ -164,7 +166,7 @@ MyGame = ig.Box2DGame.extend(
 	{
 		this.parent(this.levels[levelKey]);
 
-		ig.game.logEvent();
+		this.timeInLevel.reset();
 
 		for( var i = 0; i < this.backgroundMaps.length; i++ ) 
 		{
@@ -209,21 +211,36 @@ MyGame = ig.Box2DGame.extend(
 	{
 		this.save = JSON.parse(response);
 
-		//console.log(this.save.save[0].language);
-
 		this.language = this.save.save[0].language;
-		for (var i = 0; i < this.save.save[0].level; i++)
+		this.currentLevel = this.save.save[0].level;
+		for (var i = 0; i < this.currentLevel; i++)
 		{
 			this.unlockedLevels[i] = true;
 		}
-		//console.log(this.unlockedLevels);
 
 		this.loadLevel( "SplashScreen", true );
 	},
 
-	logEvent: function()
+	logEvent: function(eventType, eventSubtype, x, y, z, magnitude, extended)
 	{
-		
+		if(this.playMD5 === null){this.playMD5 = "NONE"}
+	    var request = $.ajax({
+		  type: 'POST',
+		  url: "pages/newevent.php",
+		  data: { 
+		        	playMD5: this.playMD5,
+		        	metricMD5: this.metricMD5,
+		        	gameTime: this.timeInLevel.delta(),	//time passed in playsession
+		        	eventType: eventType,				//type of event
+		        	eventSubtype: eventSubtype,			//subtype of event
+		        	x: x,								//int 1
+		        	y: y,								//int 2
+		        	z: z,								//int 3
+		        	magnitude: magnitude,				//impact on game
+		        	extended: extended					//extra info if neccessary
+		    	},
+		  async:true
+		});
 	},
 
 	startPlaySession: function()
@@ -244,7 +261,7 @@ MyGame = ig.Box2DGame.extend(
 	startMetricSession: function()
 	{
 		this.metricStart = ig.game.getTime();
-		this.serialNumber = userId + BrowserDetect.browser + BrowserDetect.version + BrowserDetect.OS;
+		this.serialNumber = userId + BrowserDetect.browser + BrowserDetect.version + BrowserDetect.OS + this.version;
 		this.metricMD5 = CryptoJS.MD5(this.serialNumber + this.metricStart).toString();
 	    var request = $.ajax({
 		  type: 'POST',
@@ -294,6 +311,27 @@ MyGame = ig.Box2DGame.extend(
                 		+ currentdate.getSeconds();
 
         return datetime;
+	},
+
+	updateLevel: function(level)
+	{
+		if(level > this.currentLevel)
+		{
+			if(userId > 0)
+			{
+		    	var request = $.ajax({
+				  	type: 'POST',
+				  	url: "pages/save.php",
+				  	data:
+				  	{ 
+				  		uid: userId,
+			        	level: this.currentLevel
+				    },
+				  	async:true
+				});
+				ig.game.logEvent(1, 0, 0, 0, 0, 1, "saved level: " + this.currentLevel);
+			}
+		}
 	}
 });
 
