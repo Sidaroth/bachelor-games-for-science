@@ -89,6 +89,18 @@ EntityMagnet = ig.Box2DEntity.extend({
 		}
 	},
 
+	// runs when all entities have finished loading. 
+	ready: function()
+	{
+		this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
+
+		this.gate = ig.game.getEntitiesByType(EntityGate)[0];
+		
+		this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
+		this.objectsToTest.push( this.player );
+		this.objectsToTest.push( this.gate );	
+	},
+
 
 
 	// Minor targetting bugs, beware!
@@ -151,6 +163,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 				ig.game.closestMagnetToMouse['magnet'] = null;
 				ig.game.closestMagnetToMouse['distance'] = 999999;
 			}
+
+			this.ringColor['current'] = this.ringColor['untargetted'];
 		}
 
 		if(this.drag['state'] === true)
@@ -179,27 +193,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 					this.fieldRadius = this.fieldRadiusMin;
 				}
 			}
-		}
-
-		
-		if(this.player === null)
-		{
-			this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
-		}
-
-		if(this.gate === null)
-		{
-			this.gate = ig.game.getEntitiesByType(EntityGate)[0];
-		}
-		
-		//console.log(this.objectsToTest.length);
-		if(this.objectsToTest === null)
-		{
-			this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
-			this.objectsToTest.push( this.player );
-			this.objectsToTest.push( this.gate );
-
-			console.log(this.objectsToTest);
 		}
 
 		for( var i = 0; i < this.objectsToTest.length; i++ )

@@ -156,14 +156,6 @@ MyGame = ig.Box2DGame.extend(
 	
 	update: function() 
 	{
-		console.log(this.closestMagnetToMouse['magnet']);
-
-		// if(this.closestMagnetToMouse['magnet'] != null && this.closestMagnetToMouse['magnet'].drag['state'] === false)
-		// {
-		// 	this.closestMagnetToMouse['distance'] = 999999;
-		// 	this.closestMagnetToMouse['magnet'] = null;
-		// }
-	
 		if(this.paused)
 		{
 			this.pauseEntity.update();
