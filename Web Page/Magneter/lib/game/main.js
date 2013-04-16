@@ -22,6 +22,7 @@ ig.module(
 	'game.entities.goal',
 	'game.entities.basket',
 	'game.entities.muteButton',
+	'game.entities.menuButton',
 
 	// Levels
 	'game.levels.level1',
