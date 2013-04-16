@@ -276,19 +276,28 @@ MyGame = ig.Box2DGame.extend(
 
 	endPlaySession: function()
 	{
-		var request = $.ajax({
-		  type: 'POST',
-		  url: "pages/endplaysession.php",
-		  data: { 
-		        	playMD5: this.playMD5,
-		        	metricMD5: this.metricMD5 
-		    	},
-		  async:true
-		});
+		if(this.playMD5 !== null)
+		{
+			var request = $.ajax({
+			  type: 'POST',
+			  url: "pages/endplaysession.php",
+			  data: { 
+			        	playMD5: this.playMD5,
+			        	metricMD5: this.metricMD5 
+			    	},
+			  async:true
+			});
+
+			this.playMD5 = null;
+		}
 	},
 
 	endMetricSession: function()
 	{
+		if(this.playMD5 !== null)
+		{
+			this.endPlaySession();
+		}
 		var request = $.ajax({
 		  type: 'POST',
 		  url: "pages/endmetricsession.php",
@@ -296,7 +305,7 @@ MyGame = ig.Box2DGame.extend(
 		        	serialNumber: this.serialNumber,
 		        	metricMD5: this.metricMD5 
 		    	},
-		  async:true
+		  async:false
 		});
 	},
 
