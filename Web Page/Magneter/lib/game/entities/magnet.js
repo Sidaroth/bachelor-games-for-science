@@ -91,32 +91,45 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 
 
-	// NEED TO FIX TARGETTING BUGS. 
+	// Minor targetting bugs, beware!
 	update: function()
 	{
 		var distanceToMouse = Math.sqrt( Math.pow ( Math.abs( ig.input.mouse.x - (this.pos.x + (this.size.x / 2))), 2) + Math.pow( Math.abs( ig.input.mouse.y - (this.pos.y + (this.size.y / 2))), 2) );
 
-		if(distanceToMouse < ig.game.closestMagnetToMouse['distance'])
+		if(distanceToMouse <= this.fieldRadius)
 		{
-			if(distanceToMouse <= this.fieldRadius)
+			if(distanceToMouse < ig.game.closestMagnetToMouse['distance'])
 			{
-				this.ringColor['current'] = this.ringColor['targetted'];
-				ig.game.closestMagnetToMouse['magnet'] = this;
-				ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
-			}
-			else
-			{
-				if(!this.drag['state'])
+				if(ig.game.closestMagnetToMouse['magnet'] == null)
+				{
+					//ig.game.closestMagnetToMouse['magnet'].ringColor['current'] = ig.game.closestMagnetToMouse['magnet'].ringColor['untargetted'];
+					ig.game.closestMagnetToMouse['magnet'] = this;
+					ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
+
+					this.ringColor['current'] = this.ringColor['targetted'];
+				}
+				else if(ig.game.closestMagnetToMouse['magnet'].drag['state'] === false)
+				{
+					ig.game.closestMagnetToMouse['magnet'].ringColor['current'] = ig.game.closestMagnetToMouse['magnet'].ringColor['untargetted'];
+					ig.game.closestMagnetToMouse['magnet'] = this;
+					ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
+
+					this.ringColor['current'] = this.ringColor['targetted'];
+				}
+				else
 				{
 					this.ringColor['current'] = this.ringColor['untargetted'];
 				}
 			}
 		}
-		else
+		else if(this.drag['state'] === false)
 		{
-			if(!this.drag['state'])
+			this.ringColor['current'] = this.ringColor['untargetted'];
+
+			if(ig.game.closestMagnetToMouse['magnet'] == this)
 			{
-				this.ringColor['current'] = this.ringColor['untargetted'];
+				ig.game.closestMagnetToMouse['magnet'] = null;
+				ig.game.closestMagnetToMouse['distance'] = 999999;
 			}
 		}
 
@@ -132,11 +145,19 @@ EntityMagnet = ig.Box2DEntity.extend({
 		if(ig.input.released( 'mouse1' ))
 		{
 			this.drag['state'] = false;
+
+			if(ig.game.closestMagnetToMouse['magnet'] == this)
+			{
+				ig.game.closestMagnetToMouse['magnet'] = null;
+				ig.game.closestMagnetToMouse['distance'] = 999999;
+			}
 		}
 
 		if(this.drag['state'] === true)
 		{
-			console.log(this.fieldRadius);
+			//console.log(this.fieldRadius);
+			this.ringColor['current'] = this.ringColor['targetted'];
+
 			if(distanceToMouse > this.drag['distance'])
 			{
 				this.fieldRadius += distanceToMouse - this.drag['distance'];
@@ -255,5 +276,5 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 		context.stroke();
 	}
-})
-;});
+});
+});
