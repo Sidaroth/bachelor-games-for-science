@@ -31,14 +31,14 @@ ig.module(
 			this.parent();
 		},
 
+		ready: function()
+		{
+			this.buttonText = ig.game.xml.loadTextFromXML("game>menuButton>buttonText", 0, "lib/game/xml/strings"+ ig.game.language +".xml");
+		},
+
 		update: function() 
 		{
 			this.parent();
-
-			if(this.buttonText == "")
-			{
-				this.buttonText = ig.game.xml.loadTextFromXML("game>menuButton>buttonText", 0, "lib/game/xml/strings"+ ig.game.language +".xml");
-			}
 
 			if(this.shield)
 			{
