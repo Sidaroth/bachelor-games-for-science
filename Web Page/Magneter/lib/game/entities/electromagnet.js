@@ -13,6 +13,9 @@ EntityElectromagnet = EntityMagnet.extend({
 	_wmBoxColor: 'rgba(55, 50, 255, 0.7)',
 	
 	isOn: true,
+	playerClickable: true,
+	
+	name: null,
 
 	
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
@@ -40,7 +43,8 @@ EntityElectromagnet = EntityMagnet.extend({
 		if (ig.input.pressed('mouse1'))
 		{
 			if(ig.input.mouse.x >= this.pos.x && ig.input.mouse.x <= (this.pos.x + this.size.x)
-			&& ig.input.mouse.y >= this.pos.y && ig.input.mouse.y <= (this.pos.y + this.size.y))
+			&& ig.input.mouse.y >= this.pos.y && ig.input.mouse.y <= (this.pos.y + this.size.y)
+			&& this.playerClickable === true)
 			{
 				this.turnOnOrOff();
 			}
@@ -60,12 +64,17 @@ EntityElectromagnet = EntityMagnet.extend({
 		}
 	},
 	
+	switchPressed: function()
+	{
+		this.turnOnOrOff();
+	},
+	
 	turnOnOrOff: function()
 	{
 		if(this.isOn === false)
 		{
 			this.soundDB['powerOn'].play();
-			this.currentAnim = this.anims['targetted'];
+			this.currentAnim = this.anims['idle'];
 			this.isOn = true;
 		}
 		
