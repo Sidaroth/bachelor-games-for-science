@@ -22,6 +22,7 @@ EntityPlayer = ig.Box2DEntity.extend({
 
 	animSheet: new ig.AnimationSheet( 'media/ball/ball.png', 50, 50),
 	pushedToMagnets: false,
+	name: "player",
 
 	init: function( x, y, settings ) 
 	{
@@ -81,7 +82,7 @@ EntityPlayer = ig.Box2DEntity.extend({
 			magnetsToPush[i].objectsToTest.push(this);
 		}
 		this.pushedToMagnets = true;
-	}
+	},
 
 
 });

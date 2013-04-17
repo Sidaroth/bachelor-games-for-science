@@ -1,5 +1,4 @@
 <div align=center>
-	<h1>Magneter</h1>
 	<script type="text/javascript" language="javascript">
 		<!--
 		<?php
