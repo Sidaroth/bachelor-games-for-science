@@ -198,6 +198,9 @@ MyGame = ig.Box2DGame.extend(
 			ig.game.startPlaySession();
 			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Started level " + levelKey);
 		}
+
+		this.closestMagnetToMouse['distance'] = 999999;
+		this.closestMagnetToMouse['magnet'] = null;
 		// console.log(levelKey);
 		// console.log(this.musicDB);
 		// console.log(this.musicDB[levelKey]);
