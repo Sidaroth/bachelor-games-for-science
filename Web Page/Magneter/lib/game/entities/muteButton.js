@@ -47,7 +47,10 @@ EntityMuteButton = ig.Entity.extend(
 			this.currentAnim = this.anims['off'];
 
 			ig.soundManager.volume = 0;
-			ig.music.volume = 0;
+			if(!ig.global.wm)
+			{
+				ig.music.volume = 0;
+			}
 		}
 		else
 		{

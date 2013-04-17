@@ -17,6 +17,8 @@ EntityGoal = ig.Box2DEntity.extend({
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
 	size: {x: 100, y: 100},
+	levelToUnlock: 0,
+	goToLevel: null,
 
 	message: 'Congratulation on completing the level!',
 	killTimer: null,
@@ -60,6 +62,19 @@ EntityGoal = ig.Box2DEntity.extend({
 	check: function(other)
 	{
 		other.reset();
+		// console.log(other.nam);
+		if(other.name == "player")
+		{
+			ig.game.updateLevel(this.levelToUnlock);
+			if(this.goToLevel !== null)
+			{
+				ig.game.loadLevel(this.goToLevel);
+			}
+			else
+			{
+				ig.game.loadLevel('MainMenu');
+			}
+		}
 		this.killTimer = new ig.Timer(2);	  
 	},
 
