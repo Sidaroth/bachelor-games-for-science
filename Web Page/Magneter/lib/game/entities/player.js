@@ -42,9 +42,9 @@ EntityPlayer = ig.Box2DEntity.extend({
 		{
 			var shapeDef = new b2.CircleDef();
 			shapeDef.radius = (this.size.x / 2) * b2.SCALE;
-			shapeDef.friction = 5;
-			shapeDef.density = 7;
-			shapeDef.restitution = 0.5;
+			shapeDef.friction = 1;
+			shapeDef.density = 1;
+			shapeDef.restitution = 0.3;
 			//current = this;
 
 			this.body.CreateShape( shapeDef );
@@ -59,7 +59,7 @@ EntityPlayer = ig.Box2DEntity.extend({
 		{
 			this.ready();
 		}
-		console.log(this.body.GetPosition());
+		// console.log(this.body.GetPosition());
 	}, 
 
 	draw: function()

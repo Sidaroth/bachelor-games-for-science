@@ -30,11 +30,11 @@ ig.module(
 
 	// Levels
 	'game.levels.level1',
+	'game.levels.level2',
+	'game.levels.level3',
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
-	'game.levels.tutorial1',
-	'game.levels.tutorial2',
 
 	//xml
 	'game.xml.getXmlString'
@@ -70,11 +70,11 @@ MyGame = ig.Box2DGame.extend(
 	//array with all levels
 	levels: {
 		'SplashScreen': LevelSplashScreen,
-		'Level1': LevelLevel1,
 		'Level1Info': LevelLevel1Info,
 		'MainMenu' : LevelMainMenu,
-		'Tutorial1' : LevelTutorial1,
-		'Tutorial2' : LevelTutorial2
+		'Level1': LevelLevel1,
+		'Level2' : LevelLevel2,
+		'Level3' : LevelLevel3
 	},
 
 	// Which background music should be played for which level (screen)
@@ -83,17 +83,17 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1': 'level1BGSoundtrack',
-		'Tutorial1' : 'level1BGSoundtrack',
-		'Tutorial2' : 'level1BGSoundtrack'
+		'Level2' : 'level1BGSoundtrack',
+		'Level3' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
 		'SplashScreen': false,
-		'Level1': true,
 		'Level1Info': false,
 		'MainMenu' : false,
-		'Tutorial1' : true,
-		'tutorial2' : true
+		'Level1': true,
+		'Level2' : true,
+		'Level3' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -160,10 +160,9 @@ MyGame = ig.Box2DGame.extend(
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
 		if(userId == 0){
-			this.loadLevel( "Level1", true );
+			this.loadLevel( "SplashScreen", true );
 		}
-		this.debugDrawer = new ig.Box2DDebug( ig.world );
-		this.debugDrawer = new ig.Box2DDebug( ig.world );
+		// this.debugDrawer = new ig.Box2DDebug( ig.world );
 
 		ig.game.startMetricSession();
 	},
@@ -197,7 +196,7 @@ MyGame = ig.Box2DGame.extend(
 				ig.game.screen.x += 10;
 				if(ig.game.screen.x > ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
 				{
-					console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
+					// console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
 					ig.game.screen.x = ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width;
 				}
 			}
@@ -273,10 +272,6 @@ MyGame = ig.Box2DGame.extend(
 		{
 			//ig.music.stop();
 		}
-		if(ig.game.backgroundMaps[0])
-		{
-			console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize);
-		}
 	},
 	
 	draw: function() 
@@ -289,7 +284,7 @@ MyGame = ig.Box2DGame.extend(
 		}
 		this.parent();
 
-		this.debugDrawer.draw();
+		// this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
@@ -304,7 +299,7 @@ MyGame = ig.Box2DGame.extend(
 			this.unlockedLevels[i] = true;
 		}
 
-		this.loadLevel( "Level1", true );
+		this.loadLevel( "SplashScreen", true );
 	},
 
 	logEvent: function(eventType, eventSubtype, x, y, z, magnitude, extended)
