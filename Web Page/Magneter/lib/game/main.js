@@ -26,6 +26,7 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
+	'game.entities.pendulum',
 
 	// Levels
 	'game.levels.level1',
@@ -161,7 +162,7 @@ MyGame = ig.Box2DGame.extend(
 		if(userId == 0){
 			this.loadLevel( "Level1", true );
 		}
-		
+		this.debugDrawer = new ig.Box2DDebug( ig.world );
 		this.debugDrawer = new ig.Box2DDebug( ig.world );
 
 		ig.game.startMetricSession();
