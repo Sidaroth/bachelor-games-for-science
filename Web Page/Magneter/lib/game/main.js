@@ -11,25 +11,28 @@ ig.module(
 	'plugins.box2d.debug',
 
 	// Entities
-	'game.entities.player',
-	'game.entities.magnet',
+	'game.entities.basket',
 	'game.entities.button',
-	'game.entities.trigger',
-	'game.entities.language',
-	'game.entities.shield',
-	'game.entities.infoScreen',
+	'game.entities.electromagnet',
 	'game.entities.gate',
 	'game.entities.goal',
-	'game.entities.basket',
-	'game.entities.spring_board',
-	'game.entities.muteButton',
+	'game.entities.infoScreen',
+	'game.entities.language',
+	'game.entities.magnet',
 	'game.entities.menuButton',
+	'game.entities.muteButton',
+	'game.entities.player',
+	'game.entities.shield',
+	'game.entities.spring_board',
+	'game.entities.switch',
+	'game.entities.trigger',
 
 	// Levels
 	'game.levels.level1',
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
+	'game.levels.tutorial1',
 
 	//xml
 	'game.xml.getXmlString'
@@ -67,7 +70,8 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': LevelSplashScreen,
 		'Level1': LevelLevel1,
 		'Level1Info': LevelLevel1Info,
-		'MainMenu' : LevelMainMenu
+		'MainMenu' : LevelMainMenu,
+		'Tutorial1' : LevelTutorial1
 	},
 
 	// Which background music should be played for which level (screen)
@@ -75,14 +79,16 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
-		'Level1': 'level1BGSoundtrack'
+		'Level1': 'level1BGSoundtrack',
+		'Tutorial1' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
 		'SplashScreen': false,
 		'Level1': true,
 		'Level1Info': false,
-		'MainMenu' : false
+		'MainMenu' : false,
+		'Tutorial1' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -194,7 +200,7 @@ MyGame = ig.Box2DGame.extend(
 		if(this.playMD5 != null)
 		{
 			ig.game.endPlaySession();
-			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Ended level " + ig.game.currentLevel);
+			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Ended level " + (ig.game.currentLevel-1));
 		}
 
 		if(this.logLevel[levelKey])
@@ -363,11 +369,16 @@ MyGame = ig.Box2DGame.extend(
 				  	data:
 				  	{ 
 				  		uid: userId,
-			        	level: this.currentLevel
+			        	level: level
 				    },
 				  	async:true
 				});
 				ig.game.logEvent(1, 0, 0, 0, 0, 1, "saved level: " + this.currentLevel);
+			}
+			this.currentLevel = level;
+			for (var i = 0; i < this.currentLevel; i++)
+			{
+				this.unlockedLevels[i] = true;
 			}
 		}
 	}

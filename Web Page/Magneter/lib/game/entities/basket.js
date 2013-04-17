@@ -16,7 +16,7 @@ EntityBasket = ig.Box2DEntity.extend({
 	checkAgainst: ig.Entity.TYPE.A,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
-	size: {x: 100, y: 50},
+	size: {x: 160, y: 50},
 	
 	pointsValue: 100, //what value the basket gives as a base for the final score
 	message: 'You fell in the basket with value!', //message that will tell the player what hapened.
@@ -61,7 +61,7 @@ EntityBasket = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.kill();
+		other.reset();
 		this.killTimer = new ig.Timer(2);	  
 	},
 
