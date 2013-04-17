@@ -117,7 +117,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 	update: function()
 	{
 		var distanceToMouse = Math.sqrt( Math.pow ( Math.abs( ig.input.mouse.x - (this.pos.x + (this.size.x / 2))), 2) + Math.pow( Math.abs( ig.input.mouse.y - (this.pos.y + (this.size.y / 2))), 2) );
-
 		if(distanceToMouse <= this.fieldRadius)
 		{
 			if(distanceToMouse < ig.game.closestMagnetToMouse['distance'])

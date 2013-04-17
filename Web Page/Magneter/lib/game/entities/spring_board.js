@@ -60,7 +60,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
 
 
 			shapeDef.friction = 5;
-			shapeDef.density = 0.1;
+			shapeDef.density = 1;
 			shapeDef.restitution = 1;
 			
 			var boxBd = new b2.BodyDef();
