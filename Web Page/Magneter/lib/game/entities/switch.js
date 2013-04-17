@@ -19,7 +19,7 @@ EntitySwitch = ig.Entity.extend({
 	isPressed: false,
 	
 	target: null,
-	switchTimer = ig.Timer();
+	switchTimer: ig.Timer(),
 	
 	size: {x: 64, y: 64},
 	
