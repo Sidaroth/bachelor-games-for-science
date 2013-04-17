@@ -57,10 +57,13 @@ EntityGate = ig.Box2DEntity.extend({
 
 	update: function() 
 	{
-		this.parent();
-		if(this.pushedToMagnets === false)
+		if(ig.game.playing)
 		{
-			this.ready();
+			this.parent();
+			if(this.pushedToMagnets === false)
+			{
+				this.ready();
+			}
 		}
 	},
 	

@@ -21,17 +21,18 @@ ig.module(
 	'game.entities.magnet',
 	'game.entities.menuButton',
 	'game.entities.muteButton',
+	'game.entities.pendulum',
 	'game.entities.player',
 	'game.entities.shield',
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
-	'game.entities.pendulum',
 
 	// Levels
 	'game.levels.level1',
 	'game.levels.level2',
 	'game.levels.level3',
+	'game.levels.level4',
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
@@ -64,6 +65,7 @@ MyGame = ig.Box2DGame.extend(
 	metricMD5: null,
 	playMD5: null,
 	timeInLevel: new ig.Timer(),
+	playing: true,
 
 
 	
@@ -74,7 +76,8 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : LevelMainMenu,
 		'Level1': LevelLevel1,
 		'Level2' : LevelLevel2,
-		'Level3' : LevelLevel3
+		'Level3' : LevelLevel3,
+		'Level4' : LevelLevel4
 	},
 
 	// Which background music should be played for which level (screen)
@@ -84,7 +87,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1': 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
-		'Level3' : 'level1BGSoundtrack'
+		'Level3' : 'level1BGSoundtrack',
+		'Level4' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
@@ -93,7 +97,8 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : false,
 		'Level1': true,
 		'Level2' : true,
-		'Level3' : true
+		'Level3' : true,
+		'Level4' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -222,10 +227,34 @@ MyGame = ig.Box2DGame.extend(
 				}
 			}
 		}
+		if(!ig.game.playing)
+		{
+			//this.body.ApplyForce( new b2.Vec2(0, -4000), this.body.GetPosition() );
+			//console.log(this.body.m_force);
+			if(ig.world.m_gravity.y > 0)
+			{
+				ig.world.SetGravity(new b2.Vec2(0,0));
+			}
+		}
+		else if(ig.game.playing)
+		{
+			if(ig.world.m_gravity.y == 0)
+			{
+				ig.world.SetGravity(new b2.Vec2(0,40));
+				//ig.game.getEntitiesByType(EntityPlayer)[0].reset();
 
-		// Update all entities and backgroundMaps
+				for (var i in ig.game.entities) 
+				{
+	                var ent = ig.game.entities[i];
+	                if (ent && typeof(ent.reset) == 'function') 
+	                {
+	                    ent.reset();
+	                }
+            	}
+			}
+			//ig.world.SetGravity(new b2.Vec2(0,40));
+		}
 		this.parent();
-		// Add your own, additional update code here
 	},
 
 	// Takes a string that describes which level is to be loaded, and a boolean that 

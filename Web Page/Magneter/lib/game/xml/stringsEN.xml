@@ -39,7 +39,10 @@ the language to Norwegian?
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
 	<restartButton>
-		<buttonText> Restart </buttonText>
+		<buttonText>
+			<restart>Restart</restart>
+			<start>Start</start>
+		</buttonText>
 	</restartButton>
 	<menuButton>
 		<buttonText>Menu</buttonText>
