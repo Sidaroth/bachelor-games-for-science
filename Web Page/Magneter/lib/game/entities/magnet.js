@@ -235,12 +235,12 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		var distanceVector = 
 		{
-			x: entity.pos.x + (entity.size.x / 2) - this.pos.x + (this.size.x / 2),
-			y: entity.pos.y + (entity.size.y / 2) - this.pos.y + (this.size.y / 2)
+			x: (entity.pos.x + (entity.size.x / 2)) - (this.pos.x + (this.size.x / 2)),
+			y: (entity.pos.y + (entity.size.y / 2)) - (this.pos.y + (this.size.y / 2))
 		};
 
 		// Standard pythagorean theorem -- Length of vector. 
-		var distanceVecLength = Math.sqrt( Math.pow( Math.abs(distanceVector.x), 2 ) + Math.pow( Math.abs(distanceVector.y), 2 ) );
+		var distanceVecLength = Math.sqrt( Math.pow( distanceVector.x, 2 ) + Math.pow( distanceVector.y, 2 ) );
 
 		// If within the field. 
 		if(distanceVecLength <= this.fieldRadius)
