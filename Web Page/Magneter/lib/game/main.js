@@ -65,6 +65,7 @@ MyGame = ig.Box2DGame.extend(
 	metricMD5: null,
 	playMD5: null,
 	timeInLevel: new ig.Timer(),
+	playing: true,
 
 
 	
@@ -225,10 +226,34 @@ MyGame = ig.Box2DGame.extend(
 				}
 			}
 		}
+		if(!ig.game.playing)
+		{
+			//this.body.ApplyForce( new b2.Vec2(0, -4000), this.body.GetPosition() );
+			//console.log(this.body.m_force);
+			if(ig.world.m_gravity.y > 0)
+			{
+				ig.world.SetGravity(new b2.Vec2(0,0));
+			}
+		}
+		else if(ig.game.playing)
+		{
+			if(ig.world.m_gravity.y == 0)
+			{
+				ig.world.SetGravity(new b2.Vec2(0,40));
+				//ig.game.getEntitiesByType(EntityPlayer)[0].reset();
 
-		// Update all entities and backgroundMaps
+				for (var i in ig.game.entities) 
+				{
+	                var ent = ig.game.entities[i];
+	                if (ent && typeof(ent.reset) == 'function') 
+	                {
+	                    ent.reset();
+	                }
+            	}
+			}
+			//ig.world.SetGravity(new b2.Vec2(0,40));
+		}
 		this.parent();
-		// Add your own, additional update code here
 	},
 
 	// Takes a string that describes which level is to be loaded, and a boolean that 
