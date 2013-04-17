@@ -172,12 +172,12 @@ MyGame = ig.Box2DGame.extend(
 
 		// screen follows the player
 		var player = this.getEntitiesByType( EntityPlayer )[0];
-		if( player ) {
+		/*if( player ) {
 			this.screen.x = player.pos.x - ig.system.width/2;
 			this.screen.y = player.pos.y - ig.system.height/2;
 			//this.screen.x = player.pos.x - ig.system.width/2;
 			//this.screen.y = player.pos.y - ig.system.height/2;
-		}
+		}*/
 
 		// Update all entities and backgroundMaps
 		this.parent();
