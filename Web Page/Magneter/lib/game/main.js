@@ -149,9 +149,9 @@ MyGame = ig.Box2DGame.extend(
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
 		if(userId == 0){
-			this.loadLevel( "Level1", true );
+			this.loadLevel( "SplashScreen", true );
 		}
-		this.debugDrawer = new ig.Box2DDebug( ig.world );
+		//this.debugDrawer = new ig.Box2DDebug( ig.world );
 
 		ig.game.startMetricSession();
 	},
@@ -222,7 +222,7 @@ MyGame = ig.Box2DGame.extend(
 		}
 		this.parent();
 
-		this.debugDrawer.draw();
+		//this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
