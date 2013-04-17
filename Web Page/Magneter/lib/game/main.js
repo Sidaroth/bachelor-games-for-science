@@ -54,7 +54,7 @@ MyGame = ig.Box2DGame.extend(
 
 	version: 1.0,
 
-	currentLevel: 1,
+	currentLevelUnlocked: 1,
 
 	metricStart: null,
 	playStart: null,
@@ -172,11 +172,9 @@ MyGame = ig.Box2DGame.extend(
 
 		// screen follows the player
 		var player = this.getEntitiesByType( EntityPlayer )[0];
-		if( player ) {
-			this.screen.x = player.pos.x - ig.system.width/2;
-			this.screen.y = player.pos.y - ig.system.height/2;
-			//this.screen.x = player.pos.x - ig.system.width/2;
-			//this.screen.y = player.pos.y - ig.system.height/2;
+		if( player ) 
+		{
+			
 		}
 
 		// Update all entities and backgroundMaps
@@ -200,7 +198,7 @@ MyGame = ig.Box2DGame.extend(
 		if(this.playMD5 != null)
 		{
 			ig.game.endPlaySession();
-			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Ended level " + (ig.game.currentLevel-1));
+			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Ended level " + (ig.game.currentLevel));
 		}
 
 		if(this.logLevel[levelKey])
@@ -250,8 +248,8 @@ MyGame = ig.Box2DGame.extend(
 		this.save = JSON.parse(response);
 
 		this.language = this.save.save[0].language;
-		this.currentLevel = this.save.save[0].level;
-		for (var i = 0; i < this.currentLevel; i++)
+		this.currentLevelUnlocked = this.save.save[0].level;
+		for (var i = 0; i < this.currentLevelUnlocked; i++)
 		{
 			this.unlockedLevels[i] = true;
 		}
@@ -262,6 +260,7 @@ MyGame = ig.Box2DGame.extend(
 	logEvent: function(eventType, eventSubtype, x, y, z, magnitude, extended)
 	{
 		if(this.playMD5 === null){this.playMD5 = "NONE"}
+
 	    var request = $.ajax({
 		  type: 'POST',
 		  url: "pages/newevent.php",
@@ -362,7 +361,7 @@ MyGame = ig.Box2DGame.extend(
 
 	updateLevel: function(level)
 	{
-		if(level > this.currentLevel)
+		if(level > this.currentLevelUnlocked)
 		{
 			if(userId > 0)
 			{
@@ -376,10 +375,10 @@ MyGame = ig.Box2DGame.extend(
 				    },
 				  	async:true
 				});
-				ig.game.logEvent(1, 0, 0, 0, 0, 1, "saved level: " + this.currentLevel);
+				ig.game.logEvent(1, 0, 0, 0, 0, 1, "saved level: " + ig.game.currentLevel);
 			}
-			this.currentLevel = level;
-			for (var i = 0; i < this.currentLevel; i++)
+			this.currentLevelUnlocked = level;
+			for (var i = 0; i < this.currentLevelUnlocked; i++)
 			{
 				this.unlockedLevels[i] = true;
 			}
