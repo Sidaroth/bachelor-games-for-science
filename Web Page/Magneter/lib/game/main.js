@@ -169,6 +169,16 @@ MyGame = ig.Box2DGame.extend(
 			this.pauseEntity.update();
 			return;
 		}
+
+		// screen follows the player
+		var player = this.getEntitiesByType( EntityPlayer )[0];
+		if( player ) {
+			this.screen.x = player.pos.x - ig.system.width/2;
+			this.screen.y = player.pos.y - ig.system.height/2;
+			//this.screen.x = player.pos.x - ig.system.width/2;
+			//this.screen.y = player.pos.y - ig.system.height/2;
+		}
+
 		// Update all entities and backgroundMaps
 		this.parent();
 		// Add your own, additional update code here
@@ -198,6 +208,9 @@ MyGame = ig.Box2DGame.extend(
 			ig.game.startPlaySession();
 			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Started level " + levelKey);
 		}
+
+		this.closestMagnetToMouse['distance'] = 999999;
+		this.closestMagnetToMouse['magnet'] = null;
 		// console.log(levelKey);
 		// console.log(this.musicDB);
 		// console.log(this.musicDB[levelKey]);

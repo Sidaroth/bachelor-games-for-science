@@ -44,6 +44,7 @@ ig.module(
 				{
 					this.image.draw(this.pos.x + (this.size.x / 2) - (this.image.height/2), this.pos.y + ((this.size.y / 4) * 3) - (this.image.width/2));
 				}
+				//console.log(this.infoScreen);
 			}
 		},
 
