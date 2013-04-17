@@ -21,17 +21,18 @@ ig.module(
 	'game.entities.magnet',
 	'game.entities.menuButton',
 	'game.entities.muteButton',
+	'game.entities.pendulum',
 	'game.entities.player',
 	'game.entities.shield',
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
-	'game.entities.pendulum',
 
 	// Levels
 	'game.levels.level1',
 	'game.levels.level2',
 	'game.levels.level3',
+	'game.levels.level4',
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
@@ -75,7 +76,8 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : LevelMainMenu,
 		'Level1': LevelLevel1,
 		'Level2' : LevelLevel2,
-		'Level3' : LevelLevel3
+		'Level3' : LevelLevel3,
+		'Level4' : LevelLevel4
 	},
 
 	// Which background music should be played for which level (screen)
@@ -85,7 +87,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1': 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
-		'Level3' : 'level1BGSoundtrack'
+		'Level3' : 'level1BGSoundtrack',
+		'Level4' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
@@ -94,7 +97,8 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu' : false,
 		'Level1': true,
 		'Level2' : true,
-		'Level3' : true
+		'Level3' : true,
+		'Level4' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 

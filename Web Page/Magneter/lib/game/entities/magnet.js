@@ -263,7 +263,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 			var forceDirection = -1;
 
-			if (entity.polarity =! undefined && entity.polarity == this.polarity)
+			if (entity.polarity != undefined && entity.polarity == this.polarity)
 			{
 				forceDirection = 1;
 			}
