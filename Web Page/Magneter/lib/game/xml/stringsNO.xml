@@ -39,7 +39,10 @@ bytte språk til engelsk?
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
 	<restartButton>
-		<buttonText> Restart </buttonText>
+		<buttonText>
+			<restart>Restart</restart>
+			<start>Start</start>
+		</buttonText>
 	</restartButton>
 	<menuButton>
 		<buttonText>Meny</buttonText>

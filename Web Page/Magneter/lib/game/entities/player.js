@@ -59,7 +59,6 @@ EntityPlayer = ig.Box2DEntity.extend({
 		{
 			this.ready();
 		}
-		// console.log(this.body.GetPosition());
 	}, 
 
 	draw: function()

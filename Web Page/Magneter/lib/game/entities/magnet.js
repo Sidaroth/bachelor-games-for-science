@@ -214,11 +214,14 @@ EntityMagnet = ig.Box2DEntity.extend({
 			}
 		}
 
-		for( var i = 0; i < this.objectsToTest.length; i++ )
+		if(ig.game.playing)
 		{
-			if(!(this.objectsToTest[i].id == this.id))
+			for( var i = 0; i < this.objectsToTest.length; i++ )
 			{
-				this.checkDistance(this.objectsToTest[i]);
+				if(!(this.objectsToTest[i].id == this.id))
+				{
+					this.checkDistance(this.objectsToTest[i]);
+				}
 			}
 		}
 
