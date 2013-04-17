@@ -26,8 +26,9 @@ EntityMagnet = ig.Box2DEntity.extend({
 	fieldRadiusMin: 50,
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
-	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
+	fieldMagnitude: 1000000,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: -1,		// Polarities are represented as (1, 0, -1)(Attract, Neutral, Repel). 
+	density: 0,
 
 	drag:
 	{
@@ -82,9 +83,9 @@ EntityMagnet = ig.Box2DEntity.extend({
 				this.size.y / 2 * b2.SCALE
 			);
 
-			shapeDef.density = 0;
-			shapeDef.friction = 5;
-			shapeDef.restitution = 0.5;
+			shapeDef.density = this.density;
+			shapeDef.friction = 0;
+			shapeDef.restitution = 0;
 
 			this.body.CreateShape( shapeDef );
 			this.body.SetMassFromShapes();
