@@ -147,6 +147,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.LEFT_ARROW, 'left');
 		ig.input.bind( ig.KEY.UP_ARROW, 'up');
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
+		ig.input.bind( ig.KEY.SPACE, 'space');
 		
 
 		ig.music.add('media/sound/menuBGSoundtrack.*', 'menuBGSoundtrack');
