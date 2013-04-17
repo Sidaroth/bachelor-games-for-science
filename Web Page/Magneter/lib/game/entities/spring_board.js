@@ -86,11 +86,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			console.log(weldDef);
 			var settings = {density: 1};
 			
-			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
-			console.log(this.magnet);
 			
-			//this.goal = new EntityGoal(10, 10, null)
-			//var jointDef = new b2.RevoluteJointDef();
+			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
     		weldDef.body1 = this.body;
     		weldDef.body2 = this.magnet.body;
     		
@@ -110,6 +107,31 @@ EntitySpring_board = ig.Box2DEntity.extend({
     	
 
 	},	
+	
+	ready: function()
+	{
+		this.parent();
+
+		var magnets = ig.game.getEntitiesByType(EntityMagnet);
+		var gates = ig.game.getEntitiesByType(EntityGate);
+		var players = ig.game.getEntitiesByType(EntityPlayer)[0];
+			
+		console.log(this.magnet);
+		for (var i = 0; i < magnets.length; i++)
+		{
+			magnets[i].objectsToTest.push(this.magnet);
+		};
+		
+		for (var j = 0; j < gates.length; j++)
+		{
+			this.magnet.objectsToTest.push(gates[j]);
+		};
+		
+		this.magnet.objectsToTest.push(players);	
+		
+		this.magnet.loadObjectsToTest();
+		console.log(this.magnet.objectsToTest);
+	},
 
 	update: function() 
 	{

@@ -96,19 +96,20 @@ EntityMagnet = ig.Box2DEntity.extend({
 	ready: function()
 	{
 		 this.parent();
-		 this.player = ig.game.getEntitiesByType(EntityPlayer)[0];
-
-		 this.gate = ig.game.getEntitiesByType(EntityGate)[0];
-		
+		this.loadObjectsToTest();
+		//this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
+		//this.objectsToTest.push( this.player );
+		//this.objectsToTest.push( this.gate );	
+	},
+	
+	loadObjectsToTest: function()
+	{
 		for(var i = 0; i < ig.game.getEntitiesByType(EntityMagnet).length; i++)
 		{
 			this.objectsToTest.push(ig.game.getEntitiesByType(EntityMagnet)[i]);
 			console.log(i);
 		}
 
-		//this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
-		//this.objectsToTest.push( this.player );
-		//this.objectsToTest.push( this.gate );	
 	},
 
 
