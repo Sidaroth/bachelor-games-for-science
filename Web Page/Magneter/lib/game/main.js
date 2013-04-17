@@ -155,9 +155,10 @@ MyGame = ig.Box2DGame.extend(
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
 		if(userId == 0){
-			this.loadLevel( "SplashScreen", true );
+			this.loadLevel( "Level1", true );
 		}
-		//this.debugDrawer = new ig.Box2DDebug( ig.world );
+		
+		this.debugDrawer = new ig.Box2DDebug( ig.world );
 
 		ig.game.startMetricSession();
 	},
@@ -185,6 +186,7 @@ MyGame = ig.Box2DGame.extend(
 					ig.game.screen.x = 0;
 				}
 			}
+
 			if(ig.input.mouse.x > ig.system.width - threshold)
 			{
 				ig.game.screen.x += 10;
@@ -192,6 +194,26 @@ MyGame = ig.Box2DGame.extend(
 				{
 					console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
 					ig.game.screen.x = ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width;
+				}
+			}
+
+			if(ig.input.mouse.y < threshold)
+			{
+				ig.game.screen.y -= 10;
+
+				if(ig.game.screen.y < 0)
+				{
+					ig.game.screen.y = 0;
+				}
+			}
+
+			if(ig.input.mouse.y > ig.system.height - threshold)
+			{
+				ig.game.screen.y += 10;
+
+				if(ig.game.screen.y > ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
+				{
+					ig.game.screen.y = ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height;
 				}
 			}
 		}
@@ -262,7 +284,7 @@ MyGame = ig.Box2DGame.extend(
 		}
 		this.parent();
 
-		//this.debugDrawer.draw();
+		this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
@@ -277,7 +299,7 @@ MyGame = ig.Box2DGame.extend(
 			this.unlockedLevels[i] = true;
 		}
 
-		this.loadLevel( "SplashScreen", true );
+		this.loadLevel( "Level1", true );
 	},
 
 	logEvent: function(eventType, eventSubtype, x, y, z, magnitude, extended)
