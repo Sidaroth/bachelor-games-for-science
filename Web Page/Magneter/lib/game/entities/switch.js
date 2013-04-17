@@ -6,7 +6,7 @@ ig.module(
 )
 .defines(function(){
 
-EntitySwitch = ig.Box2DEntity.extend({
+EntitySwitch = ig.Entity.extend({
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(150, 50, 255, 0.5)',
@@ -22,6 +22,11 @@ EntitySwitch = ig.Box2DEntity.extend({
 	
 	size: {x: 64, y: 64},
 	
+	soundDB: 
+		{
+			'switchPress': new ig.Sound( 'media/sound/popUpSound.*' )
+		},
+	
 
 	animSheet: new ig.AnimationSheet( 'media/switch/switch.png', 64, 64),
 
@@ -33,24 +38,6 @@ EntitySwitch = ig.Box2DEntity.extend({
 		this.addAnim( 'pressed', 1, [1] );
 
 		this.currentAnim = this.anims['unpressed'];
-		//this.body.DestroyShape();
-
-
-		if( !ig.global.wm )
-		{
-			var shapeDef = new b2.PolygonDef();
-			shapeDef.SetAsBox(
-			 	this.size.x / 2 * b2.SCALE,
-				this.size.y / 2 * b2.SCALE
-			);
-
-			shapeDef.friction = 5;
-			shapeDef.density = 1;
-			shapeDef.restitution = 0.5;
-			
-			this.body.CreateShape( shapeDef );
-			this.body.SetMassFromShapes();
-		}
 	},	
 
 	update: function() 
@@ -60,7 +47,6 @@ EntitySwitch = ig.Box2DEntity.extend({
 	
 	check: function(other)
 	{
-		other.reset();
 		this.turnOnOrOff();
 		
 		if (typeof(this.target) == 'object') 
@@ -84,16 +70,16 @@ EntitySwitch = ig.Box2DEntity.extend({
 	
 	turnOnOrOff: function()
 	{
+		this.soundDB['switchPress'].play();
+		
 		if(this.isPressed === false)
 		{
-	//		this.soundDB['powerOn'].play();
 			this.currentAnim = this.anims['pressed'];
 			this.isPressed = true;
 		}
 		
 		else
 		{
-	//		this.soundDB['powerOff'].play();
 			this.currentAnim = this.anims['unpressed'];
 			this.isPressed = false;	
 		}

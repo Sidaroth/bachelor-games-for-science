@@ -27,7 +27,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
 	fieldMagnitude: 1000000,  // The strength of the magnetic field (Used to calculate the strength at a location)
-	polarity: -1,		// Polarities are represented as (1, 0, -1)(Attract, Neutral, Repel). 
+	polarity: -1,		// Polarities are represented as (-1, 0, 1)(Attract, Neutral, Repel). 
 	density: 0,
 
 	drag:
@@ -251,10 +251,22 @@ EntityMagnet = ig.Box2DEntity.extend({
 			var magneticForce = Math.exp( -distanceVecLength / z );
 			//console.log(magneticForce);
 
+			var forceDirection;
+
+			if (entity.polarity =! undefined && entity.polarity == this.polarity *-1)
+			{
+				forceDirection = -1;
+			}
+			
+			else if (entity.polarity =! undefined && entity.polarity == this.polarity)
+			{
+				forceDirection = 1;
+			}
+			
 			var acceleration = 
 			{
-				x: this.polarity * ((magneticForce * unitDistVec.x * this.fieldMagnitude) / mass), // + gravity... 0 in X.
-				y: this.polarity * ((magneticForce * unitDistVec.y * this.fieldMagnitude) / mass), // + gravity... g(0, -1) * G (magnitude). 
+				x: forceDirection * ((magneticForce * unitDistVec.x * this.fieldMagnitude) / mass), // + gravity... 0 in X.
+				y: forceDirection * ((magneticForce * unitDistVec.y * this.fieldMagnitude) / mass), // + gravity... g(0, -1) * G (magnitude). 
 			};
 
 			//entity.body.ApplyImpulse( acceleration.x * ig.system.tick );
