@@ -18,12 +18,13 @@ EntitySpring_board = ig.Box2DEntity.extend({
 	
 	size: {x: 170, y: 10},
 	
+	magnet: null,
+	
 	animSheet: new ig.AnimationSheet( 'media/spring_board/spring_board.png', 170, 10),
 	
 
 	init: function( x, y, settings ) 
 	{
-		console.log('hei');
 		this.parent(x, y, settings);
 
 		this.addAnim( 'idle', 1, [0] );
@@ -32,7 +33,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 		
 		if( !ig.global.wm )
 		{
-
+			
+			// Building a circle for the Joint
 			var shapeDef = new b2.CircleDef();
 			shapeDef.radius = 0.5;
 			shapeDef.friction = 5;
@@ -40,10 +42,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			shapeDef.restitution = 0.5;
 			//current = this;
 			
-			
 			var circleBd = new b2.BodyDef();
 			console.log(circleBd);
-			//circleBd.AddShape(shapeDef);
 			circleBd.position.Set(20, 20)
 			var circleBody = ig.world.CreateBody(circleBd)
 			console.log(circleBody);
@@ -51,7 +51,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			circleBody.SetMassFromShapes();
 
 			
-			
+			// Building the main bar.
 			var shapeDef = new b2.PolygonDef();
 			shapeDef.SetAsBox(
 			 	this.size.x / 2 * b2.SCALE,
@@ -63,23 +63,12 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			shapeDef.restitution = 0.5;
 			
 			var boxBd = new b2.BodyDef();
-			console.log(boxBd);
-			//boxBd.AddShape(shapeDef);
 			boxBd.position.Set(10, 10)
-			/*
-			var boxBody = ig.world.CreateBody(boxBd)
-			console.log(boxBody);
-			boxBody.CreateShape(shapeDef);
-			boxBody.SetMassFromShapes();
-			*/
 			this.body.CreateShape( shapeDef );
 			this.body.SetMassFromShapes();
-		    	
+		   
+		    //Creating the first joint
     		var jointDef = new b2.RevoluteJointDef();
-    		console.log(jointDef);
-    		//jointDef.bodyA = boxBody;
-    		//jointDef.bodyB = circleBody;
-
     		jointDef.body1 = this.body;
     		jointDef.body2 = circleBody;
     		
@@ -90,7 +79,20 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		
     		//add the joint to the world
     		ig.world.CreateJoint(jointDef);
-    	
+			
+			this.magnet = new EntityMagnet( 10, 10, null );
+			
+			var jointDef2 = new b2.RevoluteJointDef();
+    		jointDef2.body1 = this.magnet;
+    		jointDef2.body2 = this.body;
+    		
+    		jointDef2.collideConnected = false;
+     
+		    jointDef2.localAnchor1 = new b2.Vec2(0, 0);
+		    jointDef2.localAnchor2 = new b2.Vec2(0, 0);
+    		
+    		//add the joint to the world
+    		ig.world.CreateJoint(jointDef2);
     	}
     	
 

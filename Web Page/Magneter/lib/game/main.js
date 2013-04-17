@@ -149,7 +149,7 @@ MyGame = ig.Box2DGame.extend(
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
 		if(userId == 0){
-			this.loadLevel( "Level1", true );
+			this.loadLevel( "Level1", true ); //Change starting level her
 		}
 		this.debugDrawer = new ig.Box2DDebug( ig.world );
 
