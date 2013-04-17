@@ -37,6 +37,7 @@ ig.module(
 		draw: function() 
 		{
 			this.parent();
+			
 			if(this.infoScreen)
 			{
 				this.font.draw( this.message, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 4), [ig.Font.ALIGN.CENTER] );

@@ -24,6 +24,8 @@ ig.module(
 
 		yOffset: 0,
 
+		zIndex: 7,
+
 		init: function( x, y, settings ) 
 		{
 			this.parent( x, y, settings );
@@ -77,19 +79,14 @@ ig.module(
 
 			if(ig.game.screen.x != this.lastPos.x)
 			{
-				//console.log(ig.game.screen.x);
 				this.pos.x = ig.system.width / 2 - this.size.x / 2 + ig.game.screen.x;
 
 				this.lastPos.x = ig.game.screen.x;
 
 			}
-
-			if(ig.game.screen.y != this.lastPos.y)
-			{
-				this.pos.y = ig.system.height + ig.game.screen.y + this.yOffset;
-				this.lastPos.y = ig.game.screen.y;
-				//console.log(this.pos.y);
-			}
+			
+			this.pos.y = ig.system.height + ig.game.screen.y + this.yOffset;
+			this.lastPos.y = ig.game.screen.y;
 		}
 	});
 });
