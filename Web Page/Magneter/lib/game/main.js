@@ -33,6 +33,7 @@ ig.module(
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
 	'game.levels.tutorial1',
+	'game.levels.tutorial2',
 
 	//xml
 	'game.xml.getXmlString'
@@ -71,7 +72,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level1': LevelLevel1,
 		'Level1Info': LevelLevel1Info,
 		'MainMenu' : LevelMainMenu,
-		'Tutorial1' : LevelTutorial1
+		'Tutorial1' : LevelTutorial1,
+		'Tutorial2' : LevelTutorial2
 	},
 
 	// Which background music should be played for which level (screen)
@@ -80,7 +82,8 @@ MyGame = ig.Box2DGame.extend(
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1': 'level1BGSoundtrack',
-		'Tutorial1' : 'level1BGSoundtrack'
+		'Tutorial1' : 'level1BGSoundtrack',
+		'Tutorial2' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
@@ -88,7 +91,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level1': true,
 		'Level1Info': false,
 		'MainMenu' : false,
-		'Tutorial1' : true
+		'Tutorial1' : true,
+		'tutorial2' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
