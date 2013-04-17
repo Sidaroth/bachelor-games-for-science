@@ -44,8 +44,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			
 			var circleBd = new b2.BodyDef();
 			console.log(circleBd);
-			circleBd.position.Set(20, 20)
-			var circleBody = ig.world.CreateBody(circleBd)
+			//circleBd.position.Set(this.pos.x, this.pos.y);
+			var circleBody = ig.world.CreateBody(circleBd);
 			console.log(circleBody);
 			circleBody.CreateShape(shapeDef);
 			circleBody.SetMassFromShapes();
@@ -63,7 +63,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			shapeDef.restitution = 0.5;
 			
 			var boxBd = new b2.BodyDef();
-			boxBd.position.Set(10, 10)
+			//boxBd.position.Set(this.pos.x, this.pos.y)
 			this.body.CreateShape( shapeDef );
 			this.body.SetMassFromShapes();
 		   
@@ -79,7 +79,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		
     		//add the joint to the world
     		ig.world.CreateJoint(jointDef);
-			
+			/*
 			this.magnet = new EntityMagnet( 10, 10, null );
 			
 			var jointDef2 = new b2.RevoluteJointDef();
@@ -93,6 +93,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		
     		//add the joint to the world
     		ig.world.CreateJoint(jointDef2);
+    		*/
     	}
     	
 
