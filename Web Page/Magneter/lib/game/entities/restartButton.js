@@ -26,6 +26,8 @@ EntityRestartButton = ig.Entity.extend(
 	
 	size: {x: 100, y: 50},
 
+	lastPos: {x: 0, y:0 },
+
 	player: null,
 
 	animSheet: new ig.AnimationSheet( 'media/menu/smallButton.png', 100, 50 ),
@@ -38,6 +40,9 @@ EntityRestartButton = ig.Entity.extend(
 		this.addAnim('highlight', 1, [1]);
 		
 		this.currentAnim = this.anims['standard'];
+
+		this.pos.x = ig.system.width - this.size.x;
+		this.pos.y = 0;
 	},
 
 	ready: function()
@@ -50,8 +55,8 @@ EntityRestartButton = ig.Entity.extend(
 	{
 		this.parent();
 
-		if(ig.input.mouse.x >= this.pos.x && ig.input.mouse.x <= (this.pos.x + this.size.x)
-		&& ig.input.mouse.y >= this.pos.y && ig.input.mouse.y <= (this.pos.y + this.size.y))
+		if(ig.input.mouse.x >= this.pos.x - ig.game.screen.x && ig.input.mouse.x <= (this.pos.x + this.size.x - ig.game.screen.x)
+		&& ig.input.mouse.y >= this.pos.y - ig.game.screen.y && ig.input.mouse.y <= (this.pos.y + this.size.y - ig.game.screen.y))
 		{
 			this.currentAnim = this.anims['highlight'];
 
@@ -72,12 +77,25 @@ EntityRestartButton = ig.Entity.extend(
 		{
 			this.currentAnim = this.anims['standard'];
 		}
+
+		if(ig.game.screen.x != this.lastPos.x)
+		{
+			this.lastPos.x = ig.game.screen.x;
+			this.pos.x = ig.system.width - this.size.x + ig.game.screen.x;
+		}
+
+		if(ig.game.screen.y != this.lastPos.y)
+		{
+			this.lastPos.y = ig.game.screen.y;
+			this.pos.y = ig.game.screen.y;
+		}
+
 	},
 	
 	draw: function() 
 	{
 		this.parent();
-		this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 2), [ig.Font.ALIGN.CENTER] );
+		this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 	}
 });
 });

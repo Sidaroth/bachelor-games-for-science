@@ -16,7 +16,7 @@ ig.module(
 
 		shield: null,
 		shieldResponse: null,
-		//pos:{x:0,y:0},
+		lastPos: {x:0, y:0},
 		
 		init: function( x, y, settings ) 
 		{
@@ -24,6 +24,8 @@ ig.module(
 			this.goToLevel = "MainMenu";
 			this.pos.x = 0;
 			this.pos.y = 0;
+			this.lastPos.x = 0;
+			this.lastPos.y = 0;
 		},
 		
 		draw: function() 
@@ -56,8 +58,8 @@ ig.module(
 				this.shield = null;
 			}
 
-			if(	ig.input.mouse.x >= this.pos.x && ig.input.mouse.x <= (this.pos.x + this.size.x)
-			 && ig.input.mouse.y >= this.pos.y && ig.input.mouse.y <= (this.pos.y + this.size.y))
+			if(	ig.input.mouse.x >= this.pos.x - ig.game.screen.x && ig.input.mouse.x <= (this.pos.x + this.size.x - ig.game.screen.x)
+			 && ig.input.mouse.y >= this.pos.y - ig.game.screen.y && ig.input.mouse.y <= (this.pos.y + this.size.y - ig.game.screen.y))
 			{
 				if(ig.input.pressed( 'mouse1' ))
 				{
@@ -74,6 +76,19 @@ ig.module(
 			else if(this.currentAnim == this.anims['selected'])
 			{
 				this.highlight();
+			}
+
+			if(ig.game.screen.x != this.lastPos.x)
+			{
+				//console.log(ig.game.screen.x);
+				this.pos.x = ig.game.screen.x;
+				this.lastPos.x = ig.game.screen.x;
+			}
+
+			if(ig.game.screen.y != this.lastPos.y)
+			{
+				this.pos.y = ig.game.screen.y;
+				this.lastPos.y = ig.game.screen.y;
 			}
 		}
 	});

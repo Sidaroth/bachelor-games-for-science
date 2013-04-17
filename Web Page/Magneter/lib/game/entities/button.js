@@ -66,7 +66,7 @@ EntityButton = ig.Entity.extend(
 	draw: function() 
 	{
 		this.parent();
-		this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 2), [ig.Font.ALIGN.CENTER] );
+		this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 	},
 	
 	goToNextLevel: function()
