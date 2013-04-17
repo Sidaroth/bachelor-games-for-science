@@ -26,6 +26,7 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
+	'game.entities.pendulum',
 
 	// Levels
 	'game.levels.level1',
@@ -155,9 +156,9 @@ MyGame = ig.Box2DGame.extend(
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
 		if(userId == 0){
-			this.loadLevel( "SplashScreen", true );
+			this.loadLevel( "Level1", true );
 		}
-		//this.debugDrawer = new ig.Box2DDebug( ig.world );
+		this.debugDrawer = new ig.Box2DDebug( ig.world );
 
 		ig.game.startMetricSession();
 	},
@@ -243,7 +244,7 @@ MyGame = ig.Box2DGame.extend(
 		}
 		this.parent();
 
-		//this.debugDrawer.draw();
+		this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
@@ -258,7 +259,7 @@ MyGame = ig.Box2DGame.extend(
 			this.unlockedLevels[i] = true;
 		}
 
-		this.loadLevel( "SplashScreen", true );
+		this.loadLevel( "Level1", true );
 	},
 
 	logEvent: function(eventType, eventSubtype, x, y, z, magnitude, extended)
