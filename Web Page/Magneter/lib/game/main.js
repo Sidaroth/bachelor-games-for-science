@@ -172,14 +172,29 @@ MyGame = ig.Box2DGame.extend(
 
 		// screen follows the player
 		var player = this.getEntitiesByType( EntityPlayer )[0];
-		/*if( player ) {
+
+		var threshold = 50;
+
+		if(ig.game.backgroundMaps[0])
 		{
-			
-			this.screen.x = player.pos.x - ig.system.width/2;
-			this.screen.y = player.pos.y - ig.system.height/2;
-			//this.screen.x = player.pos.x - ig.system.width/2;
-			//this.screen.y = player.pos.y - ig.system.height/2;
-		}*/
+			if(ig.input.mouse.x < threshold)
+			{
+				ig.game.screen.x -= 10;
+				if(ig.game.screen.x < 0)
+				{
+					ig.game.screen.x = 0;
+				}
+			}
+			if(ig.input.mouse.x > ig.system.width - threshold)
+			{
+				ig.game.screen.x += 10;
+				if(ig.game.screen.x > ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+				{
+					console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
+					ig.game.screen.x = ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width;
+				}
+			}
+		}
 
 		// Update all entities and backgroundMaps
 		this.parent();
@@ -230,6 +245,10 @@ MyGame = ig.Box2DGame.extend(
 		else
 		{
 			//ig.music.stop();
+		}
+		if(ig.game.backgroundMaps[0])
+		{
+			console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize);
 		}
 	},
 	
