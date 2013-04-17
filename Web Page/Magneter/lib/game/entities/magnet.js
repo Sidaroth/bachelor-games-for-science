@@ -228,8 +228,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		var distanceVector = 
 		{
-			x: entity.pos.x + (entity.size.x / 2) - this.pos.x + (this.size.x / 2) - ig.game.screen.x,
-			y: entity.pos.y + (entity.size.y / 2) - this.pos.y + (this.size.y / 2) - ig.game.screen.y
+			x: entity.pos.x + (entity.size.x / 2) - this.pos.x + (this.size.x / 2),
+			y: entity.pos.y + (entity.size.y / 2) - this.pos.y + (this.size.y / 2)
 		};
 
 		// Standard pythagorean theorem -- Length of vector. 
@@ -244,7 +244,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 				y: distanceVector.y / distanceVecLength,
 			};
 
-			var mass = 1; //// TEEEEEEMPORARY.. simulate own gravity?
+			var mass = 1; // temporary
 			var z = Math.floor(this.fieldRadius / 5);
 
 		//	var magneticForce = 1 / Math.pow( distanceVecLength, 2 );
