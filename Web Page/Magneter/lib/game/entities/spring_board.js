@@ -86,8 +86,15 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			console.log(weldDef);
 			var settings = {density: 1};
 			
+			
+			var magnets = ig.game.getEntitiesByType(EntitiyMagnet);
+			
 			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
 			console.log(this.magnet);
+			for (var i = 0; i < magnets.length; i++)
+			{
+				magnets[i].objectsToTest.push(this.magnet);
+			};
 			
 			//this.goal = new EntityGoal(10, 10, null)
 			//var jointDef = new b2.RevoluteJointDef();
