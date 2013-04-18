@@ -192,7 +192,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			if(distanceToMouse > this.drag['distance'])
 			{
 				this.fieldRadius += distanceToMouse - this.drag['distance'];
-				this.fieldMagnitude += ((distanceToMouse - this.drag['distance'])*50);
+				this.fieldMagnitude += 50 * Math.abs(distanceToMouse - this.drag['distance']);
 				this.drag['distance'] = distanceToMouse;
 
 				if(this.fieldRadius > this.fieldRadiusMax)
