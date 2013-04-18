@@ -64,22 +64,18 @@ EntityRestartButton = ig.Entity.extend(
 
 			if(ig.input.pressed( 'mouse1' ))
 			{
-				if(ig.game.playing)
+				var entitiesLength = ig.game.entities.length;
+				for(var i = 0; i < entitiesLength; i++)
 				{
-					var entitiesLength = ig.game.entities.length;
-					ig.game.playing = false;
-					for(var i = 0; i < entitiesLength; i++)
+					if(ig.game.entities[i].resetable != undefined && ig.game.entities[i].resetable == 1)
 					{
-						if(ig.game.entities[i].resetable != undefined && ig.game.entities[i].resetable == 1)
-						{
-							ig.game.entities[i].reset();
-						}
+						ig.game.entities[i].reset();
 					}
 				}
-				else
-				{
-					ig.game.playing = true;
-				}
+			}
+			else
+			{
+				ig.game.playing = false;
 			}
 		}
 		else if(this.currentAnim == this.anims['highlight'])
@@ -104,14 +100,7 @@ EntityRestartButton = ig.Entity.extend(
 	draw: function() 
 	{
 		this.parent();
-		if(ig.game.playing)
-		{
-			this.font.draw( this.buttonText['restart'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
-		}
-		else
-		{
-			this.font.draw( this.buttonText['start'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
-		}
+		this.font.draw( this.buttonText['restart'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 	}
 });
 });
