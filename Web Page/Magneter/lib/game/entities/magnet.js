@@ -22,6 +22,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	resetable: 0, // by default the magnets will not reset. 
 
+	interactive: true,
 	fieldRadiusMax: 300,
 	fieldRadiusMin: 50,
 
@@ -134,16 +135,22 @@ EntityMagnet = ig.Box2DEntity.extend({
 					//ig.game.closestMagnetToMouse['magnet'].ringColor['current'] = ig.game.closestMagnetToMouse['magnet'].ringColor['untargetted'];
 					ig.game.closestMagnetToMouse['magnet'] = this;
 					ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
-
-					this.ringColor['current'] = this.ringColor['targetted'];
+					
+					if(this.interactive === true)
+					{						
+						this.ringColor['current'] = this.ringColor['targetted'];
+					}
 				}
 				else if(ig.game.closestMagnetToMouse['magnet'].drag['state'] === false)
 				{
 					ig.game.closestMagnetToMouse['magnet'].ringColor['current'] = ig.game.closestMagnetToMouse['magnet'].ringColor['untargetted'];
 					ig.game.closestMagnetToMouse['magnet'] = this;
 					ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
-
-					this.ringColor['current'] = this.ringColor['targetted'];
+					
+					if (this.interactive === true)
+					{
+						this.ringColor['current'] = this.ringColor['targetted'];
+					}
 				}
 				else
 				{
@@ -166,8 +173,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 		{
 			if(ig.game.closestMagnetToMouse['magnet'] == this)
 			{
-				this.drag['state'] = true;
-				this.drag['distance'] = distanceToMouse;
+				if (this.interactive === true)
+				{
+					this.drag['state'] = true;
+					this.drag['distance'] = distanceToMouse;
+				}
 			}
 		}
 
