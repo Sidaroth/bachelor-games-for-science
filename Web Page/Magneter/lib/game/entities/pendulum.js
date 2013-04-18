@@ -19,8 +19,12 @@ EntityPendulum = ig.Box2DEntity.extend({
 	size: {x: 10, y: 220},
 	
 	magnet: null,
+	magnetPower: 10000,
+	magnetRadius: 200,
 	
 	revolJoint: null,
+	revMinAngle: -1,
+	revMaxAngle: 0.75,
 	
 	motorTimer: null,
 	motorDir: -10,
@@ -81,8 +85,8 @@ EntityPendulum = ig.Box2DEntity.extend({
     		this.revolDef.collideConnected = true;
     		
     		this.revolDef.enableLimit    = true;
-    		this.revolDef.lowerAngle = -1;
-    		this.revolDef.upperAngle = 0.75;
+    		this.revolDef.lowerAngle = this.revMinAngle;
+    		this.revolDef.upperAngle = this.revMaxAngle;
     		
     		this.revolDef.enableMotor    = true;
     		this.revolDef.maxMotorTorque = 50000.0;
@@ -104,7 +108,7 @@ EntityPendulum = ig.Box2DEntity.extend({
 			var weldDef = new b2.RevoluteJointDef();
 			
 			
-			var settings = {density: 1};
+			var settings = {density: 1, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower};
 			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
 			//this.magnet = new EntityMagnet( 0, 0, settings );
     		weldDef.body1 = this.body;
@@ -166,18 +170,25 @@ EntityPendulum = ig.Box2DEntity.extend({
 			this.revolJoint.SetMotorSpeed((this.revolJoint.GetMotorSpeed() * -1));
 			console.log(this.revolJoint.GetMotorSpeed());
 		}*/
+		/*
+		if((this.revolJoint.GetJointAngle() <= this.revMinAngle + 0.3) || (this.revolJoint.GetJointAngle() >= this.revMAXAngle - 0.3)   )
+		{
+			this.revolJoint.SetMotorSpeed((this.revolJoint.GetMotorSpeed() * -1));
+			//this.motorTimer.reset();
+	 
+		};
+		*/
 		
 		if(this.motorTimer != null)
 		{
-			if(this.motorTimer.delta() >= 0)
+			if(this.motorTimer.delta() > 0)
 			{
 				this.revolJoint.SetMotorSpeed((this.revolJoint.GetMotorSpeed() * -1));
 				this.motorTimer.reset();
 		
 			}
 		}else{
-			this.motorTimer = new ig.Timer(1);
-			console.log('timer start');
+			this.motorTimer = new ig.Timer(2);
 		};
 	},
 
