@@ -30,6 +30,17 @@ EntityElectromagnet = EntityMagnet.extend({
 	{
 		this.parent(x, y, settings);
 		this.addAnim( 'off', 1, [2] );
+
+		if(this.isOn === true)
+		{
+			this.soundDB['powerOn'].play();
+			this.currentAnim = this.anims['idle'];
+		}
+		else
+		{
+			this.soundDB['powerOff'].play();
+			this.currentAnim = this.anims['off'];
+		}
 	},
 
 	// NEED TO FIX TARGETTING BUGS. 
@@ -40,8 +51,8 @@ EntityElectromagnet = EntityMagnet.extend({
 		//if mouse1 down
 		if (ig.input.pressed('mouse1'))
 		{
-			if(ig.input.mouse.x >= this.pos.x && ig.input.mouse.x <= (this.pos.x + this.size.x)
-			&& ig.input.mouse.y >= this.pos.y && ig.input.mouse.y <= (this.pos.y + this.size.y)
+			if(ig.input.mouse.x + ig.game.screen.x >= this.pos.x && ig.input.mouse.x + ig.game.screen.x <= (this.pos.x + this.size.x)
+			&& ig.input.mouse.y + ig.game.screen.y >= this.pos.y && ig.input.mouse.y + ig.game.screen.y <= (this.pos.y + this.size.y)
 			&& this.playerClickable === true)
 			{
 				this.turnOnOrOff();
