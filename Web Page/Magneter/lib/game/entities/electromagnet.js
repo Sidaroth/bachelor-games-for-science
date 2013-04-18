@@ -33,12 +33,10 @@ EntityElectromagnet = EntityMagnet.extend({
 
 		if(this.isOn === true)
 		{
-			this.soundDB['powerOn'].play();
 			this.currentAnim = this.anims['idle'];
 		}
 		else
 		{
-			this.soundDB['powerOff'].play();
 			this.currentAnim = this.anims['off'];
 		}
 	},

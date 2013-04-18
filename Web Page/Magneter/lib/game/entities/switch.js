@@ -21,7 +21,8 @@ EntitySwitch = ig.Entity.extend({
 	target: null,
 	switchTimer: new ig.Timer(1),
 	
-	size: {x: 64, y: 64},
+	resetable: true,
+	size: {x: 64, y: 32},
 	
 	soundDB: 
 		{
@@ -29,7 +30,7 @@ EntitySwitch = ig.Entity.extend({
 		},
 	
 
-	animSheet: new ig.AnimationSheet( 'media/switch/switch.png', 64, 64),
+	animSheet: new ig.AnimationSheet( 'media/switch/switch.png', 64, 32),
 
 	init: function( x, y, settings ) 
 	{
@@ -72,6 +73,27 @@ EntitySwitch = ig.Entity.extend({
 	draw: function()
 	{
 		this.parent();
+	},
+	
+	reset: function()
+	{
+		if(this.isPressed === true)
+		{
+			this.turnOnOrOff();
+			
+			if (typeof(this.target) == 'object') 
+			{
+	            for (var t in this.target) 
+	            {
+	                var ent = ig.game.getEntityByName( this.target[t] );
+	                
+	                if (ent && typeof(ent.switchPressed) == 'function') 
+	                {
+	                    ent.switchPressed();
+	                }
+	            }
+			}
+		}
 	},
 	
 	turnOnOrOff: function()
