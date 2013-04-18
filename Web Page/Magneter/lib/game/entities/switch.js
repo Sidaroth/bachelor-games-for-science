@@ -19,7 +19,7 @@ EntitySwitch = ig.Entity.extend({
 	isPressed: false,
 	
 	target: null,
-	switchTimer: new ig.Timer(),
+	switchTimer: new ig.Timer(1),
 	
 	size: {x: 64, y: 64},
 	
@@ -48,19 +48,24 @@ EntitySwitch = ig.Entity.extend({
 	
 	check: function(other)
 	{
-		this.turnOnOrOff();
-		
-		if (typeof(this.target) == 'object') 
-		{
-            for (var t in this.target) 
-            {
-                var ent = ig.game.getEntityByName( this.target[t] );
-                
-                if (ent && typeof(ent.switchPressed) == 'function') 
-                {
-                    ent.switchPressed();
-                }
-            }
+		if (this.switchTimer.delta() >= 0) {
+			
+			this.switchTimer.set(1);
+			
+			this.turnOnOrOff();
+			
+			if (typeof(this.target) == 'object') 
+			{
+	            for (var t in this.target) 
+	            {
+	                var ent = ig.game.getEntityByName( this.target[t] );
+	                
+	                if (ent && typeof(ent.switchPressed) == 'function') 
+	                {
+	                    ent.switchPressed();
+	                }
+	            }
+			}
         }
 	},
 
@@ -70,9 +75,9 @@ EntitySwitch = ig.Entity.extend({
 	},
 	
 	turnOnOrOff: function()
-	{
+	{	
 		this.soundDB['switchPress'].play();
-		
+			
 		if(this.isPressed === false)
 		{
 			this.currentAnim = this.anims['pressed'];
