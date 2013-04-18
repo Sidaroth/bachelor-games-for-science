@@ -89,7 +89,7 @@ EntityPendulum = ig.Box2DEntity.extend({
     		this.revolDef.upperAngle = this.revMaxAngle;
     		
     		this.revolDef.enableMotor    = true;
-    		this.revolDef.maxMotorTorque = 50000.0;
+    		this.revolDef.maxMotorTorque = 30000.0;
     		//revolDef.motorSpeed     = 10000;
 			this.revolDef.motorSpeed     = this.motorDir;
 			
@@ -188,7 +188,7 @@ EntityPendulum = ig.Box2DEntity.extend({
 		
 			}
 		}else{
-			this.motorTimer = new ig.Timer(2);
+			this.motorTimer = new ig.Timer(1.5);
 		};
 	},
 
