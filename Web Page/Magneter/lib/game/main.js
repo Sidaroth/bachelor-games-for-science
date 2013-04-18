@@ -34,9 +34,11 @@ ig.module(
 	'game.levels.level3',
 	'game.levels.level4',
 	'game.levels.level5',
+	'game.levels.level6',
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
+	'game.levels.arcade',
 
 	//xml
 	'game.xml.getXmlString'
@@ -74,34 +76,40 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': LevelSplashScreen,
 		'Level1Info': LevelLevel1Info,
 		'MainMenu' : LevelMainMenu,
-		'Level1': LevelLevel1,
+		'Arcade' : LevelArcade,
+		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
 		'Level3' : LevelLevel3,
 		'Level4' : LevelLevel4,
-		'Level5' : LevelLevel5
+		'Level5' : LevelLevel5,
+		'Level6' : LevelLevel6
 	},
 
 	// Which background music should be played for which level (screen)
 	musicDB: {
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
+		'Arcade' : 'level1BGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
-		'Level1': 'level1BGSoundtrack',
+		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
 		'Level3' : 'level1BGSoundtrack',
 		'Level4' : 'level1BGSoundtrack',
-		'Level5' : 'level1BGSoundtrack'
+		'Level5' : 'level1BGSoundtrack',
+		'Level6' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
 		'SplashScreen': false,
 		'Level1Info': false,
 		'MainMenu' : false,
+		'Arcade' : true,
 		'Level1': true,
 		'Level2' : true,
 		'Level3' : true,
 		'Level4' : true,
-		'Level5' : true
+		'Level5' : true,
+		'Level6' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
