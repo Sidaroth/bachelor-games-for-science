@@ -19,8 +19,6 @@ EntityRail = ig.Box2DEntity.extend({
 	size: {x: 50, y: 50},
 	spawn: { x: 0, y: 0},
 	zIndex: -1,
-
-	resetable: 1,
 	
 	rails: [],
 	
@@ -59,8 +57,6 @@ EntityRail = ig.Box2DEntity.extend({
 
 		this.currentAnim = this.anims['idle'];
 
-		//this.body.DestroyShape();
-
 
 		if( !ig.global.wm )
 		{
@@ -71,7 +67,7 @@ EntityRail = ig.Box2DEntity.extend({
 				this.size.y / 2 * b2.SCALE
 			);
 
-			shapeDef.friction = 5;
+			shapeDef.friction = 750;
 			shapeDef.density = 0;
 			shapeDef.restitution = 0.5;
 			
@@ -85,33 +81,12 @@ EntityRail = ig.Box2DEntity.extend({
 		this.parent();
 		if(this.leader == 'true'){
 			this.railMotor();
-			this.magnet.update();
-				
 		}
-	},
-	
-	check: function(other)
-	{
-		//other.reset();
-		//this.reset();	  
 	},
 
 	draw: function()
 	{
 		this.parent();
-		if( !ig.global.wm)
-		{
-			if(this.leader == 'true'){				
-				this.magnet.draw();
-			}
-		}
-	},
-
-	reset: function()
-	{
-//		console.log(this.body.GetPosition());
-//		ig.game.spawnEntity(EntityGate, this.spawn.x, this.spawn.y, null);
-		this.kill();
 	},
 
 	ready: function()
@@ -153,9 +128,6 @@ EntityRail = ig.Box2DEntity.extend({
 			
 			this.magnet.loadObjectsToTest();
 			
-			//console.log('neste');
-			//console.log(this.magnet.body);
-			
 			var tempRails = ig.game.getEntitiesByType(EntityRail);
 			for(var i = 0; i < tempRails.length; i++){
 				if(tempRails[i].railId == this.railId)
@@ -163,7 +135,6 @@ EntityRail = ig.Box2DEntity.extend({
 					this.rails.push(tempRails[i]);
 				}
 			}
-			//this.rails = ig.game.getEntitiesByType(EntityRail);
 			this.rails.sort(function(a,b) { return parseFloat(a.partNr) - parseFloat(b.partNr) } );
 			this.nextRail = this.rails[1];
 			
@@ -171,22 +142,18 @@ EntityRail = ig.Box2DEntity.extend({
 			this.yMove = this.magnet.body.GetPosition().y - this.nextRail.body.GetPosition().y;
 			this.xStep = this.xMove/this.stepFraction;
 			this.yStep = this.yMove/this.stepFraction;
-			//this.xMove -= this.xStep;
-			//this.yMove -= this.yStep;
 			
 			ig.game.sortEntitiesDeferred();
-			//console.log(nextRail.partNr);
-		//	this.magnet.body.SetXForm( new b2.Vec2((this.magnet.size.x/20) + (nextRail.pos.x / 10), (this.magnet.size.y/20) + (nextRail.pos.y / 10)), 0);
 		}
 	},
 				
-	railMotor: function(){
+	railMotor: function()
+	{
 		
 		if(this.motorTimer != null)
 		{
 			if(this.motorTimer.delta() > 0)
-			{
-				
+			{	
 				
 				if(this.nextRail != null)
 				{
@@ -194,12 +161,7 @@ EntityRail = ig.Box2DEntity.extend({
 					this.magnet.body.SetXForm( new b2.Vec2(this.magnet.body.GetPosition().x + (this.xStep * -1), this.magnet.body.GetPosition().y + (this.yStep * -1)), 0);
 					this.xMove -= this.xStep;
 					this.yMove -= this.yStep;
-					
-					if(this.xMove < 6 && this.xMove > -6)
-					{
-						console.log("x=" + this.xMove + ", xstep=" + this.xStep);
-						console.log("y=" + this.yMove + ", ystep=" + this.yStep);
-					}
+				
 					if((this.xMove > -0.01 && this.xMove < 0.01) && (this.yMove > -0.01 && this.yMove < 0.01) )
 					{
 						this.curPart += this.dirMove;
@@ -218,25 +180,14 @@ EntityRail = ig.Box2DEntity.extend({
 						this.yMove = this.magnet.body.GetPosition().y - this.nextRail.body.GetPosition().y;
 						this.xStep = this.xMove/this.stepFraction;
 						this.yStep = this.yMove/this.stepFraction;
-						//this.xMove -= this.xStep;
-						//this.yMove -= this.yStep;						
-						
 					}
-					
-					//console.log(this.curPart + ", " + this.magnet.body.GetPosition().x + ", " + this.magnet.body.GetPosition().y);
-					//this.magnet.body.SetXForm( new b2.Vec2((this.magnet.size.x/20) + (this.nextRail.pos.x / 10), (this.magnet.size.y/20) + (this.nextRail.pos.y / 10)), 0);
-
-					
 				}
-				
 				this.motorTimer.reset();
 			}
-		}else{
+		}else
+		{
 			this.motorTimer = new ig.Timer(1/this.stepFraction);
 		};
 	}
-		
-
-	
 });
 });
