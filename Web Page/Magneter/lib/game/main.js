@@ -27,6 +27,7 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
+	'game.entities.rail',
 
 	// Levels
 	'game.levels.level1',
