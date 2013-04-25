@@ -27,6 +27,7 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
+	'game.entities.arrow',
 
 	// Levels
 	'game.levels.level1',
@@ -38,7 +39,6 @@ ig.module(
 	'game.levels.level1Info',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
-	'game.levels.arcade',
 
 	//xml
 	'game.xml.getXmlString'
@@ -68,6 +68,10 @@ MyGame = ig.Box2DGame.extend(
 	metricMD5: null,
 	playMD5: null,
 	timeInLevel: new ig.Timer(),
+	leftArrow: null,
+	rightArrow: null,
+	upArrow: null,
+	downArrow: null,
 
 
 	
@@ -76,7 +80,6 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': LevelSplashScreen,
 		'Level1Info': LevelLevel1Info,
 		'MainMenu' : LevelMainMenu,
-		'Arcade' : LevelArcade,
 		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
 		'Level3' : LevelLevel3,
@@ -89,7 +92,6 @@ MyGame = ig.Box2DGame.extend(
 	musicDB: {
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
-		'Arcade' : 'level1BGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
@@ -103,7 +105,6 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': false,
 		'Level1Info': false,
 		'MainMenu' : false,
-		'Arcade' : true,
 		'Level1': true,
 		'Level2' : true,
 		'Level3' : true,
@@ -163,6 +164,27 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.LEFT_ARROW, 'left');
 		ig.input.bind( ig.KEY.UP_ARROW, 'up');
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
+		ig.input.bind( ig.KEY.BACKSPACE, 'backspace');
+		ig.input.bind( ig.KEY.NUMPAD_0, 'numpad0');
+		ig.input.bind( ig.KEY.NUMPAD_1, 'numpad1');
+		ig.input.bind( ig.KEY.NUMPAD_2, 'numpad2');
+		ig.input.bind( ig.KEY.NUMPAD_3, 'numpad3');
+		ig.input.bind( ig.KEY.NUMPAD_4, 'numpad4');
+		ig.input.bind( ig.KEY.NUMPAD_5, 'numpad5');
+		ig.input.bind( ig.KEY.NUMPAD_6, 'numpad6');
+		ig.input.bind( ig.KEY.NUMPAD_7, 'numpad7');
+		ig.input.bind( ig.KEY.NUMPAD_8, 'numpad8');
+		ig.input.bind( ig.KEY.NUMPAD_9, 'numpad9');
+		ig.input.bind( ig.KEY._0, 'num0');
+		ig.input.bind( ig.KEY._1, 'num1');
+		ig.input.bind( ig.KEY._2, 'num2');
+		ig.input.bind( ig.KEY._3, 'num3');
+		ig.input.bind( ig.KEY._4, 'num4');
+		ig.input.bind( ig.KEY._5, 'num5');
+		ig.input.bind( ig.KEY._6, 'num6');
+		ig.input.bind( ig.KEY._7, 'num7');
+		ig.input.bind( ig.KEY._8, 'num8');
+		ig.input.bind( ig.KEY._9, 'num9');
 		
 
 		ig.music.add('media/sound/menuBGSoundtrack.*', 'menuBGSoundtrack');
@@ -198,45 +220,140 @@ MyGame = ig.Box2DGame.extend(
 
 		if(ig.game.backgroundMaps[0])
 		{
+			if(ig.game.screen.x < ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+			{
+				if(this.rightArrow === null)
+				{
+					settings = {firstAnim: "rightUnselected"};
+					this.rightArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.x > 0)
+			{
+				if(this.leftArrow === null)
+				{
+					settings = {firstAnim: "leftUnselected"};
+					this.leftArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.y > 0)
+			{
+				if(this.upArrow === null)
+				{
+					settings = {firstAnim: "upUnselected"};
+					this.upArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.y < ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
+			{
+				if(this.downArrow === null)
+				{
+					settings = {firstAnim: "downUnselected"};
+					this.downArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+
+
 			if(ig.input.mouse.x < threshold)
 			{
 				ig.game.screen.x -= 10;
+				if(this.leftArrow != null)
+				{
+					this.leftArrow.currentAnim = this.leftArrow.anims["leftSelected"];
+				}
 				if(ig.game.screen.x < 0)
 				{
 					ig.game.screen.x = 0;
+					if(this.leftArrow != null)
+					{
+						this.leftArrow.kill();
+						this.leftArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.leftArrow != null)
+				{
+					this.leftArrow.currentAnim = this.leftArrow.anims["leftUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.x > ig.system.width - threshold)
 			{
 				ig.game.screen.x += 10;
-				if(ig.game.screen.x > ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+				if(this.rightArrow != null)
 				{
-					// console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
+					this.rightArrow.currentAnim = this.rightArrow.anims["rightSelected"];
+				}
+				if(ig.game.screen.x >= ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+				{
 					ig.game.screen.x = ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width;
+					if(this.rightArrow != null)
+					{
+						this.rightArrow.kill();
+						this.rightArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.rightArrow != null)
+				{
+					this.rightArrow.currentAnim = this.rightArrow.anims["rightUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.y < threshold)
 			{
 				ig.game.screen.y -= 10;
-
-				if(ig.game.screen.y < 0)
+				if(this.upArrow != null)
+				{
+					this.upArrow.currentAnim = this.upArrow.anims["upSelected"];
+				}
+				if(ig.game.screen.y <= 0)
 				{
 					ig.game.screen.y = 0;
+					if(this.upArrow != null)
+					{
+						this.upArrow.kill();
+						this.upArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.upArrow != null)
+				{
+					this.upArrow.currentAnim = this.upArrow.anims["upUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.y > ig.system.height - threshold)
 			{
 				ig.game.screen.y += 10;
-
-				if(ig.game.screen.y > ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
+				if(this.downArrow != null)
+				{
+					this.downArrow.currentAnim = this.downArrow.anims["downSelected"];
+				}
+				if(ig.game.screen.y >= ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
 				{
 					ig.game.screen.y = ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height;
+					if(this.downArrow != null)
+					{
+						this.downArrow.kill();
+						this.downArrow = null;
+					}
 				}
 			}
-		}
+		}			
+		else
+			{
+				if(this.downArrow != null)
+				{
+					this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
+				}
+			}
 		
 		this.parent();
 	},
@@ -245,6 +362,27 @@ MyGame = ig.Box2DGame.extend(
 	// represents if it's an ingame screen, or something like a menu. 
 	loadLevel: function(levelKey, gameScreen) 
 	{
+		if(this.leftArrow != null)
+		{
+			this.leftArrow.kill();
+			this.leftArrow = null;
+		}
+		if(this.upArrow != null)
+		{
+			this.upArrow.kill();
+			this.upArrow = null;
+		}
+		if(this.rightArrow != null)
+		{
+			this.rightArrow.kill();
+			this.rightArrow = null;
+		}
+		if(this.downArrow != null)
+		{
+			this.downArrow.kill();
+			this.downArrow = null;
+		}
+
 		this.parent(this.levels[levelKey]);
 
 		this.timeInLevel.reset();
@@ -291,14 +429,15 @@ MyGame = ig.Box2DGame.extend(
 	draw: function() 
 	{
 		// Draw all entities and backgroundMaps
+
 		if(this.paused)
 		{
 			this.pauseEntity.draw();
 			return;
 		}
-		this.parent();
 
-		// this.debugDrawer.draw();
+	    this.parent();
+			// this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
@@ -447,6 +586,6 @@ MyGame = ig.Box2DGame.extend(
 
 
 // Start the Game with 60fps, a resolution of 800x640, not scaled. 
-ig.main( '#canvas', MyGame, 60, 800, 640, 1 );
+ig.main( '#canvas', MyGame, 60, 832, 640, 1 );
 
 });
