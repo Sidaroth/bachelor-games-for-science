@@ -2,11 +2,11 @@ ig.module(
 	'game.entities.goal'
 )
 .requires(
-	'plugins.box2d.entity'
+	'impact.entity'
 )
 .defines(function(){
 
-EntityGoal = ig.Box2DEntity.extend({
+EntityGoal = ig.Entity.extend({
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(0, 255, 150, 0.5)',
@@ -39,18 +39,18 @@ EntityGoal = ig.Box2DEntity.extend({
 
 		if( !ig.global.wm )
 		{
-			var shapeDef = new b2.PolygonDef();
-			shapeDef.SetAsBox(
-			 	this.size.x / 2 * b2.SCALE,
-				this.size.y / 2 * b2.SCALE
-			);
+			// var shapeDef = new b2.PolygonDef();
+			// shapeDef.SetAsBox(
+			//  	this.size.x / 2 * b2.SCALE,
+			// 	this.size.y / 2 * b2.SCALE
+			// );
 
-			shapeDef.friction = 5;
-			shapeDef.density = 1;
-			shapeDef.restitution = 0.5;
+			// shapeDef.friction = 5;
+			// shapeDef.density = 1;
+			// shapeDef.restitution = 0.5;
 			
-			this.body.CreateShape( shapeDef );
-			this.body.SetMassFromShapes();
+			// this.body.CreateShape( shapeDef );
+			// this.body.SetMassFromShapes();
 		}
 	},	
 

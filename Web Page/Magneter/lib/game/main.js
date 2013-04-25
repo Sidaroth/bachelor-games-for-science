@@ -29,6 +29,9 @@ ig.module(
 	'game.entities.trigger',
 	'game.entities.rail',
 
+	// Infoscreens
+	'game.levels.level1Info',
+
 	// Levels
 	'game.levels.level1',
 	'game.levels.level2',
@@ -36,7 +39,7 @@ ig.module(
 	'game.levels.level4',
 	'game.levels.level5',
 	'game.levels.level6',
-	'game.levels.level1Info',
+	'game.levels.level7',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
 	'game.levels.arcade',
@@ -83,7 +86,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level3' : LevelLevel3,
 		'Level4' : LevelLevel4,
 		'Level5' : LevelLevel5,
-		'Level6' : LevelLevel6
+		'Level6' : LevelLevel6,
+		'Level7' : LevelLevel7
 	},
 
 	// Which background music should be played for which level (screen)
@@ -97,7 +101,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level3' : 'level1BGSoundtrack',
 		'Level4' : 'level1BGSoundtrack',
 		'Level5' : 'level1BGSoundtrack',
-		'Level6' : 'level1BGSoundtrack'
+		'Level6' : 'level1BGSoundtrack',
+		'Level7' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
@@ -110,7 +115,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level3' : true,
 		'Level4' : true,
 		'Level5' : true,
-		'Level6' : true
+		'Level6' : true,
+		'Level7' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -449,6 +455,6 @@ MyGame = ig.Box2DGame.extend(
 
 
 // Start the Game with 60fps, a resolution of 800x640, not scaled. 
-ig.main( '#canvas', MyGame, 60, 800, 640, 1 );
+ig.main( '#canvas', MyGame, 60, 832, 640, 1 );
 
 });
