@@ -28,6 +28,7 @@ ig.module(
 	'game.entities.switch',
 	'game.entities.trigger',
 	'game.entities.arrow',
+	'game.entities.rail',
 
 	// Levels
 	'game.levels.level1',
@@ -164,27 +165,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.input.bind( ig.KEY.LEFT_ARROW, 'left');
 		ig.input.bind( ig.KEY.UP_ARROW, 'up');
 		ig.input.bind( ig.KEY.DOWN_ARROW, 'down');
-		ig.input.bind( ig.KEY.BACKSPACE, 'backspace');
-		ig.input.bind( ig.KEY.NUMPAD_0, 'numpad0');
-		ig.input.bind( ig.KEY.NUMPAD_1, 'numpad1');
-		ig.input.bind( ig.KEY.NUMPAD_2, 'numpad2');
-		ig.input.bind( ig.KEY.NUMPAD_3, 'numpad3');
-		ig.input.bind( ig.KEY.NUMPAD_4, 'numpad4');
-		ig.input.bind( ig.KEY.NUMPAD_5, 'numpad5');
-		ig.input.bind( ig.KEY.NUMPAD_6, 'numpad6');
-		ig.input.bind( ig.KEY.NUMPAD_7, 'numpad7');
-		ig.input.bind( ig.KEY.NUMPAD_8, 'numpad8');
-		ig.input.bind( ig.KEY.NUMPAD_9, 'numpad9');
-		ig.input.bind( ig.KEY._0, 'num0');
-		ig.input.bind( ig.KEY._1, 'num1');
-		ig.input.bind( ig.KEY._2, 'num2');
-		ig.input.bind( ig.KEY._3, 'num3');
-		ig.input.bind( ig.KEY._4, 'num4');
-		ig.input.bind( ig.KEY._5, 'num5');
-		ig.input.bind( ig.KEY._6, 'num6');
-		ig.input.bind( ig.KEY._7, 'num7');
-		ig.input.bind( ig.KEY._8, 'num8');
-		ig.input.bind( ig.KEY._9, 'num9');
+		ig.input.bind( ig.KEY.SPACE, 'space');
 		
 
 		ig.music.add('media/sound/menuBGSoundtrack.*', 'menuBGSoundtrack');

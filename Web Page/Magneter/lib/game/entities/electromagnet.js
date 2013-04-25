@@ -16,6 +16,7 @@ EntityElectromagnet = EntityMagnet.extend({
 	playerClickable: true,
 	
 	name: null,
+	zIndex: 2,
 
 	
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
