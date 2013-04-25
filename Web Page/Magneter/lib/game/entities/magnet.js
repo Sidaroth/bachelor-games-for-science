@@ -19,6 +19,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	size: {x: 50, y: 50},
 	//offset: {x: 0, y:0 },
+	zIndex: 2,
 
 	resetable: 0, // by default the magnets will not reset. 
 
@@ -108,7 +109,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 		for(var i = 0; i < ig.game.getEntitiesByType(EntityMagnet).length; i++)
 		{
 			this.objectsToTest.push(ig.game.getEntitiesByType(EntityMagnet)[i]);
-			console.log(i);
 		}
 
 	},
