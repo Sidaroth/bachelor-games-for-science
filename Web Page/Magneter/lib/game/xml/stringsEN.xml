@@ -40,7 +40,7 @@ the language to Norwegian?
 	</levelOneInfoScreen>
 	<levelOneEndScreen>
 		<info> Congratulation on beating Level 1! </info>
-		<image>media/infoScreen/endScreenOneImage.png </image>
+		<image>media/endScreen/endScreenOneImage.png </image>
 	</levelOneEndScreen>
 	<restartButton>
 		<buttonText>
