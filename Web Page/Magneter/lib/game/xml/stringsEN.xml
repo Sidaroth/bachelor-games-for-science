@@ -42,6 +42,54 @@ the language to Norwegian?
 		<info> Congratulation on beating Level 1! </info>
 		<image>media/endScreen/endScreenOneImage.png </image>
 	</levelOneEndScreen>
+	<levelTwoInfoScreen>
+		<info> This is the info displayed on the second info screen </info>
+		<image>media/infoScreen/infoScreentwoImage.png </image>
+	</levelTwoInfoScreen>
+	<levelTwoEndScreen>
+		<info> Congratulation on beating Level 2! </info>
+		<image>media/endScreen/endScreenTwoImage.png </image>
+	</levelTwoEndScreen>
+	<levelThreeInfoScreen>
+		<info> This is the info displayed on the thirth info screen </info>
+		<image>media/infoScreen/infoScreenThreeImage.png </image>
+	</levelThreeInfoScreen>
+	<levelThreeEndScreen>
+		<info> Congratulation on beating Level 3! </info>
+		<image>media/endScreen/endScreenThreeImage.png </image>
+	</levelThreeEndScreen>
+	<levelFourInfoScreen>
+		<info> This is the info displayed on the Fourth info screen </info>
+		<image>media/infoScreen/infoScreenFourImage.png </image>
+	</levelFourInfoScreen>
+	<levelFourEndScreen>
+		<info> Congratulation on beating Level 4! </info>
+		<image>media/endScreen/endScreenFourImage.png </image>
+	</levelFourEndScreen>
+	<levelFiveInfoScreen>
+		<info> This is the info displayed on the fifth info screen </info>
+		<image>media/infoScreen/infoScreenFiveImage.png </image>
+	</levelFiveInfoScreen>
+	<levelFiveEndScreen>
+		<info> Congratulation on beating Level 5! </info>
+		<image>media/endScreen/endScreenFiveImage.png </image>
+	</levelFiveEndScreen>
+	<levelSixInfoScreen>
+		<info> This is the info displayed on the sixth info screen </info>
+		<image>media/infoScreen/infoScreenSixImage.png </image>
+	</levelSixInfoScreen>
+	<levelSixEndScreen>
+		<info> Congratulation on beating Level 6! </info>
+		<image>media/endScreen/endScreenSixImage.png </image>
+	</levelSixEndScreen>
+	<levelSevenInfoScreen>
+		<info> This is the info displayed on the seventh info screen </info>
+		<image>media/infoScreen/infoScreenSevenImage.png </image>
+	</levelSevenInfoScreen>
+	<levelSevenEndScreen>
+		<info> Congratulation on beating Level 7! </info>
+		<image>media/endScreen/endScreenSevenImage.png </image>
+	</levelSevenEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>
