@@ -38,6 +38,10 @@ the language to Norwegian?
 		<info> This is the info displayed on the first info screen </info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
+	<levelOneEndScreen>
+		<info> Congratulation on beating Level 1! </info>
+		<image>media/infoScreen/endScreenOneImage.png </image>
+	</levelOneEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>

@@ -38,6 +38,10 @@ bytte språk til engelsk?
 		<info> Dette er informasjonen for den første info skjermen </info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
+	<levelOneEndScreen>
+		<info> Gratulerer, du Vant over Level 1! </info>
+		<image>media/infoScreen/endScreenOneImage.png </image>
+	</levelOneEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>

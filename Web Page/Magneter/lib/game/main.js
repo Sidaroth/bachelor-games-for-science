@@ -17,6 +17,7 @@ ig.module(
 	'game.entities.gate',
 	'game.entities.goal',
 	'game.entities.infoScreen',
+	'game.entities.endScreen',
 	'game.entities.language',
 	'game.entities.magnet',
 	'game.entities.menuButton',
@@ -32,6 +33,12 @@ ig.module(
 
 	// Infoscreens
 	'game.levels.level1Info',
+	'game.levels.level2Info',
+	'game.levels.level3Info',
+	'game.levels.level4Info',
+	'game.levels.level5Info',
+	'game.levels.level6Info',
+	'game.levels.level7Info',
 
 	// Levels
 	'game.levels.level1',
@@ -45,6 +52,9 @@ ig.module(
 	'game.levels.level9',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
+	
+	// Endscreens
+	'game.levels.level1End',
 
 	//xml
 	'game.xml.getXmlString'
@@ -85,6 +95,13 @@ MyGame = ig.Box2DGame.extend(
 	levels: {
 		'SplashScreen': LevelSplashScreen,
 		'Level1Info': LevelLevel1Info,
+		'Level2Info': LevelLevel2Info,
+		'Level3Info': LevelLevel3Info,
+		'Level4Info': LevelLevel4Info,
+		'Level5Info': LevelLevel5Info,
+		'Level6Info': LevelLevel6Info,
+		'Level7Info': LevelLevel7Info,
+		'Level1End': LevelLevel1End,
 		'MainMenu' : LevelMainMenu,
 		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
@@ -94,7 +111,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level6' : LevelLevel6,
 		'Level7' : LevelLevel7,
 		'Level8' : LevelLevel8,
-		'Level9' : LevelLevel9,
+		'Level9' : LevelLevel9
 	},
 
 	// Which background music should be played for which level (screen)
@@ -102,6 +119,13 @@ MyGame = ig.Box2DGame.extend(
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
+		'Level2Info': 'menuBGSoundtrack',
+		'Level3Info': 'menuBGSoundtrack',
+		'Level4Info': 'menuBGSoundtrack',
+		'Level5Info': 'menuBGSoundtrack',
+		'Level6Info': 'menuBGSoundtrack',
+		'Level7Info': 'menuBGSoundtrack',
+		'Level1End': 'menuBGSoundtrack',
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
 		'Level3' : 'level1BGSoundtrack',
@@ -116,6 +140,13 @@ MyGame = ig.Box2DGame.extend(
 	logLevel: {
 		'SplashScreen': false,
 		'Level1Info': false,
+		'Level2Info': false,
+		'Level3Info': false,
+		'Level4Info': false,
+		'Level5Info': false,
+		'Level6Info': false,
+		'Level7Info': false,
+		'Level1End': false,
 		'MainMenu' : false,
 		'Level1': true,
 		'Level2' : true,

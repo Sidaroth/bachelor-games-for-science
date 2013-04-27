@@ -61,7 +61,7 @@ EntityGoal = ig.Entity.extend({
 	
 	check: function(other)
 	{
-		other.reset();
+		//other.reset();
 		// console.log(other.nam);
 		if(other.name == "player")
 		{
