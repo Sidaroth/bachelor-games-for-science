@@ -18,9 +18,6 @@ EntityElectromagnet = EntityMagnet.extend({
 	name: null,
 	zIndex: 2,
 
-	
-	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
-	
 	soundDB: 
 		{
 			'powerOn': new ig.Sound( 'media/sound/popUpSound.*' ),
@@ -32,14 +29,7 @@ EntityElectromagnet = EntityMagnet.extend({
 		this.parent(x, y, settings);
 		this.addAnim( 'off', 1, [2] );
 
-		if(this.isOn === true)
-		{
-			this.currentAnim = this.anims['idle'];
-		}
-		else
-		{
-			this.currentAnim = this.anims['off'];
-		}
+		
 	},
 
 	// NEED TO FIX TARGETTING BUGS. 
@@ -62,6 +52,18 @@ EntityElectromagnet = EntityMagnet.extend({
 	draw: function()
 	{
 		this.parent();
+	},
+	
+	ready: function()
+	{
+		if(this.isOn === true)
+		{
+			this.currentAnim = this.anims['idle'];
+		}
+		else
+		{
+			this.currentAnim = this.anims['off'];
+		}
 	},
 
 	checkDistance: function(entity)

@@ -11,6 +11,7 @@ ig.module(
 	'plugins.box2d.debug',
 
 	// Entities
+	'game.entities.arrow',
 	'game.entities.basket',
 	'game.entities.button',
 	'game.entities.electromagnet',
@@ -19,17 +20,17 @@ ig.module(
 	'game.entities.infoScreen',
 	'game.entities.endScreen',
 	'game.entities.language',
+	'game.entities.lolgate',
 	'game.entities.magnet',
 	'game.entities.menuButton',
 	'game.entities.muteButton',
 	'game.entities.pendulum',
 	'game.entities.player',
+	'game.entities.rail',
 	'game.entities.shield',
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
-	'game.entities.arrow',
-	'game.entities.rail',
 
 	// Infoscreens
 	'game.levels.level1Info',
