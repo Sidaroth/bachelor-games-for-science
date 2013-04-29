@@ -17,14 +17,14 @@ EntityElectromagnet = EntityMagnet.extend({
 	
 	name: null,
 	zIndex: 2,
-
 	
 	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
 	
 	soundDB: 
 		{
-			'powerOn': new ig.Sound( 'media/sound/popUpSound.*' ),
-			'powerOff': new ig.Sound( 'media/sound/popUpSound.*' )
+			'powerOn': new ig.Sound( 'media/sound/MagnetHum2.*' ),
+			'powerOff': new ig.Sound( 'media/sound/MagnetHum2.*' ),
+			resize: new ig.Sound( 'media/sound/MagnetEnlarge3.*' )
 		},
 	
 	init: function( x, y, settings )
