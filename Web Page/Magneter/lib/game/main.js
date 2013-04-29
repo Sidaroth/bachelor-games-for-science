@@ -42,6 +42,8 @@ ig.module(
 	'game.levels.level7Info',
 	'game.levels.level8Info',
 	'game.levels.level9Info',
+	'game.levels.level10Info',
+	'game.levels.level11Info',
 
 	// Levels
 	'game.levels.level1',
@@ -53,6 +55,8 @@ ig.module(
 	'game.levels.level7',
 	'game.levels.level8',
 	'game.levels.level9',
+	'game.levels.level10',
+	'game.levels.level11',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
 	
@@ -65,6 +69,9 @@ ig.module(
 	'game.levels.level6End',
 	'game.levels.level7End',
 	'game.levels.level8End',
+	'game.levels.level9End',
+	'game.levels.level10End',
+	'game.levels.level11End',
 
 	//xml
 	'game.xml.getXmlString'
@@ -99,7 +106,6 @@ MyGame = ig.Box2DGame.extend(
 	upArrow: null,
 	downArrow: null,
 
-
 	
 	//array with all levels
 	levels: {
@@ -113,6 +119,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level7Info': LevelLevel7Info,
 		'Level8Info': LevelLevel8Info,
 		'Level9Info': LevelLevel9Info,
+		'Level10Info': LevelLevel9Info,
+		'Level11Info': LevelLevel9Info,
 		'Level1End': LevelLevel1End,
 		'Level2End': LevelLevel2End,
 		'Level3End': LevelLevel3End,
@@ -121,6 +129,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6End': LevelLevel6End,
 		'Level7End': LevelLevel7End,
 		'Level8End': LevelLevel8End,
+		'Level9End': LevelLevel8End,
+		'Level10End': LevelLevel8End,
+		'Level11End': LevelLevel8End,
 		'MainMenu' : LevelMainMenu,
 		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
@@ -130,7 +141,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6' : LevelLevel6,
 		'Level7' : LevelLevel7,
 		'Level8' : LevelLevel8,
-		'Level9' : LevelLevel9
+		'Level9' : LevelLevel9,
+		'Level9' : LevelLevel10,
+		'Level9' : LevelLevel11,
 	},
 
 	// Which background music should be played for which level (screen)
@@ -154,6 +167,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6End': 'menuBGSoundtrack',
 		'Level7End': 'menuBGSoundtrack',
 		'Level8End': 'menuBGSoundtrack',
+		'Level9End': 'menuBGSoundtrack',
+		'Level10End': 'menuBGSoundtrack',
+		'Level11End': 'menuBGSoundtrack',
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
 		'Level3' : 'level1BGSoundtrack',
@@ -162,7 +178,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6' : 'level1BGSoundtrack',
 		'Level7' : 'level1BGSoundtrack',
 		'Level8' : 'level1BGSoundtrack',
-		'Level9' : 'level1BGSoundtrack'
+		'Level9' : 'level1BGSoundtrack',
+		'Level10' : 'level1BGSoundtrack',
+		'Level11' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
@@ -176,6 +194,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level7Info': false,
 		'Level8Info': false,
 		'Level9Info': false,
+		'Level10Info': false,
+		'Level11Info': false,
 		'Level1End': false,
 		'Level2End': false,
 		'Level3End': false,
@@ -184,6 +204,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6End': false,
 		'Level7End': false,
 		'Level8End': false,
+		'Level9End': false,
+		'Level10End': false,
+		'Level11End': false,
 		'MainMenu' : false,
 		'Level1': true,
 		'Level2' : true,
@@ -193,7 +216,9 @@ MyGame = ig.Box2DGame.extend(
 		'Level6' : true,
 		'Level7' : true,
 		'Level8' : true,
-		'Level9' : true
+		'Level9' : true,
+		'Level10' : true,
+		'Level11' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
