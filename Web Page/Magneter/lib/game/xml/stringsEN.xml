@@ -90,6 +90,14 @@ the language to Norwegian?
 		<info> Congratulation on beating Level 7! </info>
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
+	<levelEightInfoScreen>
+		<info> This is the info displayed on the eight info screen </info>
+		<image>media/infoScreen/infoScreenEightImage.png </image>
+	</levelEightInfoScreen>
+	<levelEightEndScreen>
+		<info> Congratulation on beating Level 8! </info>
+		<image>media/endScreen/endScreenEightImage.png </image>
+	</levelEightEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>
