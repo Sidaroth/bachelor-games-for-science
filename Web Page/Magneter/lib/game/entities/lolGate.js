@@ -17,6 +17,8 @@ EntityLolgate = EntityElectromagnet.extend({
 	fieldRadius: 75,
 	fieldMagnitude: 100000,
 	
+	interactive: false,
+	
 	init: function( x, y, settings )
 	{
 		this.parent(x, y, settings);
