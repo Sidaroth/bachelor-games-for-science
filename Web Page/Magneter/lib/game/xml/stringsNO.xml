@@ -91,13 +91,69 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
 	<levelEightInfoScreen>
-		<info> Dette er informasjonen for den ottende info skjermen </info>
+		<info> Dette er informasjonen for den åttende info skjermen </info>
 		<image>media/infoScreen/infoScreenEightImage.png </image>
 	</levelEightInfoScreen>
 	<levelEightEndScreen>
 		<info> Gratulerer, du Vant over Level 8! </info>
 		<image>media/endScreen/endScreenEightImage.png </image>
 	</levelEightEndScreen>
+	<levelNineInfoScreen>
+		<info> Dette er informasjonen for den niende info skjermen </info>
+		<image>media/infoScreen/infoScreenNineImage.png </image>
+	</levelNineInfoScreen>
+	<levelNineEndScreen>
+		<info> Gratulerer, du Vant over Level 9! </info>
+		<image>media/endScreen/endScreenNineImage.png </image>
+	</levelNineEndScreen>
+	<levelTenInfoScreen>
+		<info> Dette er informasjonen for den tiende info skjermen </info>
+		<image>media/infoScreen/infoScreenTenImage.png </image>
+	</levelTenInfoScreen>
+	<levelTenEndScreen>
+		<info> Gratulerer, du Vant over Level 10! </info>
+		<image>media/endScreen/endScreenTenImage.png </image>
+	</levelTenEndScreen>
+	<levelElevenInfoScreen>
+		<info> Dette er informasjonen for den elevte info skjermen </info>
+		<image>media/infoScreen/infoScreenElevenImage.png </image>
+	</levelElevenInfoScreen>
+	<levelElevenEndScreen>
+		<info> Gratulerer, du Vant over Level 11! </info>
+		<image>media/endScreen/endScreenElevenImage.png </image>
+	</levelElevenEndScreen>
+	<levelTwelveInfoScreen>
+		<info> Dette er informasjonen for den tolvte info skjermen </info>
+		<image>media/infoScreen/infoScreenTwelveImage.png </image>
+	</levelTwelveInfoScreen>
+	<levelTwelveEndScreen>
+		<info> Gratulerer, du Vant over Level 12! </info>
+		<image>media/endScreen/endScreenTwelveImage.png </image>
+	</levelTwelveEndScreen>
+	<levelThirteenInfoScreen>
+		<info> Dette er informasjonen for den trettende info skjermen </info>
+		<image>media/infoScreen/infoScreenThirteenImage.png </image>
+	</levelThirteenInfoScreen>
+	<levelThirteenEndScreen>
+		<info> Gratulerer, du Vant over Level 13! </info>
+		<image>media/endScreen/endScreenThirteenImage.png </image>
+	</levelThirteenEndScreen>
+	<levelFourteenInfoScreen>
+		<info> Dette er informasjonen for den fjortende info skjermen </info>
+		<image>media/infoScreen/infoScreenFourteenImage.png </image>
+	</levelFourteenInfoScreen>
+	<levelFourteenEndScreen>
+		<info> Gratulerer, du Vant over Level 14! </info>
+		<image>media/endScreen/endScreenFourteenImage.png </image>
+	</levelFourteenEndScreen>
+	<levelFifteenInfoScreen>
+		<info> Dette er informasjonen for den femtende info skjermen </info>
+		<image>media/infoScreen/infoScreenFifteenImage.png </image>
+	</levelFifteenInfoScreen>
+	<levelFifteenEndScreen>
+		<info> Gratulerer, du Vant over Level 15! </info>
+		<image>media/endScreen/endScreenFifteenImage.png </image>
+	</levelFifteenEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>
