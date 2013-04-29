@@ -17,6 +17,7 @@ ig.module(
 	'game.entities.gate',
 	'game.entities.goal',
 	'game.entities.infoScreen',
+	'game.entities.endScreen',
 	'game.entities.language',
 	'game.entities.magnet',
 	'game.entities.menuButton',
@@ -27,7 +28,17 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
-	'game.entities.lolGate',
+	'game.entities.arrow',
+	'game.entities.rail',
+
+	// Infoscreens
+	'game.levels.level1Info',
+	'game.levels.level2Info',
+	'game.levels.level3Info',
+	'game.levels.level4Info',
+	'game.levels.level5Info',
+	'game.levels.level6Info',
+	'game.levels.level7Info',
 
 	// Levels
 	'game.levels.level1',
@@ -36,10 +47,20 @@ ig.module(
 	'game.levels.level4',
 	'game.levels.level5',
 	'game.levels.level6',
-	'game.levels.level1Info',
+	'game.levels.level7',
+	'game.levels.level8',
+	'game.levels.level9',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
-	'game.levels.arcade',
+	
+	// Endscreens
+	'game.levels.level1End',
+	'game.levels.level2End',
+	'game.levels.level3End',
+	'game.levels.level4End',
+	'game.levels.level5End',
+	'game.levels.level6End',
+	'game.levels.level7End',
 
 	//xml
 	'game.xml.getXmlString'
@@ -69,6 +90,10 @@ MyGame = ig.Box2DGame.extend(
 	metricMD5: null,
 	playMD5: null,
 	timeInLevel: new ig.Timer(),
+	leftArrow: null,
+	rightArrow: null,
+	upArrow: null,
+	downArrow: null,
 
 
 	
@@ -76,41 +101,86 @@ MyGame = ig.Box2DGame.extend(
 	levels: {
 		'SplashScreen': LevelSplashScreen,
 		'Level1Info': LevelLevel1Info,
+		'Level2Info': LevelLevel2Info,
+		'Level3Info': LevelLevel3Info,
+		'Level4Info': LevelLevel4Info,
+		'Level5Info': LevelLevel5Info,
+		'Level6Info': LevelLevel6Info,
+		'Level7Info': LevelLevel7Info,
+		'Level1End': LevelLevel1End,
+		'Level2End': LevelLevel2End,
+		'Level3End': LevelLevel3End,
+		'Level4End': LevelLevel4End,
+		'Level5End': LevelLevel5End,
+		'Level6End': LevelLevel6End,
+		'Level7End': LevelLevel7End,
 		'MainMenu' : LevelMainMenu,
-		'Arcade' : LevelArcade,
 		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
 		'Level3' : LevelLevel3,
 		'Level4' : LevelLevel4,
 		'Level5' : LevelLevel5,
-		'Level6' : LevelLevel6
+		'Level6' : LevelLevel6,
+		'Level7' : LevelLevel7,
+		'Level8' : LevelLevel8,
+		'Level9' : LevelLevel9
 	},
 
 	// Which background music should be played for which level (screen)
 	musicDB: {
 		'SplashScreen': 'none',
 		'MainMenu': 'menuBGSoundtrack',
-		'Arcade' : 'level1BGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
+		'Level2Info': 'menuBGSoundtrack',
+		'Level3Info': 'menuBGSoundtrack',
+		'Level4Info': 'menuBGSoundtrack',
+		'Level5Info': 'menuBGSoundtrack',
+		'Level6Info': 'menuBGSoundtrack',
+		'Level7Info': 'menuBGSoundtrack',
+		'Level1End': 'menuBGSoundtrack',
+		'Level2End': 'menuBGSoundtrack',
+		'Level3End': 'menuBGSoundtrack',
+		'Level4End': 'menuBGSoundtrack',
+		'Level5End': 'menuBGSoundtrack',
+		'Level6End': 'menuBGSoundtrack',
+		'Level7End': 'menuBGSoundtrack',
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
 		'Level3' : 'level1BGSoundtrack',
 		'Level4' : 'level1BGSoundtrack',
 		'Level5' : 'level1BGSoundtrack',
-		'Level6' : 'level1BGSoundtrack'
+		'Level6' : 'level1BGSoundtrack',
+		'Level7' : 'level1BGSoundtrack',
+		'Level8' : 'level1BGSoundtrack',
+		'Level9' : 'level1BGSoundtrack'
 	},
 
 	logLevel: {
 		'SplashScreen': false,
 		'Level1Info': false,
+		'Level2Info': false,
+		'Level3Info': false,
+		'Level4Info': false,
+		'Level5Info': false,
+		'Level6Info': false,
+		'Level7Info': false,
+		'Level1End': false,
+		'Level2End': false,
+		'Level3End': false,
+		'Level4End': false,
+		'Level5End': false,
+		'Level6End': false,
+		'Level7End': false,
 		'MainMenu' : false,
-		'Arcade' : true,
 		'Level1': true,
 		'Level2' : true,
 		'Level3' : true,
 		'Level4' : true,
 		'Level5' : true,
-		'Level6' : true
+		'Level6' : true,
+		'Level7' : true,
+		'Level8' : true,
+		'Level9' : true
 	},
 
 	// Used for mouse targetting and changing magnet radius etc. 
@@ -200,45 +270,140 @@ MyGame = ig.Box2DGame.extend(
 
 		if(ig.game.backgroundMaps[0])
 		{
+			if(ig.game.screen.x < ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+			{
+				if(this.rightArrow === null)
+				{
+					settings = {firstAnim: "rightUnselected"};
+					this.rightArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.x > 0)
+			{
+				if(this.leftArrow === null)
+				{
+					settings = {firstAnim: "leftUnselected"};
+					this.leftArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.y > 0)
+			{
+				if(this.upArrow === null)
+				{
+					settings = {firstAnim: "upUnselected"};
+					this.upArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+			if(ig.game.screen.y < ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
+			{
+				if(this.downArrow === null)
+				{
+					settings = {firstAnim: "downUnselected"};
+					this.downArrow = ig.game.spawnEntity(EntityArrow, 0, 0, settings );
+				}
+			}
+
+
 			if(ig.input.mouse.x < threshold)
 			{
 				ig.game.screen.x -= 10;
+				if(this.leftArrow != null)
+				{
+					this.leftArrow.currentAnim = this.leftArrow.anims["leftSelected"];
+				}
 				if(ig.game.screen.x < 0)
 				{
 					ig.game.screen.x = 0;
+					if(this.leftArrow != null)
+					{
+						this.leftArrow.kill();
+						this.leftArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.leftArrow != null)
+				{
+					this.leftArrow.currentAnim = this.leftArrow.anims["leftUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.x > ig.system.width - threshold)
 			{
 				ig.game.screen.x += 10;
-				if(ig.game.screen.x > ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+				if(this.rightArrow != null)
 				{
-					// console.log(ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width);
+					this.rightArrow.currentAnim = this.rightArrow.anims["rightSelected"];
+				}
+				if(ig.game.screen.x >= ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
+				{
 					ig.game.screen.x = ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width;
+					if(this.rightArrow != null)
+					{
+						this.rightArrow.kill();
+						this.rightArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.rightArrow != null)
+				{
+					this.rightArrow.currentAnim = this.rightArrow.anims["rightUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.y < threshold)
 			{
 				ig.game.screen.y -= 10;
-
-				if(ig.game.screen.y < 0)
+				if(this.upArrow != null)
+				{
+					this.upArrow.currentAnim = this.upArrow.anims["upSelected"];
+				}
+				if(ig.game.screen.y <= 0)
 				{
 					ig.game.screen.y = 0;
+					if(this.upArrow != null)
+					{
+						this.upArrow.kill();
+						this.upArrow = null;
+					}
+				}
+			}
+			else
+			{
+				if(this.upArrow != null)
+				{
+					this.upArrow.currentAnim = this.upArrow.anims["upUnselected"];
 				}
 			}
 
 			if(ig.input.mouse.y > ig.system.height - threshold)
 			{
 				ig.game.screen.y += 10;
-
-				if(ig.game.screen.y > ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
+				if(this.downArrow != null)
+				{
+					this.downArrow.currentAnim = this.downArrow.anims["downSelected"];
+				}
+				if(ig.game.screen.y >= ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height)
 				{
 					ig.game.screen.y = ig.game.backgroundMaps[0].height * ig.game.backgroundMaps[0].tilesize - ig.system.height;
+					if(this.downArrow != null)
+					{
+						this.downArrow.kill();
+						this.downArrow = null;
+					}
 				}
 			}
-		}
+		}			
+		else
+			{
+				if(this.downArrow != null)
+				{
+					this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
+				}
+			}
 		
 		this.parent();
 	},
@@ -247,6 +412,27 @@ MyGame = ig.Box2DGame.extend(
 	// represents if it's an ingame screen, or something like a menu. 
 	loadLevel: function(levelKey, gameScreen) 
 	{
+		if(this.leftArrow != null)
+		{
+			this.leftArrow.kill();
+			this.leftArrow = null;
+		}
+		if(this.upArrow != null)
+		{
+			this.upArrow.kill();
+			this.upArrow = null;
+		}
+		if(this.rightArrow != null)
+		{
+			this.rightArrow.kill();
+			this.rightArrow = null;
+		}
+		if(this.downArrow != null)
+		{
+			this.downArrow.kill();
+			this.downArrow = null;
+		}
+
 		this.parent(this.levels[levelKey]);
 
 		this.timeInLevel.reset();
@@ -293,14 +479,15 @@ MyGame = ig.Box2DGame.extend(
 	draw: function() 
 	{
 		// Draw all entities and backgroundMaps
+
 		if(this.paused)
 		{
 			this.pauseEntity.draw();
 			return;
 		}
-		this.parent();
 
-		// this.debugDrawer.draw();
+	    this.parent();
+			// this.debugDrawer.draw();
 	},
 
 	//called after the post request to get save is done
@@ -449,6 +636,6 @@ MyGame = ig.Box2DGame.extend(
 
 
 // Start the Game with 60fps, a resolution of 800x640, not scaled. 
-ig.main( '#canvas', MyGame, 60, 800, 640, 1 );
+ig.main( '#canvas', MyGame, 60, 832, 640, 1 );
 
 });

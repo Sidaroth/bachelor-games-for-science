@@ -19,6 +19,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	size: {x: 50, y: 50},
 	//offset: {x: 0, y:0 },
+	zIndex: 2,
 
 	resetable: 0, // by default the magnets will not reset. 
 
@@ -41,7 +42,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		'current': 'rgba(123, 123, 123, 1)',
 		'targetted': 'rgba(0, 0, 255, 1)',
-		'untargetted': 'rgba(123, 123, 123, 1)'
+		'untargetted': 'rgba(123, 123, 123, 0.2)'
 	},
 
 	objectsToTest: [], // Any object added here will be tested and affected by magnetism. 
@@ -108,7 +109,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 		for(var i = 0; i < ig.game.getEntitiesByType(EntityMagnet).length; i++)
 		{
 			this.objectsToTest.push(ig.game.getEntitiesByType(EntityMagnet)[i]);
-			console.log(i);
 		}
 
 	},

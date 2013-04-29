@@ -16,6 +16,7 @@ EntityElectromagnet = EntityMagnet.extend({
 	playerClickable: true,
 	
 	name: null,
+	zIndex: 2,
 
 	soundDB: 
 		{

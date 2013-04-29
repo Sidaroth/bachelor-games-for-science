@@ -100,8 +100,6 @@ EntityPendulum = ig.Box2DEntity.extend({
     		//add the joint to the world
     		//ig.world.CreateJoint(this.revolDef);
     		this.revolJoint = ig.world.CreateJoint(this.revolDef);
-    		console.log('etter denne');
-    		console.log(this.revolJoint);
 			//console.log(ig.world.CreateJoint(this.revolDef));
 			
 			
