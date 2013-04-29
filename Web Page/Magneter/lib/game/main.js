@@ -11,6 +11,7 @@ ig.module(
 	'plugins.box2d.debug',
 
 	// Entities
+	'game.entities.arrow',
 	'game.entities.basket',
 	'game.entities.button',
 	'game.entities.electromagnet',
@@ -19,17 +20,17 @@ ig.module(
 	'game.entities.infoScreen',
 	'game.entities.endScreen',
 	'game.entities.language',
+	'game.entities.lolgate',
 	'game.entities.magnet',
 	'game.entities.menuButton',
 	'game.entities.muteButton',
 	'game.entities.pendulum',
 	'game.entities.player',
+	'game.entities.rail',
 	'game.entities.shield',
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
-	'game.entities.arrow',
-	'game.entities.rail',
 
 	// Infoscreens
 	'game.levels.level1Info',
@@ -39,6 +40,8 @@ ig.module(
 	'game.levels.level5Info',
 	'game.levels.level6Info',
 	'game.levels.level7Info',
+	'game.levels.level8Info',
+	'game.levels.level9Info',
 
 	// Levels
 	'game.levels.level1',
@@ -61,6 +64,7 @@ ig.module(
 	'game.levels.level5End',
 	'game.levels.level6End',
 	'game.levels.level7End',
+	'game.levels.level8End',
 
 	//xml
 	'game.xml.getXmlString'
@@ -107,6 +111,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level5Info': LevelLevel5Info,
 		'Level6Info': LevelLevel6Info,
 		'Level7Info': LevelLevel7Info,
+		'Level8Info': LevelLevel8Info,
+		'Level9Info': LevelLevel9Info,
 		'Level1End': LevelLevel1End,
 		'Level2End': LevelLevel2End,
 		'Level3End': LevelLevel3End,
@@ -114,6 +120,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level5End': LevelLevel5End,
 		'Level6End': LevelLevel6End,
 		'Level7End': LevelLevel7End,
+		'Level8End': LevelLevel8End,
 		'MainMenu' : LevelMainMenu,
 		'Level1' : LevelLevel1,
 		'Level2' : LevelLevel2,
@@ -137,6 +144,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level5Info': 'menuBGSoundtrack',
 		'Level6Info': 'menuBGSoundtrack',
 		'Level7Info': 'menuBGSoundtrack',
+		'Level8Info': 'menuBGSoundtrack',
+		'Level9Info': 'menuBGSoundtrack',
 		'Level1End': 'menuBGSoundtrack',
 		'Level2End': 'menuBGSoundtrack',
 		'Level3End': 'menuBGSoundtrack',
@@ -144,6 +153,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level5End': 'menuBGSoundtrack',
 		'Level6End': 'menuBGSoundtrack',
 		'Level7End': 'menuBGSoundtrack',
+		'Level8End': 'menuBGSoundtrack',
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
 		'Level3' : 'level1BGSoundtrack',
@@ -164,6 +174,8 @@ MyGame = ig.Box2DGame.extend(
 		'Level5Info': false,
 		'Level6Info': false,
 		'Level7Info': false,
+		'Level8Info': false,
+		'Level9Info': false,
 		'Level1End': false,
 		'Level2End': false,
 		'Level3End': false,
@@ -171,6 +183,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level5End': false,
 		'Level6End': false,
 		'Level7End': false,
+		'Level8End': false,
 		'MainMenu' : false,
 		'Level1': true,
 		'Level2' : true,

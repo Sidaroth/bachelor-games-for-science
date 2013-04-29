@@ -90,6 +90,14 @@ bytte språk til engelsk?
 		<info> Gratulerer, du Vant over Level 7! </info>
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
+	<levelEightInfoScreen>
+		<info> Dette er informasjonen for den ottende info skjermen </info>
+		<image>media/infoScreen/infoScreenEightImage.png </image>
+	</levelEightInfoScreen>
+	<levelEightEndScreen>
+		<info> Gratulerer, du Vant over Level 8! </info>
+		<image>media/endScreen/endScreenEightImage.png </image>
+	</levelEightEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>
