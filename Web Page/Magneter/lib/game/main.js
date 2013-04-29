@@ -27,6 +27,7 @@ ig.module(
 	'game.entities.spring_board',
 	'game.entities.switch',
 	'game.entities.trigger',
+	'game.entities.lolGate',
 
 	// Levels
 	'game.levels.level1',
