@@ -254,7 +254,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = this.defaultSoundLevel;
+		ig.music.volume = 0; //this.defaultSoundLevel;
 		ig.music.loop = true;
 
 

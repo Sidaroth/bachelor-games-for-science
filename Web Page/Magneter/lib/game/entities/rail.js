@@ -57,7 +57,6 @@ EntityRail = ig.Box2DEntity.extend({
 
 		this.currentAnim = this.anims['idle'];
 
-
 		if( !ig.global.wm )
 		{
 						console.log(this.zIndex);
@@ -186,7 +185,7 @@ EntityRail = ig.Box2DEntity.extend({
 			}
 		}else
 		{
-			this.motorTimer = new ig.Timer(1/this.stepFraction);
+			this.motorTimer = new ig.Timer(0.5/this.stepFraction);
 		};
 	}
 });

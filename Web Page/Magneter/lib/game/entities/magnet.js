@@ -32,6 +32,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 	polarity: -1,		// Polarities are represented as (-1, 0, 1)(Attract, Neutral, Repel). 
 	density: 0,
 
+	soundDB: 
+	{
+		resize: new ig.Sound( 'media/sound/MagnetEnlarge3.*' )
+	},
+
 	drag:
 	{
 		'distance': null,
@@ -97,11 +102,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 	// runs when all entities have finished loading. 
 	ready: function()
 	{
-		 this.parent();
+		this.parent();
 		this.loadObjectsToTest();
-		//this.objectsToTest = ig.game.getEntitiesByType(EntityMagnet);
-		//this.objectsToTest.push( this.player );
-		//this.objectsToTest.push( this.gate );	
 	},
 	
 	loadObjectsToTest: function()
@@ -110,10 +112,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 		{
 			this.objectsToTest.push(ig.game.getEntitiesByType(EntityMagnet)[i]);
 		}
-
 	},
-
-
 
 	// Minor targetting bugs, beware!
 	update: function()
@@ -161,6 +160,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 		else if(this.drag['state'] === false)
 		{
 			this.ringColor['current'] = this.ringColor['untargetted'];
+			this.soundDB.resize.stop();
 
 			if(ig.game.closestMagnetToMouse['magnet'] == this)
 			{
@@ -196,8 +196,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 		if(this.drag['state'] === true)
 		{
-			//console.log(this.fieldRadius);
 			this.ringColor['current'] = this.ringColor['targetted'];
+			this.soundDB.resize.play();
 
 			if(distanceToMouse > this.drag['distance'])
 			{
@@ -210,8 +210,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 					this.fieldRadius = this.fieldRadiusMax;
 				}
 			}
-
-			if(distanceToMouse < this.drag['distance'])
+			else if(distanceToMouse < this.drag['distance'])
 			{
 				this.fieldRadius -= this.drag['distance'] - distanceToMouse;
 				this.fieldMagnitude -= 50 * Math.abs(distanceToMouse - this.drag['distance']);
@@ -224,6 +223,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			}
 		}
 
+		// loop through all objects that should be tested and apply appropriate force.. 
 		for( var i = 0; i < this.objectsToTest.length; i++ )
 		{
 			if(!(this.objectsToTest[i].id == this.id))
@@ -241,6 +241,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 		this.drawFieldEffectRing();
 	},
 
+
+	// If an entity is within the field radius, magnetism will be applied. 
 	checkDistance: function(entity)
 	{
 		var distanceVector = 
@@ -264,9 +266,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			var mass = 1; // temporary
 			var z = Math.floor(this.fieldRadius / 5);
 
-		//	var magneticForce = 1 / Math.pow( distanceVecLength, 2 );
 			var magneticForce = Math.exp( -distanceVecLength / z );
-			//console.log(magneticForce);
 
 			var forceDirection = -1;
 
@@ -281,11 +281,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 				y: forceDirection * ((magneticForce * unitDistVec.y * this.fieldMagnitude) / mass), // + gravity... g(0, -1) * G (magnitude). 
 			};
 
-			//entity.body.ApplyImpulse( acceleration.x * ig.system.tick );
-
 			entity.body.ApplyForce( new b2.Vec2(acceleration.x, acceleration.y), entity.body.GetPosition() );
-			//this.entity.vel.x = this.entity.vel.x + acceleration.x * ig.system.tick;
-			//this.entity.vel.y = this.entity.vel.y + acceleration.y * ig.system.tick;
 		}
 	},
 

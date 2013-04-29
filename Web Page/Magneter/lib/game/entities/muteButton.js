@@ -58,7 +58,7 @@ EntityMuteButton = ig.Entity.extend(
 			this.currentAnim = this.anims['on'];
 
 			ig.soundManager.volume = ig.game.defaultSoundLevel;
-			ig.music.volume = ig.game.defaultSoundLevel;
+			//ig.music.volume = ig.game.defaultSoundLevel;
 		}
 	},
 	
