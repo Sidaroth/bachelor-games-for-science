@@ -34,7 +34,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	soundDB: 
 	{
-		resize: new ig.Sound( 'media/sound/MagnetEnlarge3.*' )
+		resize: new ig.Sound( 'media/sound/MagnetPulse2.*' )
 	},
 
 	drag:

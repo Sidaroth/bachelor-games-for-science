@@ -22,7 +22,7 @@ EntityElectromagnet = EntityMagnet.extend({
 		{
 			'powerOn': new ig.Sound( 'media/sound/MagnetHum2.*' ),
 			'powerOff': new ig.Sound( 'media/sound/MagnetHum2.*' ),
-			resize: new ig.Sound( 'media/sound/MagnetEnlarge3.*' )
+			resize: new ig.Sound( 'media/sound/MagnetPulse2.*' )
 		},
 	
 	init: function( x, y, settings )
