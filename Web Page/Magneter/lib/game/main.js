@@ -197,21 +197,21 @@ MyGame = ig.Box2DGame.extend(
 		'Level14Info': 'menuBGSoundtrack',
 		'Level15Info': 'menuBGSoundtrack',
 
-		'Level1End': 'menuBGSoundtrack',
-		'Level2End': 'menuBGSoundtrack',
-		'Level3End': 'menuBGSoundtrack',
-		'Level4End': 'menuBGSoundtrack',
-		'Level5End': 'menuBGSoundtrack',
-		'Level6End': 'menuBGSoundtrack',
-		'Level7End': 'menuBGSoundtrack',
-		'Level8End': 'menuBGSoundtrack',
-		'Level9End': 'menuBGSoundtrack',
-		'Level10End': 'menuBGSoundtrack',
-		'Level11End': 'menuBGSoundtrack',
-		'Level12End': 'menuBGSoundtrack',
-		'Level13End': 'menuBGSoundtrack',
-		'Level14End': 'menuBGSoundtrack',
-		'Level15End': 'menuBGSoundtrack',
+		'Level1End': 'none',
+		'Level2End': 'none',
+		'Level3End': 'none',
+		'Level4End': 'none',
+		'Level5End': 'none',
+		'Level6End': 'none',
+		'Level7End': 'none',
+		'Level8End': 'none',
+		'Level9End': 'none',
+		'Level10End': 'none',
+		'Level11End': 'none',
+		'Level12End': 'none',
+		'Level13End': 'none',
+		'Level14End': 'none',
+		'Level15End': 'none',
 
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
@@ -589,9 +589,6 @@ MyGame = ig.Box2DGame.extend(
 
 		this.closestMagnetToMouse['distance'] = 999999;
 		this.closestMagnetToMouse['magnet'] = null;
-		// console.log(levelKey);
-		// console.log(this.musicDB);
-		// console.log(this.musicDB[levelKey]);
 
 		// If a background music has been specified / is wanted. 
 		if(this.musicDB[levelKey] != 'none')

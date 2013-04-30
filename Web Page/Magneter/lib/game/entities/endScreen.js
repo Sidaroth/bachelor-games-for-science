@@ -22,6 +22,11 @@ ig.module(
 		//true if endScreen, false if popUpMessage
 		endScreen: true,
 		zIndex: 2,
+
+		soundDB: 
+		{
+			levelCleared: new ig.Sound( 'media/sound/levelCleared.*' )
+		},
 		
 		animSheet: new ig.AnimationSheet( 'media/endScreen/endScreen.png', 800, 640 ),
 		
@@ -47,6 +52,12 @@ ig.module(
 				}
 				//console.log(this.infoScreen);
 			}
+		},
+
+		ready: function()
+		{
+			//this.soundDB.levelCleared.volume = ig.game.defaultSoundLevel;
+			this.soundDB.levelCleared.play();
 		},
 
 		update: function() 
