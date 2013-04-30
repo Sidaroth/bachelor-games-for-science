@@ -35,8 +35,6 @@ EntityPlayer = ig.Box2DEntity.extend({
 		this.spawn.x = this.pos.x;
 		this.spawn.y = this.pos.y;
 
-		//this.body.DestroyShape();
-
 
 		if( !ig.global.wm )
 		{

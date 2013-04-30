@@ -30,6 +30,7 @@ ig.module(
 	'game.entities.trigger',
 	'game.entities.arrow',
 	'game.entities.rail',
+	'game.entities.particles',
 
 	// Infoscreens
 	'game.levels.level1Info',
@@ -90,11 +91,15 @@ MyGame = ig.Box2DGame.extend(
 	metricMD5: null,
 	playMD5: null,
 	timeInLevel: new ig.Timer(),
+	newParticle: new ig.Timer(),
 	leftArrow: null,
 	rightArrow: null,
 	upArrow: null,
 	downArrow: null,
-
+	particles: false,
+	particleOne: null,
+	particleTwo: null,
+	killParticleOne: false,
 
 	
 	//array with all levels
@@ -404,7 +409,34 @@ MyGame = ig.Box2DGame.extend(
 					this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
 				}
 			}
-		
+		if(this.particles)
+		{
+			if(this.newParticle.delta() > 0)
+			{
+				if(this.killParticleOne)
+				{
+					if(this.particleOne !== null)
+					{
+						this.particleOne.kill();
+					}
+					var settings = {};
+					this.particleOne = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.5);
+					this.killParticleOne = false;
+				}
+				else
+				{
+					if(this.particleTwo !== null)
+					{
+						this.particleTwo.kill();
+					}
+					var settings = {};
+					this.particleTwo = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.5);
+					this.killParticleOne = true;
+				}
+			}
+		}
 		this.parent();
 	},
 
@@ -452,6 +484,12 @@ MyGame = ig.Box2DGame.extend(
 		{
 			ig.game.startPlaySession();
 			ig.game.logEvent(2, 0, 0, 0, 0, 2, "Started level " + levelKey);
+			this.particles = true;
+			this.newParticle.set(0.5);
+		}
+		else
+		{
+			this.particles = false;
 		}
 
 		this.closestMagnetToMouse['distance'] = 999999;

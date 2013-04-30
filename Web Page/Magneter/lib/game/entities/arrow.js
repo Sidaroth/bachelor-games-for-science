@@ -45,46 +45,6 @@ EntityArrow = ig.Entity.extend({
 	{
 		this.parent();
 
-		// if(	ig.input.mouse.x >= this.pos.x - ig.game.screen.x && ig.input.mouse.x <= (this.pos.x + this.size.x - ig.game.screen.x)
-		//  && ig.input.mouse.y >= this.pos.y - ig.game.screen.y && ig.input.mouse.y <= (this.pos.y + this.size.y - ig.game.screen.y))
-		// {
-		// 	if(this.firstAnim == "rightUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["rightSelected"];
-		// 	}
-		// 	if(this.firstAnim == "leftUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["leftSelected"];
-		// 	}
-		// 	if(this.firstAnim == "upUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["upSelected"];
-		// 	}
-		// 	if(this.firstAnim == "downUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["downSelected"];
-		// 	}
-		// }
-		// else
-		// {
-		// 	if(this.firstAnim == "rightUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["rightUnselected"];
-		// 	}
-		// 	if(this.firstAnim == "leftUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["leftUnselected"];
-		// 	}
-		// 	if(this.firstAnim == "upUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["upUnselected"];
-		// 	}
-		// 	if(this.firstAnim == "downUnselected")
-		// 	{
-		// 		this.currentAnim = this.anims["downUnselected"];
-		// 	}
-		// }
-
 		if(this.firstAnim == "rightUnselected")
 		{
 			this.pos.x = ig.game.screen.x + ig.system.width - this.size.x;
