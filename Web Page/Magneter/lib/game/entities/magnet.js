@@ -31,7 +31,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
 	polarity: -1,		    // Polarities are represented as (-1, 0, 1)(This will Attract, be neutral, or Repel everything!). 
 	density: 0,				// polarity is used to check for equal polarities for repelling. 
-	timer: null, 
+	timer: new ig.Timer(), 
 
 	soundDB: 
 	{
@@ -104,7 +104,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		this.parent();
 		this.loadObjectsToTest();
-		this.timer = new ig.Timer();
 	},
 	
 	loadObjectsToTest: function()
@@ -158,11 +157,24 @@ EntityMagnet = ig.Box2DEntity.extend({
 					this.ringColor['current'] = this.ringColor['untargetted'];
 				}
 			}
+
+			if(ig.input.pressed('mouse1'))
+			{
+				if(ig.game.closestMagnetToMouse['magnet'] == this)
+				{
+					if (this.interactive === true)
+					{
+						this.drag['state'] = true;
+						this.drag['distance'] = distanceToMouse;
+
+						this.timer.set(0.1);
+					}
+				}
+			}
 		}
 		else if(this.drag['state'] === false)
 		{
 			this.ringColor['current'] = this.ringColor['untargetted'];
-			this.soundDB.resize.stop();
 
 			if(ig.game.closestMagnetToMouse['magnet'] == this)
 			{
@@ -171,23 +183,10 @@ EntityMagnet = ig.Box2DEntity.extend({
 			}
 		}
 
-		if(ig.input.pressed('mouse1'))
-		{
-			if(ig.game.closestMagnetToMouse['magnet'] == this)
-			{
-				if (this.interactive === true)
-				{
-					this.drag['state'] = true;
-					this.drag['distance'] = distanceToMouse;
-
-					this.timer.set(0.2);
-				}
-			}
-		}
-
 		if(ig.input.released( 'mouse1' ))
 		{
 			this.drag['state'] = false;
+			this.soundDB.resize.stop();
 
 			if(ig.game.closestMagnetToMouse['magnet'] == this)
 			{
@@ -201,7 +200,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 		if(this.drag['state'] === true)
 		{
 			this.ringColor['current'] = this.ringColor['targetted'];
-
 
 			if(this.timer.delta() > 0)
 			{
@@ -232,6 +230,10 @@ EntityMagnet = ig.Box2DEntity.extend({
 					this.fieldRadius = this.fieldRadiusMin;
 				}
 			}
+		}
+		else
+		{	
+			this.soundDB.resize.stop();
 		}
 
 		// Dragging / Field Manipulation end. 

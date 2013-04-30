@@ -28,9 +28,7 @@ EntityElectromagnet = EntityMagnet.extend({
 	init: function( x, y, settings )
 	{
 		this.parent(x, y, settings);
-		this.addAnim( 'off', 1, [2] );
-
-		
+		this.addAnim( 'off', 1, [2] );		
 	},
 
 	// NEED TO FIX TARGETTING BUGS. 
