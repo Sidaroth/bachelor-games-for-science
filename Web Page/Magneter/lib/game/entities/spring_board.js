@@ -23,8 +23,11 @@ EntitySpring_board = ig.Box2DEntity.extend({
 	magnetRadius: 200,
 	
 	revLimit: true,
+	refAngle: 0,
 	revMinAngle: -1,
 	revMaxAngle: 1.5,
+	
+	resistance: 20,
 	
 	
 	animSheet: new ig.AnimationSheet( 'media/spring_board/spring_board.png', 170, 10),
@@ -83,9 +86,14 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		
     		revolDef.collideConnected = false;
      		
-     		revolDef.enableLimit    = this.revLimit;
+     		revolDef.enableLimit = this.revLimit;
+     		revolDef.referenceAngle = this.refAngle;
      		revolDef.lowerAngle = this.revMinAngle;
     		revolDef.upperAngle = this.revMaxAngle;
+    		
+    		revolDef.enableMotor = true;
+    		revolDef.motorSpeed = 0;
+    		revolDef.maxMotorTorque = this.resistance;
      		
 		    revolDef.localAnchor1 = new b2.Vec2(-8.5, -0.5);
 		    revolDef.localAnchor2 = new b2.Vec2(0, 0);

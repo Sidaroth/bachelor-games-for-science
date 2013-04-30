@@ -90,6 +90,70 @@ the language to Norwegian?
 		<info> Congratulation on beating Level 7! </info>
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
+	<levelEightInfoScreen>
+		<info> This is the info displayed on the eight info screen </info>
+		<image>media/infoScreen/infoScreenEightImage.png </image>
+	</levelEightInfoScreen>
+	<levelEightEndScreen>
+		<info> Congratulation on beating Level 8! </info>
+		<image>media/endScreen/endScreenEightImage.png </image>
+	</levelEightEndScreen>
+	<levelNineInfoScreen>
+		<info> This is the info displayed on the nine info screen </info>
+		<image>media/infoScreen/infoScreenNineImage.png </image>
+	</levelNineInfoScreen>
+	<levelNineEndScreen>
+		<info> Congratulation on beating Level 9! </info>
+		<image>media/endScreen/endScreenNineImage.png </image>
+	</levelNineEndScreen>
+	<levelTenInfoScreen>
+		<info> This is the info displayed on the ten info screen </info>
+		<image>media/infoScreen/infoScreenTenImage.png </image>
+	</levelTenInfoScreen>
+	<levelTenEndScreen>
+		<info> Congratulation on beating Level 10! </info>
+		<image>media/endScreen/endScreenTenImage.png </image>
+	</levelTenEndScreen>
+	<levelElevenInfoScreen>
+		<info> This is the info displayed on the eleventh info screen </info>
+		<image>media/infoScreen/infoScreenElevenImage.png </image>
+	</levelElevenInfoScreen>
+	<levelElevenEndScreen>
+		<info> Congratulation on beating Level 11! </info>
+		<image>media/endScreen/endScreenElevenImage.png </image>
+	</levelElevenEndScreen>
+	<levelTwelveInfoScreen>
+		<info> This is the info displayed on the twelfth info screen </info>
+		<image>media/infoScreen/infoScreenTwelveImage.png </image>
+	</levelTwelveInfoScreen>
+	<levelTwelveEndScreen>
+		<info> Congratulation on beating Level 12! </info>
+		<image>media/endScreen/endScreenTwelveImage.png </image>
+	</levelTwelveEndScreen>
+	<levelThirteenInfoScreen>
+		<info> This is the info displayed on the thirteenth info screen </info>
+		<image>media/infoScreen/infoScreenThirteenImage.png </image>
+	</levelThirteenInfoScreen>
+	<levelThirteenEndScreen>
+		<info> Congratulation on beating Level 13! </info>
+		<image>media/endScreen/endScreenThirteenImage.png </image>
+	</levelThirteenEndScreen>
+	<levelFourteenInfoScreen>
+		<info> This is the info displayed on the fourteenth info screen </info>
+		<image>media/infoScreen/infoScreenFourteenImage.png </image>
+	</levelFourteenInfoScreen>
+	<levelFourteenEndScreen>
+		<info> Congratulation on beating Level 14! </info>
+		<image>media/endScreen/endScreenFourteenImage.png </image>
+	</levelFourteenEndScreen>
+	<levelFifteenInfoScreen>
+		<info> This is the info displayed on the fifteenth info screen </info>
+		<image>media/infoScreen/infoScreenFifteenImage.png </image>
+	</levelFifteenInfoScreen>
+	<levelFifteenEndScreen>
+		<info> Congratulation on beating Level 15! </info>
+		<image>media/endScreen/endScreenFifteenImage.png </image>
+	</levelFifteenEndScreen>
 	<restartButton>
 		<buttonText>
 			<restart>Restart</restart>

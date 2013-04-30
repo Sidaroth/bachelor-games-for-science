@@ -106,8 +106,10 @@ EntityPendulum = ig.Box2DEntity.extend({
 			var weldDef = new b2.RevoluteJointDef();
 			
 			
-			var settings = {density: 1, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower};
-			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
+			var settings = {density: 100, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower};
+			this.magnet = ig.game.spawnEntity( EntityMagnet, this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
+
+			//this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
 			//this.magnet = new EntityMagnet( 0, 0, settings );
     		weldDef.body1 = this.body;
     		weldDef.body2 = this.magnet.body;
