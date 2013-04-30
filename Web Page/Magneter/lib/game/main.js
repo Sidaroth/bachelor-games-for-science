@@ -120,8 +120,7 @@ MyGame = ig.Box2DGame.extend(
 	upArrow: null,
 	downArrow: null,
 	particles: false,
-	particleOne: null,
-	particleTwo: null,
+	particle: [null, null],
 	killParticleOne: false,
 	
 	//array with all levels
@@ -506,28 +505,51 @@ MyGame = ig.Box2DGame.extend(
 			}
 		if(this.particles)
 		{
+			for(var i = 0; i < this.particle.length; i++)
+			{
+				if(this.particle[i] !== null)
+				{
+					player = ig.game.getEntitiesByType(EntityPlayer);
+
+					var distanceVec = 
+					{
+						x: player[0].pos.x + player[0].size.x/2 - (this.particle[i].pos.x + (this.particle[i].size.x / 2)),
+						y: player[0].pos.y + player[0].size.y/2 - (this.particle[i].pos.y + (this.particle[i].size.y / 2))
+					}
+			
+					var distanceToPlayer = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
+					if(distanceToPlayer <= player[0].size.x/2 + 3)
+					{
+						this.particle[i].kill();
+						this.particle[i] = null;
+					}
+				}
+			
+			}
+
+
 			if(this.newParticle.delta() > 0)
 			{
 				if(this.killParticleOne)
 				{
-					if(this.particleOne !== null)
+					if(this.particle[0] !== null)
 					{
-						this.particleOne.kill();
+						this.particle[0].kill();
 					}
 					var settings = {};
-					this.particleOne = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
-					this.newParticle.set(0.5);
+					this.particle[0] = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.25);
 					this.killParticleOne = false;
 				}
 				else
 				{
-					if(this.particleTwo !== null)
+					if(this.particle[1] !== null)
 					{
-						this.particleTwo.kill();
+						this.particle[1].kill();
 					}
 					var settings = {};
-					this.particleTwo = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
-					this.newParticle.set(0.5);
+					this.particle[1] = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.25);
 					this.killParticleOne = true;
 				}
 			}
@@ -563,6 +585,10 @@ MyGame = ig.Box2DGame.extend(
 		this.parent(this.levels[levelKey]);
 
 		this.timeInLevel.reset();
+		this.particle[0] = null;
+		this.particle[1] = null;
+		this.newParticle.reset();
+		this.killParticleOne = false;
 
 		for( var i = 0; i < this.backgroundMaps.length; i++ ) 
 		{

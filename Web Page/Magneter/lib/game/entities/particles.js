@@ -16,6 +16,7 @@ EntityParticles = ig.Box2DEntity.extend({
 
 	animSheet: new ig.AnimationSheet( 'media/particle/particle.png', 4, 4 ),
 	zIndex: 40,
+	player: null,
 
 	init: function( x, y, settings ) 
 	{
@@ -54,6 +55,23 @@ EntityParticles = ig.Box2DEntity.extend({
 	update: function() 
 	{
 		this.parent();
+
+		if(this.pos.x <= 0)
+		{
+			this.kill();
+		}
+		if(this.pos.y <= 0)
+		{
+			this.kill();
+		}
+		if(this.pos.x >= ig.system.widht + ig.game.screen.x)
+		{
+			this.kill();
+		}
+		if(this.pos.y >= ig.system.height + ig.game.screen.y)
+		{
+			this.kill();
+		}
 	},
 
 	ready: function()

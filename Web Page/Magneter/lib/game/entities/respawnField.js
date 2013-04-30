@@ -59,7 +59,14 @@ EntityRespawnField = ig.Entity.extend({
     
     
     check: function( other ) {
-        other.reset();
+        var entitiesLength = ig.game.entities.length;
+        for(var i = 0; i < entitiesLength; i++)
+        {
+            if(ig.game.entities[i].resetable != undefined && ig.game.entities[i].resetable == 1)
+            {
+                ig.game.entities[i].reset();
+            }
+        }
     },
     
     
