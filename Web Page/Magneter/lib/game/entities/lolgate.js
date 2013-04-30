@@ -54,9 +54,9 @@ EntityLolgate = EntityElectromagnet.extend({
 	
 	reset: function() 
 	{
-			this.soundDB['powerOn'].play();
-			this.currentAnim = this.anims['lolgate'];
-			this.isOn = true;			
+		//this.soundDB['powerOn'].play();
+		this.currentAnim = this.anims['lolgate'];
+		this.isOn = true;			
 	}
 });
 });

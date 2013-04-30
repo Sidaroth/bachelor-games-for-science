@@ -93,7 +93,7 @@ EntityRail = ig.Box2DEntity.extend({
 		this.parent();
 		
 		if(this.leader == 'true'){
-			var settings = {density: 0, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower, zIndex: 2};
+			var settings = {density: 0, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower, zIndex: 2, interactive: false};
 			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, settings);
 				
 			var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
