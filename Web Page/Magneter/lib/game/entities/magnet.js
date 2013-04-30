@@ -21,16 +21,17 @@ EntityMagnet = ig.Box2DEntity.extend({
 	//offset: {x: 0, y:0 },
 	zIndex: 2,
 
-	resetable: 0, // by default the magnets will not reset. 
+	resetable: 0, 			// by default the magnets will not reset. 
 
-	interactive: true,
-	fieldRadiusMax: 300,
+	interactive: true,		// If field can be manipulated by user
+	fieldRadiusMax: 300,	
 	fieldRadiusMin: 50,
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
 	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
-	polarity: -1,		// Polarities are represented as (-1, 0, 1)(Attract, Neutral, Repel). 
-	density: 0,
+	polarity: -1,		    // Polarities are represented as (-1, 0, 1)(This will Attract, be neutral, or Repel everything!). 
+	density: 0,				// polarity is used to check for equal polarities for repelling. 
+	timer: null, 
 
 	soundDB: 
 	{
@@ -61,7 +62,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	updateTargetStatus: function()
 	{
-		//console.log("Updating: " + this.targetted);
 		if(this.targetted === false)
 		{
 			this.currentAnim = this.anims['targetted'];
@@ -104,6 +104,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	{
 		this.parent();
 		this.loadObjectsToTest();
+		this.timer = new ig.Timer();
 	},
 	
 	loadObjectsToTest: function()
@@ -123,6 +124,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 			y: ig.input.mouse.y - (this.pos.y + (this.size.y / 2)) + ig.game.screen.y
 		}
 
+		// Dragging / Field Manipulation start
 		var distanceToMouse = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
 		
 		if(distanceToMouse <= this.fieldRadius)
@@ -177,6 +179,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 				{
 					this.drag['state'] = true;
 					this.drag['distance'] = distanceToMouse;
+
+					this.timer.set(0.2);
 				}
 			}
 		}
@@ -197,8 +201,15 @@ EntityMagnet = ig.Box2DEntity.extend({
 		if(this.drag['state'] === true)
 		{
 			this.ringColor['current'] = this.ringColor['targetted'];
-			this.soundDB.resize.play();
 
+
+			if(this.timer.delta() > 0)
+			{
+				this.soundDB.resize.play();
+				this.timer.set(1);
+			}
+
+			// Enlarge the field
 			if(distanceToMouse > this.drag['distance'])
 			{
 				this.fieldRadius += distanceToMouse - this.drag['distance'];
@@ -210,7 +221,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 					this.fieldRadius = this.fieldRadiusMax;
 				}
 			}
-			else if(distanceToMouse < this.drag['distance'])
+			else if(distanceToMouse < this.drag['distance']) // Decrease the size of the field
 			{
 				this.fieldRadius -= this.drag['distance'] - distanceToMouse;
 				this.fieldMagnitude -= 50 * Math.abs(distanceToMouse - this.drag['distance']);
@@ -222,6 +233,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 				}
 			}
 		}
+
+		// Dragging / Field Manipulation end. 
 
 		// loop through all objects that should be tested and apply appropriate force.. 
 		for( var i = 0; i < this.objectsToTest.length; i++ )
