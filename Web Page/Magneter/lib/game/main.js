@@ -120,8 +120,7 @@ MyGame = ig.Box2DGame.extend(
 	upArrow: null,
 	downArrow: null,
 	particles: false,
-	particleOne: null,
-	particleTwo: null,
+	particle: [null, null],
 	killParticleOne: false,
 	
 	//array with all levels
@@ -197,21 +196,21 @@ MyGame = ig.Box2DGame.extend(
 		'Level14Info': 'menuBGSoundtrack',
 		'Level15Info': 'menuBGSoundtrack',
 
-		'Level1End': 'menuBGSoundtrack',
-		'Level2End': 'menuBGSoundtrack',
-		'Level3End': 'menuBGSoundtrack',
-		'Level4End': 'menuBGSoundtrack',
-		'Level5End': 'menuBGSoundtrack',
-		'Level6End': 'menuBGSoundtrack',
-		'Level7End': 'menuBGSoundtrack',
-		'Level8End': 'menuBGSoundtrack',
-		'Level9End': 'menuBGSoundtrack',
-		'Level10End': 'menuBGSoundtrack',
-		'Level11End': 'menuBGSoundtrack',
-		'Level12End': 'menuBGSoundtrack',
-		'Level13End': 'menuBGSoundtrack',
-		'Level14End': 'menuBGSoundtrack',
-		'Level15End': 'menuBGSoundtrack',
+		'Level1End': 'none',
+		'Level2End': 'none',
+		'Level3End': 'none',
+		'Level4End': 'none',
+		'Level5End': 'none',
+		'Level6End': 'none',
+		'Level7End': 'none',
+		'Level8End': 'none',
+		'Level9End': 'none',
+		'Level10End': 'none',
+		'Level11End': 'none',
+		'Level12End': 'none',
+		'Level13End': 'none',
+		'Level14End': 'none',
+		'Level15End': 'none',
 
 		'Level1' : 'level1BGSoundtrack',
 		'Level2' : 'level1BGSoundtrack',
@@ -506,28 +505,51 @@ MyGame = ig.Box2DGame.extend(
 			}
 		if(this.particles)
 		{
+			for(var i = 0; i < this.particle.length; i++)
+			{
+				if(this.particle[i] !== null)
+				{
+					player = ig.game.getEntitiesByType(EntityPlayer);
+
+					var distanceVec = 
+					{
+						x: player[0].pos.x + player[0].size.x/2 - (this.particle[i].pos.x + (this.particle[i].size.x / 2)),
+						y: player[0].pos.y + player[0].size.y/2 - (this.particle[i].pos.y + (this.particle[i].size.y / 2))
+					}
+			
+					var distanceToPlayer = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
+					if(distanceToPlayer <= player[0].size.x/2 + 3)
+					{
+						this.particle[i].kill();
+						this.particle[i] = null;
+					}
+				}
+			
+			}
+
+
 			if(this.newParticle.delta() > 0)
 			{
 				if(this.killParticleOne)
 				{
-					if(this.particleOne !== null)
+					if(this.particle[0] !== null)
 					{
-						this.particleOne.kill();
+						this.particle[0].kill();
 					}
 					var settings = {};
-					this.particleOne = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
-					this.newParticle.set(0.5);
+					this.particle[0] = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.25);
 					this.killParticleOne = false;
 				}
 				else
 				{
-					if(this.particleTwo !== null)
+					if(this.particle[1] !== null)
 					{
-						this.particleTwo.kill();
+						this.particle[1].kill();
 					}
 					var settings = {};
-					this.particleTwo = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
-					this.newParticle.set(0.5);
+					this.particle[1] = ig.game.spawnEntity(EntityParticles, 0, 0, settings);
+					this.newParticle.set(0.25);
 					this.killParticleOne = true;
 				}
 			}
@@ -563,6 +585,10 @@ MyGame = ig.Box2DGame.extend(
 		this.parent(this.levels[levelKey]);
 
 		this.timeInLevel.reset();
+		this.particle[0] = null;
+		this.particle[1] = null;
+		this.newParticle.reset();
+		this.killParticleOne = false;
 
 		for( var i = 0; i < this.backgroundMaps.length; i++ ) 
 		{
@@ -589,9 +615,6 @@ MyGame = ig.Box2DGame.extend(
 
 		this.closestMagnetToMouse['distance'] = 999999;
 		this.closestMagnetToMouse['magnet'] = null;
-		// console.log(levelKey);
-		// console.log(this.musicDB);
-		// console.log(this.musicDB[levelKey]);
 
 		// If a background music has been specified / is wanted. 
 		if(this.musicDB[levelKey] != 'none')
