@@ -78,6 +78,14 @@ EntityPlayer = ig.Box2DEntity.extend({
 		for (var i = 0; i < magnetsToPush.length; i++) {
 			magnetsToPush[i].objectsToTest.push(this);
 		}
+
+		var eMagnets = ig.game.getEntitiesByType( EntityElectromagnet );
+
+		for(var i = 0; i < eMagnets.length; i++)
+		{
+			eMagnets[i].objectsToTest.push(this);
+		}
+
 		this.pushedToMagnets = true;
 	},
 
