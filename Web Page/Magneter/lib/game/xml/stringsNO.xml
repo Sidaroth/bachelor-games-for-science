@@ -35,7 +35,12 @@ bytte språk til engelsk?
 		</buttons>
 	</mainMenu>
 	<levelOneInfoScreen>
-		<info> Dette er informasjonen for den første info skjermen </info>
+		<info> Velkommen til Magneter!
+Dette er første level, her skal vi bli kjent med magneten.
+Prøv å manipuler ringen rund magneten for å endre styrken.
+Poenget er å bruke magneten til å få ballen i mål!
+Lykke til.
+		</info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
 	<levelOneEndScreen>
@@ -43,7 +48,8 @@ bytte språk til engelsk?
 		<image>media/infoScreen/endScreenOneImage.png </image>
 	</levelOneEndScreen>
 	<levelTwoInfoScreen>
-		<info> Dette er informasjonen for den andre info skjermen </info>
+		<info> Noen ganger så er magnetene en hindring og ikke en venn!  
+		</info>
 		<image>media/infoScreen/infoScreentwoImage.png </image>
 	</levelTwoInfoScreen>
 	<levelTwoEndScreen>
@@ -51,7 +57,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenTwoImage.png </image>
 	</levelTwoEndScreen>
 	<levelThreeInfoScreen>
-		<info> Dette er informasjonen for den tredje info skjermen </info>
+		<info> Nå er du klar for en støre level med mange magneter.
+For å flyte kamera rundt så følg dem hvite pillene med musen.
+		</info>
 		<image>media/infoScreen/infoScreenThreeImage.png </image>
 	</levelThreeInfoScreen>
 	<levelThreeEndScreen>
@@ -59,7 +67,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenThreeImage.png </image>
 	</levelThreeEndScreen>
 	<levelFourInfoScreen>
-		<info> Dette er informasjonen for den fjerde info skjermen </info>
+		<info> Dette er en elektrisk magnet!
+Ved å trykke på den så kan du velge om den skal være av eller på.
+		</info>
 		<image>media/infoScreen/infoScreenFourImage.png </image>
 	</levelFourInfoScreen>
 	<levelFourEndScreen>
@@ -67,7 +77,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenFourImage.png </image>
 	</levelFourEndScreen>
 	<levelFiveInfoScreen>
-		<info> Dette er informasjonen for den femte info skjermen </info>
+		<info> Prøv å bruke styrken på elektromagneten
+sammen med evenen til å skru den av og på.
+		</info>
 		<image>media/infoScreen/infoScreenFiveImage.png </image>
 	</levelFiveInfoScreen>
 	<levelFiveEndScreen>
@@ -75,7 +87,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenFiveImage.png </image>
 	</levelFiveEndScreen>
 	<levelSixInfoScreen>
-		<info> Dette er informasjonen for den sjette info skjermen </info>
+		<info> Prøv å skru av magnetene i riktig rekefølge
+så ballen klatrer opp veggen.
+		</info>
 		<image>media/infoScreen/infoScreenSixImage.png </image>
 	</levelSixInfoScreen>
 	<levelSixEndScreen>
@@ -83,7 +97,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenSixImage.png </image>
 	</levelSixEndScreen>
 	<levelSevenInfoScreen>
-		<info> Dette er informasjonen for den syvende info skjermen </info>
+		<info> Dette er en Motorisert magnet på skinner.
+Bruk den for å flytte ballen over grøfta.
+		</info>
 		<image>media/infoScreen/infoScreenSevenImage.png </image>
 	</levelSevenInfoScreen>
 	<levelSevenEndScreen>
@@ -91,7 +107,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
 	<levelEightInfoScreen>
-		<info> Dette er informasjonen for den åttende info skjermen </info>
+		<info> Dette er en knapp, ballen vil trykke på den om den ruller over.
+Knapper skrur av eller på magneter.			
+		</info>
 		<image>media/infoScreen/infoScreenEightImage.png </image>
 	</levelEightInfoScreen>
 	<levelEightEndScreen>
@@ -99,7 +117,8 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenEightImage.png </image>
 	</levelEightEndScreen>
 	<levelNineInfoScreen>
-		<info> Dette er informasjonen for den niende info skjermen </info>
+		<info> Ikke la ballen rulle over knappen så porten faller ned.
+		</info>
 		<image>media/infoScreen/infoScreenNineImage.png </image>
 	</levelNineInfoScreen>
 	<levelNineEndScreen>
@@ -107,7 +126,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenNineImage.png </image>
 	</levelNineEndScreen>
 	<levelTenInfoScreen>
-		<info> Dette er informasjonen for den tiende info skjermen </info>
+		<info> Magneter dytter bort hvarandre.
+og husk, knapper skrur også av magneter.
+		</info>
 		<image>media/infoScreen/infoScreenTenImage.png </image>
 	</levelTenInfoScreen>
 	<levelTenEndScreen>
@@ -115,7 +136,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenTenImage.png </image>
 	</levelTenEndScreen>
 	<levelElevenInfoScreen>
-		<info> Dette er informasjonen for den elevte info skjermen </info>
+		<info> Denne levelen har mange forskjelige hindringer.
+Lykke til!
+		</info>
 		<image>media/infoScreen/infoScreenElevenImage.png </image>
 	</levelElevenInfoScreen>
 	<levelElevenEndScreen>
@@ -123,7 +146,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenElevenImage.png </image>
 	</levelElevenEndScreen>
 	<levelTwelveInfoScreen>
-		<info> Dette er informasjonen for den tolvte info skjermen </info>
+		<info> Bruk elektromagnetene til å flytte deg fra
+motorisert magnet til neste motorisert magnet.
+		</info>
 		<image>media/infoScreen/infoScreenTwelveImage.png </image>
 	</levelTwelveInfoScreen>
 	<levelTwelveEndScreen>
@@ -131,7 +156,8 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenTwelveImage.png </image>
 	</levelTwelveEndScreen>
 	<levelThirteenInfoScreen>
-		<info> Dette er informasjonen for den trettende info skjermen </info>
+		<info> Nå starter dem avangserte levelene!
+		</info>
 		<image>media/infoScreen/infoScreenThirteenImage.png </image>
 	</levelThirteenInfoScreen>
 	<levelThirteenEndScreen>
@@ -139,7 +165,9 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenThirteenImage.png </image>
 	</levelThirteenEndScreen>
 	<levelFourteenInfoScreen>
-		<info> Dette er informasjonen for den fjortende info skjermen </info>
+		<info> Denne er et pendulum, det vil si den svinger fra side til side.
+Prøv å bruke den for å komme over hullet.
+		</info>
 		<image>media/infoScreen/infoScreenFourteenImage.png </image>
 	</levelFourteenInfoScreen>
 	<levelFourteenEndScreen>
@@ -147,7 +175,10 @@ bytte språk til engelsk?
 		<image>media/endScreen/endScreenFourteenImage.png </image>
 	</levelFourteenEndScreen>
 	<levelFifteenInfoScreen>
-		<info> Dette er informasjonen for den femtende info skjermen </info>
+		<info> Har du kommet helt hitt?
+Bra jobbet, men du kommer ikke lengre!
+Advarsel: VANSKELIG!
+		</info>
 		<image>media/infoScreen/infoScreenFifteenImage.png </image>
 	</levelFifteenInfoScreen>
 	<levelFifteenEndScreen>

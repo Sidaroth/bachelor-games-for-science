@@ -35,7 +35,12 @@ the language to Norwegian?
 		</buttons>
 	</mainMenu>
 	<levelOneInfoScreen>
-		<info> This is the info displayed on the first info screen </info>
+		<info> Welcome to Magneter!
+This is the first level, here we introduce the magnet.
+Try draging the circle around the magnet to change its power.
+The point of the game is to use the magnets to navigate the ball to the goal.
+Good Luck!
+		</info>
 		<image>media/infoScreen/infoScreenOneImage.png </image>
 	</levelOneInfoScreen>
 	<levelOneEndScreen>
@@ -43,7 +48,8 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenOneImage.png </image>
 	</levelOneEndScreen>
 	<levelTwoInfoScreen>
-		<info> This is the info displayed on the second info screen </info>
+		<info> Some times the magnets are there to hinder and not help!
+		</info>
 		<image>media/infoScreen/infoScreentwoImage.png </image>
 	</levelTwoInfoScreen>
 	<levelTwoEndScreen>
@@ -51,7 +57,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenTwoImage.png </image>
 	</levelTwoEndScreen>
 	<levelThreeInfoScreen>
-		<info> This is the info displayed on the thirth info screen </info>
+		<info> Now you are ready for a big level, more magnets more fun!
+Try following the white arrows to move the camera.
+		</info>
 		<image>media/infoScreen/infoScreenThreeImage.png </image>
 	</levelThreeInfoScreen>
 	<levelThreeEndScreen>
@@ -59,7 +67,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenThreeImage.png </image>
 	</levelThreeEndScreen>
 	<levelFourInfoScreen>
-		<info> This is the info displayed on the Fourth info screen </info>
+		<info> This is an Electric magnet!
+By pressing it you can turn it on or off.
+		</info>
 		<image>media/infoScreen/infoScreenFourImage.png </image>
 	</levelFourInfoScreen>
 	<levelFourEndScreen>
@@ -67,7 +77,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenFourImage.png </image>
 	</levelFourEndScreen>
 	<levelFiveInfoScreen>
-		<info> This is the info displayed on the fifth info screen </info>
+		<info> Try combining, turning the electric magnet on or off,
+and changing its power to navigate levels.
+		</info>
 		<image>media/infoScreen/infoScreenFiveImage.png </image>
 	</levelFiveInfoScreen>
 	<levelFiveEndScreen>
@@ -75,7 +87,8 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenFiveImage.png </image>
 	</levelFiveEndScreen>
 	<levelSixInfoScreen>
-		<info> This is the info displayed on the sixth info screen </info>
+		<info> Turn the Magnets off in the right pathern to navigate the wall.
+		</info>
 		<image>media/infoScreen/infoScreenSixImage.png </image>
 	</levelSixInfoScreen>
 	<levelSixEndScreen>
@@ -83,7 +96,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenSixImage.png </image>
 	</levelSixEndScreen>
 	<levelSevenInfoScreen>
-		<info> This is the info displayed on the seventh info screen </info>
+		<info> This is an Motorized Electric magnet on a rail.
+Use it to move the ball over the chasm.
+		</info>
 		<image>media/infoScreen/infoScreenSevenImage.png </image>
 	</levelSevenInfoScreen>
 	<levelSevenEndScreen>
@@ -91,7 +106,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
 	<levelEightInfoScreen>
-		<info> This is the info displayed on the eight info screen </info>
+		<info> This is a button, the ball activates when it rolles over it.
+The button turns a magnet on or off.
+		</info>
 		<image>media/infoScreen/infoScreenEightImage.png </image>
 	</levelEightInfoScreen>
 	<levelEightEndScreen>
@@ -99,7 +116,8 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenEightImage.png </image>
 	</levelEightEndScreen>
 	<levelNineInfoScreen>
-		<info> This is the info displayed on the nine info screen </info>
+		<info> Dont let the ball roll over the button so the gate closes!
+		</info>
 		<image>media/infoScreen/infoScreenNineImage.png </image>
 	</levelNineInfoScreen>
 	<levelNineEndScreen>
@@ -107,7 +125,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenNineImage.png </image>
 	</levelNineEndScreen>
 	<levelTenInfoScreen>
-		<info> This is the info displayed on the ten info screen </info>
+		<info> Magnets repel each other.
+And dont forget, the button also turns off magnets.
+		</info>
 		<image>media/infoScreen/infoScreenTenImage.png </image>
 	</levelTenInfoScreen>
 	<levelTenEndScreen>
@@ -115,7 +135,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenTenImage.png </image>
 	</levelTenEndScreen>
 	<levelElevenInfoScreen>
-		<info> This is the info displayed on the eleventh info screen </info>
+		<info> Lots of different obsticals on this level.
+Good Luck!
+		</info>
 		<image>media/infoScreen/infoScreenElevenImage.png </image>
 	</levelElevenInfoScreen>
 	<levelElevenEndScreen>
@@ -123,7 +145,8 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenElevenImage.png </image>
 	</levelElevenEndScreen>
 	<levelTwelveInfoScreen>
-		<info> This is the info displayed on the twelfth info screen </info>
+		<info> Use the Electro magnets to move from rail too rail.
+		</info>
 		<image>media/infoScreen/infoScreenTwelveImage.png </image>
 	</levelTwelveInfoScreen>
 	<levelTwelveEndScreen>
@@ -131,7 +154,8 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenTwelveImage.png </image>
 	</levelTwelveEndScreen>
 	<levelThirteenInfoScreen>
-		<info> This is the info displayed on the thirteenth info screen </info>
+		<info> Now the advance levels start!
+		</info>
 		<image>media/infoScreen/infoScreenThirteenImage.png </image>
 	</levelThirteenInfoScreen>
 	<levelThirteenEndScreen>
@@ -139,7 +163,9 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenThirteenImage.png </image>
 	</levelThirteenEndScreen>
 	<levelFourteenInfoScreen>
-		<info> This is the info displayed on the fourteenth info screen </info>
+		<info> This is an pendulum, that means it will swing from side to side.
+Try using it to cross the chasm.
+		</info>
 		<image>media/infoScreen/infoScreenFourteenImage.png </image>
 	</levelFourteenInfoScreen>
 	<levelFourteenEndScreen>
@@ -147,7 +173,11 @@ the language to Norwegian?
 		<image>media/endScreen/endScreenFourteenImage.png </image>
 	</levelFourteenEndScreen>
 	<levelFifteenInfoScreen>
-		<info> This is the info displayed on the fifteenth info screen </info>
+		<info> Have you really made it all the way here?
+Good job! 
+But im sorry, this is as far as you will make it!
+Warning: Hard!
+		</info>
 		<image>media/infoScreen/infoScreenFifteenImage.png </image>
 	</levelFifteenInfoScreen>
 	<levelFifteenEndScreen>
