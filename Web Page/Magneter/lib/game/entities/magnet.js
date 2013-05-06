@@ -82,7 +82,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 		this.addAnim( 'targetted', 1, [1]);
 		this.currentAnim = this.anims['idle'];
 
-		if( !ig.global.wm )
+		if( !ig.global.wm ) // Not in the level editor
 		{
 			var shapeDef = new b2.PolygonDef();
 			shapeDef.SetAsBox(
