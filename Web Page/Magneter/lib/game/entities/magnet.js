@@ -17,7 +17,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 
-	size: {x: 50, y: 50},
+	size: {x: 64, y: 64},
 	//offset: {x: 0, y:0 },
 	zIndex: 2,
 
@@ -53,7 +53,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	objectsToTest: [], // Any object added here will be tested and affected by magnetism. 
 
-	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 50, 50),
+	animSheet: new ig.AnimationSheet( 'media/magnets/magnets.png', 64, 64),
 	player: null,
 	gate: null,
 

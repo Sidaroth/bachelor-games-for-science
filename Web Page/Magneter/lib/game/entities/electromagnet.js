@@ -24,6 +24,7 @@ EntityElectromagnet = EntityMagnet.extend({
 			'powerOff': new ig.Sound( 'media/sound/MagnetHum2.*' ),
 			resize: new ig.Sound( 'media/sound/MagnetPulse2.*' )
 		},
+	animSheet: new ig.AnimationSheet( 'media/electro_magnets/electro_magnets.png', 64, 64),
 	
 	init: function( x, y, settings )
 	{
