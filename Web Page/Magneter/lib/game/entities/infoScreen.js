@@ -23,7 +23,7 @@ ig.module(
 		infoScreen: true,
 		zIndex: 2,
 		
-		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 832, 640 ),
 		
 		init: function( x, y, settings ) 
 		{

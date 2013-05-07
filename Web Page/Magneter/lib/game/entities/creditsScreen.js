@@ -43,8 +43,6 @@ ig.module(
 		{
 			this.pageTitle = ig.game.xml.loadTextFromXML( 'game>creditsPage>title', 0, this.xmlDocument);
 			this.pageContent = ig.game.xml.loadTextFromXML( 'game>creditsPage>content', 0, this.xmlDocument);
-
-			console.log(this.pageContent);
 		},
 
 		update: function()

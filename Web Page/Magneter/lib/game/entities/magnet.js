@@ -29,6 +29,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
 	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
+	fieldMagnitudeMin: 10000,
+	fieldMagnitudeMax: 10000,
 	polarity: -1,		    // Polarities are represented as (-1, 0, 1)(This will Attract, be neutral, or Repel everything!). 
 	density: 0,				// polarity is used to check for equal polarities for repelling. 
 	timer: new ig.Timer(), 
@@ -81,6 +83,9 @@ EntityMagnet = ig.Box2DEntity.extend({
 		this.addAnim( 'idle', 1, [0] );
 		this.addAnim( 'targetted', 1, [1]);
 		this.currentAnim = this.anims['idle'];
+
+		this.fieldMagnitudeMin = this.fieldMagnitude - (50 * (this.fieldRadius - this.fieldRadiusMin));
+		this.fieldMagnitudeMax = this.fieldMagnitude + (50 * (this.fieldRadiusMax - this.fieldRadius));
 
 		if( !ig.global.wm ) // Not in the level editor
 		{
@@ -207,6 +212,8 @@ EntityMagnet = ig.Box2DEntity.extend({
 				this.timer.set(1);
 			}
 
+			console.log(this.fieldMagnitude);
+
 			// Enlarge the field
 			if(distanceToMouse > this.drag['distance'])
 			{
@@ -218,6 +225,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 				{
 					this.fieldRadius = this.fieldRadiusMax;
 				}
+
+				if(this.fieldMagnitude > this.fieldMagnitudeMax)
+				{
+					this.fieldMagnitude = this.fieldMagnitudeMax;
+				}
 			}
 			else if(distanceToMouse < this.drag['distance']) // Decrease the size of the field
 			{
@@ -228,6 +240,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 				if(this.fieldRadius < this.fieldRadiusMin)
 				{
 					this.fieldRadius = this.fieldRadiusMin;
+				}
+
+				if(this.fieldMagnitude < this.fieldMagnitudeMin)
+				{
+					this.fieldMagnitude = this.fieldMagnitudeMin;
 				}
 			}
 		}
