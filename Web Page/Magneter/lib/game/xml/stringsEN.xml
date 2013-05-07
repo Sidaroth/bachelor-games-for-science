@@ -8,13 +8,13 @@
 		<image>media/popUpMessage/popUpMessageImage.png </image>
 	</popUpMessageTemp>
 	<shield>
-		<yes> Yes </yes>
-		<no> No </no>
+		<yes> Ja / Yes </yes>
+		<no> Nei / No </no>
 	</shield>
 	<mainMenu>
 		<title> Magnets </title>
-		<language> Do you want to change
-the language to Norwegian?
+		<language> Vil du bytte
+språket til norsk?
 		</language>
 		<buttons>
 			<button> one </button>

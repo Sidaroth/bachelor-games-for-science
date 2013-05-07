@@ -14,7 +14,7 @@ ig.module(
 
 		zIndex: 2,
 
-		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 832, 640 ),
 
 		pageTitle: "",
 		pageContent: "",

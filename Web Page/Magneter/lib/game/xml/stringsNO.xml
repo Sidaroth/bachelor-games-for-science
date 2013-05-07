@@ -8,13 +8,13 @@
 		<image>media/popUpMessage/popUpMessageImage.png </image>
 	</popUpMessageTemp>
 	<shield>
-		<yes> Ja / Yes </yes>
-		<no> Nei / No </no>
+		<yes> Yes / Ja </yes>
+		<no> No / Nei </no>
 	</shield>
 	<mainMenu>
 		<title> Magneter </title>
-		<language> Are you sure you want to swap language
-			to english?
+		<language> Are you sure you want to swap
+language to english?
 		</language>
 		<buttons>
 			<button> en </button>
