@@ -68,6 +68,7 @@ ig.module(
 	'game.levels.level15',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
+	'game.levels.credits',
 	
 	// Endscreens
 	'game.levels.level1End',
@@ -173,12 +174,15 @@ MyGame = ig.Box2DGame.extend(
 		'Level12' : LevelLevel12,
 		'Level13' : LevelLevel13,
 		'Level14' : LevelLevel14,
-		'Level15' : LevelLevel15
+		'Level15' : LevelLevel15,
+
+		'Credits' : LevelCredits
 	},
 
 	// Which background music should be played for which level (screen)
 	musicDB: {
 		'SplashScreen': 'none',
+		'Credits' : 'menuBGSoundtrack',
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level2Info': 'menuBGSoundtrack',
@@ -265,6 +269,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level15End': false,
 
 		'MainMenu' : false,
+		'Credits' : false,
 		'Level1': true,
 		'Level2' : true,
 		'Level3' : true,
@@ -286,7 +291,7 @@ MyGame = ig.Box2DGame.extend(
 	closestMagnetToMouse: 
 	{
 		'magnet': null,
-		'distance': 999999,
+		'distance': 999999
 	},
 
 	//true and false for levels unlocked, see save.xml for details
@@ -346,7 +351,8 @@ MyGame = ig.Box2DGame.extend(
 
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
-		if(userId == 0){
+		if(userId == 0)
+		{
 			this.loadLevel( "SplashScreen", true );
 		}
 		// this.debugDrawer = new ig.Box2DDebug( ig.world );
@@ -561,6 +567,7 @@ MyGame = ig.Box2DGame.extend(
 	// represents if it's an ingame screen, or something like a menu. 
 	loadLevel: function(levelKey, gameScreen) 
 	{
+
 		if(this.leftArrow != null)
 		{
 			this.leftArrow.kill();

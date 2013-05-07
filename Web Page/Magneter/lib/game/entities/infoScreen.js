@@ -49,6 +49,12 @@ ig.module(
 			}
 		},
 
+		ready: function()
+	    {
+		// 	this.message = ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
+		// 	this.image = new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
+		},
+
 		update: function() 
 		{
 			this.parent();

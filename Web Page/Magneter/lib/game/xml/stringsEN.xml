@@ -37,7 +37,7 @@ the language to Norwegian?
 	<levelOneInfoScreen>
 		<info> Welcome to Magneter!
 This is the first level, here we introduce the magnet.
-Try draging the circle around the magnet to change its power.
+Try dragging the circle around the magnet to change its power and reach.
 The point of the game is to use the magnets to navigate the ball to the goal.
 Good Luck!
 		</info>
@@ -48,7 +48,7 @@ Good Luck!
 		<image>media/endScreen/endScreenOneImage.png </image>
 	</levelOneEndScreen>
 	<levelTwoInfoScreen>
-		<info> Some times the magnets are there to hinder and not help!
+		<info> Sometimes the magnets are there to hinder you and not to help you!
 		</info>
 		<image>media/infoScreen/infoScreentwoImage.png </image>
 	</levelTwoInfoScreen>
@@ -57,7 +57,7 @@ Good Luck!
 		<image>media/endScreen/endScreenTwoImage.png </image>
 	</levelTwoEndScreen>
 	<levelThreeInfoScreen>
-		<info> Now you are ready for a big level, more magnets more fun!
+		<info> Now you are ready for a big level, more magnets, more fun!
 Try following the white arrows to move the camera.
 		</info>
 		<image>media/infoScreen/infoScreenThreeImage.png </image>
@@ -67,7 +67,7 @@ Try following the white arrows to move the camera.
 		<image>media/endScreen/endScreenThreeImage.png </image>
 	</levelThreeEndScreen>
 	<levelFourInfoScreen>
-		<info> This is an Electric magnet!
+		<info> This is an Electriomagnet!
 By pressing it you can turn it on or off.
 		</info>
 		<image>media/infoScreen/infoScreenFourImage.png </image>
@@ -77,7 +77,7 @@ By pressing it you can turn it on or off.
 		<image>media/endScreen/endScreenFourImage.png </image>
 	</levelFourEndScreen>
 	<levelFiveInfoScreen>
-		<info> Try combining, turning the electric magnet on or off,
+		<info> Try combining turning the electromagnet on or off,
 and changing its power to navigate levels.
 		</info>
 		<image>media/infoScreen/infoScreenFiveImage.png </image>
@@ -87,7 +87,7 @@ and changing its power to navigate levels.
 		<image>media/endScreen/endScreenFiveImage.png </image>
 	</levelFiveEndScreen>
 	<levelSixInfoScreen>
-		<info> Turn the Magnets off in the right pathern to navigate the wall.
+		<info> Turn the Magnets off in the right pattern to scale the wall.
 		</info>
 		<image>media/infoScreen/infoScreenSixImage.png </image>
 	</levelSixInfoScreen>
@@ -96,7 +96,7 @@ and changing its power to navigate levels.
 		<image>media/endScreen/endScreenSixImage.png </image>
 	</levelSixEndScreen>
 	<levelSevenInfoScreen>
-		<info> This is an Motorized Electric magnet on a rail.
+		<info> This is an motorized Electromagnet on a rail.
 Use it to move the ball over the chasm.
 		</info>
 		<image>media/infoScreen/infoScreenSevenImage.png </image>
@@ -106,7 +106,7 @@ Use it to move the ball over the chasm.
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
 	<levelEightInfoScreen>
-		<info> This is a button, the ball activates when it rolles over it.
+		<info> This is a button, the ball activates it when it rolls over it.
 The button turns a magnet on or off.
 		</info>
 		<image>media/infoScreen/infoScreenEightImage.png </image>
@@ -125,7 +125,7 @@ The button turns a magnet on or off.
 		<image>media/endScreen/endScreenNineImage.png </image>
 	</levelNineEndScreen>
 	<levelTenInfoScreen>
-		<info> Magnets repel each other.
+		<info> Magnets with the same polarity repel each other.
 And dont forget, the button also turns off magnets.
 		</info>
 		<image>media/infoScreen/infoScreenTenImage.png </image>
@@ -135,7 +135,7 @@ And dont forget, the button also turns off magnets.
 		<image>media/endScreen/endScreenTenImage.png </image>
 	</levelTenEndScreen>
 	<levelElevenInfoScreen>
-		<info> Lots of different obsticals on this level.
+		<info> Lots of different obstacles on this level.
 Good Luck!
 		</info>
 		<image>media/infoScreen/infoScreenElevenImage.png </image>
@@ -145,7 +145,7 @@ Good Luck!
 		<image>media/endScreen/endScreenElevenImage.png </image>
 	</levelElevenEndScreen>
 	<levelTwelveInfoScreen>
-		<info> Use the Electro magnets to move from rail too rail.
+		<info> Use the Electro magnets to move from rail to rail.
 		</info>
 		<image>media/infoScreen/infoScreenTwelveImage.png </image>
 	</levelTwelveInfoScreen>
@@ -154,7 +154,7 @@ Good Luck!
 		<image>media/endScreen/endScreenTwelveImage.png </image>
 	</levelTwelveEndScreen>
 	<levelThirteenInfoScreen>
-		<info> Now the advance levels start!
+		<info> Now the advanced levels start!
 		</info>
 		<image>media/infoScreen/infoScreenThirteenImage.png </image>
 	</levelThirteenInfoScreen>
@@ -163,7 +163,7 @@ Good Luck!
 		<image>media/endScreen/endScreenThirteenImage.png </image>
 	</levelThirteenEndScreen>
 	<levelFourteenInfoScreen>
-		<info> This is an pendulum, that means it will swing from side to side.
+		<info> This is a pendulum, that means it will swing from side to side.
 Try using it to cross the chasm.
 		</info>
 		<image>media/infoScreen/infoScreenFourteenImage.png </image>
@@ -181,7 +181,9 @@ Warning: Hard!
 		<image>media/infoScreen/infoScreenFifteenImage.png </image>
 	</levelFifteenInfoScreen>
 	<levelFifteenEndScreen>
-		<info> Congratulation on beating Level 15! </info>
+		<info> Congratulation on beating Level 15! 
+			This was the last level of the game, congratulations, you beat it!
+			Thank you very much for playing our game.</info>
 		<image>media/endScreen/endScreenFifteenImage.png </image>
 	</levelFifteenEndScreen>
 	<restartButton>
@@ -194,4 +196,28 @@ Warning: Hard!
 		<buttonText>Menu</buttonText>
 		<shieldText>Return to the main menu?</shieldText>
 	</menuButton>
+	<creditsButton>
+		<buttonText>Credits</buttonText>
+	</creditsButton>
+	<creditsPage>
+		<title>Credits</title>
+		<content>
+			Code and Production:
+			Øyvind Nordli
+			Christian Holt
+			Morten Møller Andersen
+			Christian Stokkebekk
+
+			Sound:
+			Martin Kvale
+			Stefan Hedberg
+
+			Graphics:
+			Eivind Eriksrud
+
+			
+			Press enter or Click with mouse
+			to return to the main menu
+		</content>
+	</creditsPage>
 </game>
