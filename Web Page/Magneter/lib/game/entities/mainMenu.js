@@ -21,7 +21,7 @@ ig.module(
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		nextScreen: null,
 		size: {x:800, y:640},
-		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 832, 640 ),
 		buttons: null,
 		//button selcted in menu
 		selectedButton: 0,

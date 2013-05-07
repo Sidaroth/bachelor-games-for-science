@@ -8,13 +8,13 @@
 		<image>media/popUpMessage/popUpMessageImage.png </image>
 	</popUpMessageTemp>
 	<shield>
-		<yes> Yes </yes>
-		<no> No </no>
+		<yes> Ja / Yes </yes>
+		<no> Nei / No </no>
 	</shield>
 	<mainMenu>
 		<title> Magnets </title>
-		<language> Do you want to change
-the language to Norwegian?
+		<language> Vil du bytte
+språket til norsk?
 		</language>
 		<buttons>
 			<button> one </button>
@@ -202,22 +202,22 @@ Warning: Hard!
 	<creditsPage>
 		<title>Credits</title>
 		<content>
-			Code and Production:
-			Øyvind Nordli
-			Christian Holt
-			Morten Møller Andersen
-			Christian Stokkebekk
+Code and Production:
+Øyvind Nordli
+Christian Holt
+Morten Møller Andersen
+Christian Stokkebekk
 
-			Sound:
-			Martin Kvale
-			Stefan Hedberg
+Sound:
+Martin Kvale
+Stefan Hedberg
 
-			Graphics:
-			Eivind Eriksrud
+Graphics:
+Eivind Eriksrud
 
-			
-			Press enter or Click with mouse
-			to return to the main menu
+
+Press enter or Click with mouse
+to return to the main menu
 		</content>
 	</creditsPage>
 </game>

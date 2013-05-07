@@ -8,13 +8,13 @@
 		<image>media/popUpMessage/popUpMessageImage.png </image>
 	</popUpMessageTemp>
 	<shield>
-		<yes> Ja / Yes </yes>
-		<no> Nei / No </no>
+		<yes> Yes / Ja </yes>
+		<no> No / Nei </no>
 	</shield>
 	<mainMenu>
 		<title> Magneter </title>
-		<language> Are you sure you want to swap language
-			to english?
+		<language> Are you sure you want to swap
+language to english?
 		</language>
 		<buttons>
 			<button> en </button>
@@ -203,22 +203,22 @@ Advarsel: VANSKELIG!
 	<creditsPage>
 		<title>Credits</title>
 		<content>
-			Kode og Produksjon:
-			Øyvind Nordli
-			Christian Holt
-			Morten Møller Andersen
-			Christian Stokkebekk
+Kode og Produksjon:
+Øyvind Nordli
+Christian Holt
+Morten Møller Andersen
+Christian Stokkebekk
 
-			Lyd:
-			Martin Kvale
-			Stefan Hedberg
+Lyd:
+Martin Kvale
+Stefan Hedberg
 
-			Grafikk:
-			Eivind Eriksrud
+Grafikk:
+Eivind Eriksrud
 
 
-			Trykk enter eller klikk med musen
-			for å gå tilbake til hovedmenyen.
+Trykk enter eller klikk med musen
+for å gå tilbake til hovedmenyen.
 		</content>
 	</creditsPage>
 </game>

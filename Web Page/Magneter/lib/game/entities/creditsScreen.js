@@ -14,7 +14,7 @@ ig.module(
 
 		zIndex: 2,
 
-		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 832, 640 ),
 
 		pageTitle: "",
 		pageContent: "",
@@ -43,8 +43,6 @@ ig.module(
 		{
 			this.pageTitle = ig.game.xml.loadTextFromXML( 'game>creditsPage>title', 0, this.xmlDocument);
 			this.pageContent = ig.game.xml.loadTextFromXML( 'game>creditsPage>content', 0, this.xmlDocument);
-
-			console.log(this.pageContent);
 		},
 
 		update: function()
