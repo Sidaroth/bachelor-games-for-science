@@ -29,9 +29,7 @@ EntityRestartButton = ig.Entity.extend(
 	size: {x: 100, y: 50},
 
 	lastPos: {x: 0, y:0 },
-
-	player: null,
-
+	
 	animSheet: new ig.AnimationSheet( 'media/menu/smallButton.png', 100, 50 ),
 
 	init: function(x, y, settings)
@@ -47,9 +45,9 @@ EntityRestartButton = ig.Entity.extend(
 		this.pos.y = 0;
 	},
 
+	// loads the appropriate text depending on language
 	ready: function()
 	{
-		this.player = ig.game.getEntitiesByType( EntityPlayer )[0];
 		this.buttonText['restart'] = ig.game.xml.loadTextFromXML( 'game>restartButton>buttonText>restart', 0, 'lib/game/xml/strings'+ ig.game.language +'.xml');
 		this.buttonText['start'] = ig.game.xml.loadTextFromXML( 'game>restartButton>buttonText>start', 0, 'lib/game/xml/strings'+ ig.game.language +'.xml');
 	},
@@ -83,6 +81,7 @@ EntityRestartButton = ig.Entity.extend(
 			this.currentAnim = this.anims['standard'];
 		}
 
+		// Follow the screen if the camera is moved. 
 		if(ig.game.screen.x != this.lastPos.x)
 		{
 			this.lastPos.x = ig.game.screen.x;
@@ -94,7 +93,6 @@ EntityRestartButton = ig.Entity.extend(
 			this.lastPos.y = ig.game.screen.y;
 			this.pos.y = ig.game.screen.y;
 		}
-
 	},
 	
 	draw: function() 

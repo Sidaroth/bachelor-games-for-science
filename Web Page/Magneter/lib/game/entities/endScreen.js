@@ -6,6 +6,7 @@ ig.module(
 )
 .defines(function()
 {
+	// The entity that handles everything that has to do with the endscreens that show up when you beat the level. 
 	EntityEndScreen = ig.Entity.extend(
 	{
 		font: new ig.Font( 'media/calibri-16pt.png' ),
@@ -54,26 +55,25 @@ ig.module(
 			}
 		},
 
+		// loads the assets...
 		ready: function()
 		{
-			//this.soundDB.levelCleared.volume = ig.game.defaultSoundLevel;
 			this.soundDB.levelCleared.play();
+
+			if(this.messageName != "")
+			{
+				this.message = ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
+			}
+
+			if(this.imageName != "")
+			{
+				this.image = new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
+			}
 		},
 
 		update: function() 
 		{
 			this.parent();
-
-			if(this.messageName != "" && this.message == "")
-			{
-				this.message =  ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
-			}
-
-			if(this.imageName != "" && this.image == null)
-			{
-				this.image =  new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
-				//console.log(this.image);
-			}
 
 			if( ig.input.pressed('enter') || ig.input.pressed('mouse1') && this.nextScreen != null) 
 			{

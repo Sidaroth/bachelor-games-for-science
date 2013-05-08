@@ -7,14 +7,13 @@ ig.module(
 )
 .defines(function()
 {
+	// The entity that handles language switching and the language flag interactions. 
 	EntityLanguage = ig.Entity.extend(
 	{
 		soundDB: {"errorSound": new ig.Sound("media/sound/errorSound.*")},
 		nextScreen: null,
 		size: {x:64, y:64},
-		// _wmDrawBox: true,
-		// _wmDrawColor: 'rgba(255, 0, 255, 0.7)',
-		// _wmScalable: true,
+
 		flag: "",
 		shield: null,
 		shieldResponse: null,
@@ -47,6 +46,7 @@ ig.module(
 			{
 				if(this.shieldResponse == true)
 				{
+					// change language and log the change. 
 					ig.game.language = this.flag;
 					if(userId > 0)
 					{
@@ -68,6 +68,7 @@ ig.module(
 				this.shield = null;
 			}
 
+			// If click, and on the button, and on a flag that doesn't represent the language already chosen. Create the shield dialogue box. 
 			if(ig.input.pressed('mouse1') && ig.game.language != this.flag)
 			{
 				if(	ig.input.mouse.x >= this.pos.x && ig.input.mouse.x <= (this.pos.x + this.size.x)
@@ -83,7 +84,6 @@ ig.module(
 					this.soundDB["errorSound"].play();
 				}
 			}
-			
 		},
 
 		draw: function()

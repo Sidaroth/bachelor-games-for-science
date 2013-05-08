@@ -11,7 +11,7 @@
 		?>
 		// -->
 	</script>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="lib/game/versiondetection/versiondetection.js"></script>
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>

@@ -7,6 +7,7 @@ ig.module(
 .defines(function()
 {
 
+// The button that brings you to the credits screen. 
 EntityCreditsButton = ig.Entity.extend(
 	{
 	
@@ -67,6 +68,8 @@ EntityCreditsButton = ig.Entity.extend(
 			this.currentAnim = this.anims['standard'];
 		}
 
+
+		// keep the button at the same location at all times. 
 		if(ig.game.screen.x != this.lastPos.x)
 		{
 			this.lastPos.x = ig.game.screen.x;

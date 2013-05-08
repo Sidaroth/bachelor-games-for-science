@@ -6,6 +6,7 @@ ig.module(
 )
 .defines(function()
 {
+	// The entity that handles the credits screen. 
 	EntityCreditsScreen = ig.Entity.extend(
 	{
 		font: new ig.Font( 'media/calibri-16pt.png' ),
@@ -35,10 +36,10 @@ ig.module(
 
 			this.font.draw( this.pageTitle, xCentered, 60, [ig.Font.ALIGN.CENTER]);
 
-			// this.pos.y + (this.size.y / 4)
 			this.font.draw( this.pageContent, xCentered, 150, [ig.Font.ALIGN.CENTER]);
 		},
 
+		// Load the strings from the XML.
 		ready: function()
 		{
 			this.pageTitle = ig.game.xml.loadTextFromXML( 'game>creditsPage>title', 0, this.xmlDocument);

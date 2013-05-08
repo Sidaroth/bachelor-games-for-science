@@ -7,6 +7,7 @@ ig.module(
 )
 .defines(function(){
 
+// An electromagnet entity that is derived from the standard magnet. It can now be turned on or off by the player and / or a switch. 
 EntityElectromagnet = EntityMagnet.extend({
 	// weltmeister 
 	_wmDrawBox: true,
@@ -19,11 +20,12 @@ EntityElectromagnet = EntityMagnet.extend({
 	zIndex: 2,
 	
 	soundDB: 
-		{
-			'powerOn': new ig.Sound( 'media/sound/MagnetHum2.*' ),
-			'powerOff': new ig.Sound( 'media/sound/MagnetHum2.*' ),
-			resize: new ig.Sound( 'media/sound/MagnetPulse2.*' )
-		},
+	{
+		'powerOn': new ig.Sound( 'media/sound/MagnetHum2.*' ),
+		'powerOff': new ig.Sound( 'media/sound/MagnetHum2.*' ),
+		resize: new ig.Sound( 'media/sound/MagnetPulse2.*' )
+	},
+
 	animSheet: new ig.AnimationSheet( 'media/electro_magnets/electro_magnets.png', 50, 50),
 	
 	init: function( x, y, settings )
@@ -39,9 +41,9 @@ EntityElectromagnet = EntityMagnet.extend({
 		//if mouse1 down
 		if (ig.input.pressed('mouse1'))
 		{
-			if(ig.input.mouse.x + ig.game.screen.x >= this.pos.x && ig.input.mouse.x + ig.game.screen.x <= (this.pos.x + this.size.x)
-			&& ig.input.mouse.y + ig.game.screen.y >= this.pos.y && ig.input.mouse.y + ig.game.screen.y <= (this.pos.y + this.size.y)
-			&& this.playerClickable === true)
+			if(this.playerClickable === true
+			&& ig.input.mouse.x + ig.game.screen.x >= this.pos.x && ig.input.mouse.x + ig.game.screen.x <= (this.pos.x + this.size.x)
+			&& ig.input.mouse.y + ig.game.screen.y >= this.pos.y && ig.input.mouse.y + ig.game.screen.y <= (this.pos.y + this.size.y))
 			{
 				this.turnOnOrOff();
 			}
@@ -78,6 +80,7 @@ EntityElectromagnet = EntityMagnet.extend({
 		this.turnOnOrOff();
 	},
 	
+	// Turn the magnet on if it is off, or vice-versa. 
 	turnOnOrOff: function()
 	{
 		if(this.isOn === false)

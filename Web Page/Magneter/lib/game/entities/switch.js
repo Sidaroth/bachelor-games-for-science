@@ -6,11 +6,11 @@ ig.module(
 )
 .defines(function(){
 
+// A switch that triggers when the ball rolls over it. 
 EntitySwitch = ig.Entity.extend({
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(150, 50, 255, 0.5)',
-	//_wmScalable: true,
 	
 	type: ig.Entity.TYPE.A,
 	checkAgainst: ig.Entity.TYPE.A,
@@ -25,9 +25,9 @@ EntitySwitch = ig.Entity.extend({
 	size: {x: 64, y: 32},
 	
 	soundDB: 
-		{
+	{
 			'switchPress': new ig.Sound( 'media/sound/popUpSound.*' )
-		},
+	},
 	
 
 	animSheet: new ig.AnimationSheet( 'media/switch/switch.png', 64, 32),
@@ -47,6 +47,8 @@ EntitySwitch = ig.Entity.extend({
 		this.parent();
 	},
 	
+	// Checks for collisions, sets a timer to delay interaction (so it doesn't trigger many times).
+	// and calls the switchPressed function within the target entity. (Usually a magnet)
 	check: function(other)
 	{
 		if (this.switchTimer.delta() >= 0) {

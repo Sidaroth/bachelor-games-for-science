@@ -7,6 +7,8 @@ ig.module(
 .defines(function()
 {
 
+// Particles that spawn from the mouse and interacts with magnetic fields to simulate iron shavings.
+// giving the player the ability to test out the magnetic fields without using the ball. 
 EntityParticles = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,
@@ -26,8 +28,9 @@ EntityParticles = ig.Box2DEntity.extend({
 
 		this.currentAnim = this.anims['particle'];
 
-		if( !ig.global.wm )
+		if( !ig.global.wm ) // if not in weltmeister (level editor).
 		{
+			// Create the shape for the body. 
 			var shapeDef = new b2.CircleDef();
 			shapeDef.radius = (this.size.x / 2) * b2.SCALE;
 			shapeDef.friction = 1;

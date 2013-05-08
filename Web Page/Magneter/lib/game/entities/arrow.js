@@ -7,6 +7,7 @@ ig.module(
 .defines(function()
 {
 
+// An arrow that represents the fact that you can move the camera to the given direction. 
 EntityArrow = ig.Entity.extend({
 	
 	_wmDrawBox: true,

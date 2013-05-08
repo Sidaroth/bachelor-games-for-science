@@ -8,6 +8,11 @@ ig.module(
 {
 	getXmlString = ig.Entity.extend(
 	{
+		// Retrieves a text string from an XML file. 
+		// Parameters
+		// - label: the path within the xml (i.e game>menu>title) 
+		// - index: the index on the path, usually 0.
+		// - document: Which XML document to parse.
 		loadTextFromXML: function(label, index, document)
 		{
 			var xmlHTTP = new XMLHttpRequest();

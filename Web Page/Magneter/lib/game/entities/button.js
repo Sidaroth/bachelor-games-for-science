@@ -7,6 +7,7 @@ ig.module(
 .defines(function()
 {
 
+// The generic button entity that brings you to the different levels. 
 EntityButton = ig.Entity.extend(
 	{
 
@@ -23,7 +24,7 @@ EntityButton = ig.Entity.extend(
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER,
-	goToLevel: null,
+	goToLevel: null, // Which level to go to next. 
 	buttonText: "",
 
 	gravityFactor: 0,
@@ -48,6 +49,7 @@ EntityButton = ig.Entity.extend(
 		//console.log(this.pos);
 	},
 	
+	// If not highlighted, highlights the button. Or vice-versa. 
 	highlight: function()
 	{
 		if(this.highlighted === false)

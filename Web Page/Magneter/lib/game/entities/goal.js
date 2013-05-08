@@ -6,11 +6,11 @@ ig.module(
 )
 .defines(function(){
 
+// The goal flag entity that brings you to the next level / the main menu when you hit it. 
 EntityGoal = ig.Entity.extend({
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(0, 255, 150, 0.5)',
-	//_wmScalable: true,
 	
 	type: ig.Entity.TYPE.A,
 	checkAgainst: ig.Entity.TYPE.A,
@@ -33,25 +33,6 @@ EntityGoal = ig.Entity.extend({
 		this.addAnim( 'idle', 1, [0] );
 
 		this.currentAnim = this.anims['idle'];
-
-		//this.body.DestroyShape();
-
-
-		if( !ig.global.wm )
-		{
-			// var shapeDef = new b2.PolygonDef();
-			// shapeDef.SetAsBox(
-			//  	this.size.x / 2 * b2.SCALE,
-			// 	this.size.y / 2 * b2.SCALE
-			// );
-
-			// shapeDef.friction = 5;
-			// shapeDef.density = 1;
-			// shapeDef.restitution = 0.5;
-			
-			// this.body.CreateShape( shapeDef );
-			// this.body.SetMassFromShapes();
-		}
 	},	
 
 	update: function() 
@@ -59,10 +40,10 @@ EntityGoal = ig.Entity.extend({
 		this.parent();
 	},
 	
+	// If it is the player (ball) that hit's the flag, the game updates which levels have been unlocked
+	// and starts the new level, or returns the user to the main menu. 
 	check: function(other)
 	{
-		//other.reset();
-		// console.log(other.nam);
 		if(other.name == "player")
 		{
 			ig.game.updateLevel(this.levelToUnlock);
@@ -75,6 +56,7 @@ EntityGoal = ig.Entity.extend({
 				ig.game.loadLevel('MainMenu');
 			}
 		}
+
 		this.killTimer = new ig.Timer(2);	  
 	},
 

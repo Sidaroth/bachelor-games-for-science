@@ -12,7 +12,6 @@ ig.module(
 
 	// Entities
 	'game.entities.arrow',
-	'game.entities.basket',
 	'game.entities.button',
 	'game.entities.electromagnet',
 	'game.entities.gate',
@@ -234,6 +233,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level15': 'menuBGSoundtrack'
 	},
 
+	// Where should logging be performed? 
 	logLevel: {
 		'SplashScreen': false,
 		'Level1Info': false,
@@ -345,7 +345,7 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = 0; //this.defaultSoundLevel;
+		ig.music.volume = this.defaultSoundLevel;
 		ig.music.loop = true;
 
 

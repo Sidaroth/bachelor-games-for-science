@@ -7,6 +7,8 @@ ig.module(
 )
 .defines(function(){
 
+// The start entity. It is an electromagnet that hold the ball in place until it is turned off. 
+// It has a special sprite. 
 EntityLolgate = EntityElectromagnet.extend({
 	// weltmeister 
 	_wmDrawBox: true,
@@ -31,7 +33,6 @@ EntityLolgate = EntityElectromagnet.extend({
 		this.currentAnim = this.anims['lolgate'];		
 	},
 
-	// NEED TO FIX TARGETTING BUGS. 
 	update: function()
 	{
 		this.parent();
@@ -54,7 +55,6 @@ EntityLolgate = EntityElectromagnet.extend({
 	
 	reset: function() 
 	{
-		//this.soundDB['powerOn'].play();
 		this.currentAnim = this.anims['lolgate'];
 		this.isOn = true;			
 	}
