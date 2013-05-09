@@ -69,6 +69,8 @@ EntityPlayer = ig.Box2DEntity.extend({
 	reset: function()
 	{
 		ig.game.spawnEntity(EntityPlayer, this.spawn.x, this.spawn.y, null);
+		ig.game.screen.x = 0;
+		ig.game.screen.y = 0;
 		this.kill();
 	},
 
