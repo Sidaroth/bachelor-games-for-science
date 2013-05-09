@@ -20,7 +20,7 @@ EntityRestartButton = ig.Entity.extend(
 	font: new ig.Font( 'media/calibri-16pt.png' ),
 
 	gravityFactor: 0,
-	zIndex: 1,
+	zIndex: 20,
 
 	buttonText: {	'start': 	"", 
 					'restart': 	""
