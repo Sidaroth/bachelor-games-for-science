@@ -368,11 +368,11 @@ MyGame = ig.Box2DGame.extend(
 			return;
 		}
 
-		// screen follows the player
 		var player = this.getEntitiesByType( EntityPlayer )[0];
 
 		var threshold = 50;
 
+		// Camera movement !
 		if(ig.game.backgroundMaps[0])
 		{
 			if(ig.game.screen.x < ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
@@ -503,12 +503,14 @@ MyGame = ig.Box2DGame.extend(
 			}
 		}			
 		else
+		{
+			if(this.downArrow != null)
 			{
-				if(this.downArrow != null)
-				{
-					this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
-				}
+				this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
 			}
+		}
+
+		// Iron shavings
 		if(this.particles)
 		{
 			for(var i = 0; i < this.particle.length; i++)

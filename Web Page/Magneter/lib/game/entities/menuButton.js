@@ -17,6 +17,7 @@ ig.module(
 		shield: null,
 		shieldResponse: null,
 		lastPos: {x:0, y:0},
+		zIndex: 20,
 		
 		init: function( x, y, settings ) 
 		{
