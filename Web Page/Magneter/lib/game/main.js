@@ -526,7 +526,7 @@ MyGame = ig.Box2DGame.extend(
 					}
 			
 					var distanceToPlayer = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
-					if(distanceToPlayer <= player[0].size.x/2 + 3)
+					if(distanceToPlayer <= player[0].size.x/2 + 3 || this.particle[i].dead)
 					{
 						this.particle[i].kill();
 						this.particle[i] = null;

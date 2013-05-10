@@ -20,6 +20,12 @@ EntityParticles = ig.Box2DEntity.extend({
 	zIndex: 40,
 	player: null,
 
+	type: ig.Entity.TYPE.NONE,
+    checkAgainst: ig.Entity.TYPE.BOTH,
+    collides: ig.Entity.COLLIDES.ACTIVE,
+
+    dead: false,
+
 	init: function( x, y, settings ) 
 	{
 		this.parent(x, y, settings);
@@ -58,28 +64,59 @@ EntityParticles = ig.Box2DEntity.extend({
 	update: function() 
 	{
 		this.parent();
+		var threshold = 30;
 
-		if(this.pos.x <= 0)
+		if(		(this.pos.x < threshold)
+			||	(this.pos.y < threshold)
+			||	(this.pos.x > (ig.system.width + ig.game.screen.x) - threshold)
+			||	(this.pos.y > (ig.system.height + ig.game.screen.y) - threshold))
 		{
-			this.kill();
+			this.dead = true;
+			console.log(this.pos.x);
 		}
-		if(this.pos.y <= 0)
-		{
-			this.kill();
-		}
-		if(this.pos.x >= ig.system.widht + ig.game.screen.x)
-		{
-			this.kill();
-		}
-		if(this.pos.y >= ig.system.height + ig.game.screen.y)
-		{
-			this.kill();
-		}
+
+    	for( var edge = this.body.m_contactList; edge; edge = edge.next ) 
+    	{
+	        // Get the normal vector for this contact
+	        var normal = edge.contact.m_manifold.normal;
+	        
+	        // If the normal vector for this contact is pointing upwards
+	        // (y is less than 0), then this body is "standing" on something
+	        if( normal.x > 0 ){
+			//vector points right
+				this.dead = true;
+			}
+			else if( normal.x < 0 ){
+			//vector points left
+				this.dead = true;
+			}
+			else{
+			//point.x = 0 and thus, no horizontal collision
+			}
+
+			if( normal.y > 0 ){
+			//vector points down
+				this.dead = true;
+			}
+			else if( normal.y < 0 ){
+			//vector points up
+				this.dead = true;
+			}
+			else{
+			//point.y = 0 and thus, no vertical collision
+			}               
+    	}
 	},
 
 	ready: function()
 	{
 		this.parent();
+	},
+
+	check: function(other)
+	{
+		this.parent(other);
+		// this.kill();
 	}
 });
 });
