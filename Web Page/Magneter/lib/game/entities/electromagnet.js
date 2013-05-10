@@ -41,7 +41,7 @@ EntityElectromagnet = EntityMagnet.extend({
 		//if mouse1 down
 		if (ig.input.pressed('mouse1'))
 		{
-			if(this.playerClickable === true
+			if((this.playerClickable === true || this.isOn == "true")
 			&& ig.input.mouse.x + ig.game.screen.x >= this.pos.x && ig.input.mouse.x + ig.game.screen.x <= (this.pos.x + this.size.x)
 			&& ig.input.mouse.y + ig.game.screen.y >= this.pos.y && ig.input.mouse.y + ig.game.screen.y <= (this.pos.y + this.size.y))
 			{
@@ -57,7 +57,7 @@ EntityElectromagnet = EntityMagnet.extend({
 	
 	ready: function()
 	{
-		if(this.isOn === true)
+		if(this.isOn === true || this.isOn == "true")
 		{
 			this.currentAnim = this.anims['idle'];
 		}
@@ -69,7 +69,7 @@ EntityElectromagnet = EntityMagnet.extend({
 
 	checkDistance: function(entity)
 	{
-		if (this.isOn === true)
+		if (this.isOn === true || this.isOn == "true")
 		{
 			this.parent(entity);
 		}
@@ -83,7 +83,7 @@ EntityElectromagnet = EntityMagnet.extend({
 	// Turn the magnet on if it is off, or vice-versa. 
 	turnOnOrOff: function()
 	{
-		if(this.isOn === false)
+		if(this.isOn === false || this.isOn == "false")
 		{
 			this.soundDB['powerOn'].play();
 			this.currentAnim = this.anims['idle'];
