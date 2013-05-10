@@ -37,6 +37,8 @@ ig.module(
 		gravityFactor: 0,
 		//chosen language, if this is not equal to ig.game.language, it will reload the strings
 		language: "NO",
+		lock: new ig.Image('media/menu/lock.png'),
+
 		
 		init: function( x, y, settings ) 
 		{
@@ -200,6 +202,7 @@ ig.module(
 			var y = ig.system.height / 4;
 
 			this.font.draw( this.title, x, y, [ig.Font.ALIGN.CENTER] );
+
 		},
 
 		isMouseOnButton: function(i)
