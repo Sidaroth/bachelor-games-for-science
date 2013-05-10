@@ -224,13 +224,12 @@ MyGame = ig.Box2DGame.extend(
 		'Level7' : 'level1BGSoundtrack',
 		'Level8' : 'level1BGSoundtrack',
 		'Level9' : 'level1BGSoundtrack',
-		'Level9': 'menuBGSoundtrack',
-		'Level10': 'menuBGSoundtrack',
-		'Level11': 'menuBGSoundtrack',
-		'Level12': 'menuBGSoundtrack',
-		'Level13': 'menuBGSoundtrack',
-		'Level14': 'menuBGSoundtrack',
-		'Level15': 'menuBGSoundtrack'
+		'Level10': 'level1BGSoundtrack',
+		'Level11': 'level1BGSoundtrack',
+		'Level12': 'level1BGSoundtrack',
+		'Level13': 'level1BGSoundtrack',
+		'Level14': 'level1BGSoundtrack',
+		'Level15': 'level1BGSoundtrack'
 	},
 
 	// Where should logging be performed? 
