@@ -9,9 +9,9 @@ ig.module(
 	// The entity that represents all the info screens that give information to the player. 
 	EntityInfoScreen = ig.Entity.extend(
 	{
-		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font: new ig.Font( 'media/calibri-16pt-white.png' ),
 		nextScreen: null,
-		size: {x:800, y:640},
+		size: {x:832, y:640},
 		gravityFactor: 0,
 		//name for the image in the xml ex. game>levelOneInfoScreen>image
 		imageName: "",

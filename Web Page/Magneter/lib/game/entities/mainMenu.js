@@ -19,7 +19,7 @@ ig.module(
 
 		muteButton: null,
 
-		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font: new ig.Font( 'media/calibri-32pt-white.png' ),
 		nextScreen: null,
 		size: {x:800, y:640},
 		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 832, 640 ),

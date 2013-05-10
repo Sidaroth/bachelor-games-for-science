@@ -17,6 +17,7 @@ ig.module(
 		},
 
 		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font2: new ig.Font('media/calibri-16pt-white.png'),
 		message: "",
 		yes: "",
 		no: "",
@@ -79,7 +80,7 @@ ig.module(
 		draw: function()
 		{
 			this.parent();
-			this.font.draw( this.message, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+			this.font2.draw( this.message, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 			this.font.draw( this.no, this.pos.x + (this.size.x ) - 75 - ig.game.screen.x, this.pos.y + (this.size.y ) - 25  - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 			this.font.draw( this.yes, this.pos.x + 75  - ig.game.screen.x, this.pos.y + (this.size.y ) - 25 - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 		}

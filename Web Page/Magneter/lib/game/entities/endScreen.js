@@ -11,7 +11,7 @@ ig.module(
 	{
 		font: new ig.Font( 'media/calibri-16pt.png' ),
 		nextScreen: null,
-		size: {x:800, y:640},
+		size: {x:832, y:640},
 		gravityFactor: 0,
 		//name for the image in the xml ex. game>levelOneEndScreen>image
 		imageName: "",
@@ -29,7 +29,7 @@ ig.module(
 			levelCleared: new ig.Sound( 'media/sound/levelCleared.*' )
 		},
 		
-		animSheet: new ig.AnimationSheet( 'media/endScreen/endScreen.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/endScreen/endScreen.png', 832, 640 ),
 		
 		init: function( x, y, settings ) 
 		{

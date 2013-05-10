@@ -17,7 +17,9 @@ EntityRestartButton = ig.Entity.extend(
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER,
 
-	font: new ig.Font( 'media/calibri-16pt.png' ),
+	font: new ig.Font( 'media/calibri-16pt-white.png' ),
+	font2: new ig.Font( 'media/calibri-16pt-white.png' ),
+
 
 	gravityFactor: 0,
 	zIndex: 20,
@@ -98,7 +100,16 @@ EntityRestartButton = ig.Entity.extend(
 	draw: function() 
 	{
 		this.parent();
-		this.font.draw( this.buttonText['restart'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		if(this.currentAnim == this.anims['standard'])
+		{
+			this.font.draw( this.buttonText['restart'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		}
+		else if(this.currentAnim == this.anims['highlight'])
+		{
+			this.font2.draw( this.buttonText['restart'], this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		}
+
+
 	}
 });
 });
