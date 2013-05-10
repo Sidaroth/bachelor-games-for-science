@@ -20,6 +20,7 @@ EntityButton = ig.Entity.extend(
 	_wmBoxColor: 'rgba(255, 255, 0, 0.7)',
 
 	font: new ig.Font( 'media/calibri-16pt.png' ),
+	font2: new ig.Font( 'media/calibri-16pt-white.png' ),
 
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,
@@ -68,7 +69,14 @@ EntityButton = ig.Entity.extend(
 	draw: function() 
 	{
 		this.parent();
-		this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		if(this.currentAnim == this.anims['unselected'])
+		{
+			this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		}
+		else if(this.currentAnim == this.anims['selected'])
+		{
+			this.font2.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+		}
 	},
 	
 	goToNextLevel: function()

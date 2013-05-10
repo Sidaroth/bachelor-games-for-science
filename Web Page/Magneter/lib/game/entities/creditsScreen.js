@@ -9,8 +9,8 @@ ig.module(
 	// The entity that handles the credits screen. 
 	EntityCreditsScreen = ig.Entity.extend(
 	{
-		font: new ig.Font( 'media/calibri-16pt.png' ),
-		size: {x:800, y:640 },
+		font: new ig.Font( 'media/calibri-16pt-white.png' ),
+		size: {x:832, y:640 },
 		gravityFactor: 0,
 
 		zIndex: 2,

@@ -18,6 +18,10 @@ ig.module(
 		shieldResponse: null,
 		lastPos: {x:0, y:0},
 		zIndex: 20,
+
+		font: new ig.Font( 'media/calibri-16pt-white.png' ),
+		font2: new ig.Font( 'media/calibri-16pt-white.png' ),
+
 		
 		init: function( x, y, settings ) 
 		{
