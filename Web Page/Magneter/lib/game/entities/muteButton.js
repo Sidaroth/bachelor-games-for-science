@@ -36,6 +36,14 @@ EntityMuteButton = ig.Entity.extend(
 		this.currentAnim = this.anims['on'];
 	},
 
+	ready: function()
+	{
+		if(ig.game.muted === true)
+		{
+			this.changeVolumeStatus();
+		}
+	},
+
 	// if on, turns sound off, else vice-versa. 
 	changeVolumeStatus: function()
 	{
@@ -49,6 +57,8 @@ EntityMuteButton = ig.Entity.extend(
 			{
 				ig.music.volume = 0;
 			}
+
+			ig.game.muted = true;
 		}
 		else
 		{
@@ -57,6 +67,8 @@ EntityMuteButton = ig.Entity.extend(
 
 			ig.soundManager.volume = ig.game.defaultSoundLevel;
 			ig.music.volume = ig.game.defaultSoundLevel;
+
+			ig.game.muted = false;
 		}
 	},
 	
