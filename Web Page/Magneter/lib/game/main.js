@@ -103,6 +103,7 @@ MyGame = ig.Box2DGame.extend(
 	currentTrackKey: null,
 
 	defaultSoundLevel: 1,
+	muted: false,
 
 	version: 1.0,
 
