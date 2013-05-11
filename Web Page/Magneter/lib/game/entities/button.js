@@ -69,6 +69,21 @@ EntityButton = ig.Entity.extend(
 	draw: function() 
 	{
 		this.parent();
+
+		if( !ig.global.wm ) // Not in the level editor
+		{
+			var mainMenu = ig.game.getEntitiesByType(EntityMainMenu);
+			if(mainMenu[0] !== undefined && mainMenu[0].buttons !== null)
+			{
+				for (var i = 1; i < mainMenu[0].buttons.length; i++) 
+				{
+					if(ig.game.unlockedLevels[i] === false && this == mainMenu[0].buttons[i])
+					{
+						mainMenu[0].lock.draw(mainMenu[0].buttons[i].pos.x, mainMenu[0].buttons[i].pos.y);
+					}
+				}
+			}
+		}
 		if(this.currentAnim == this.anims['unselected'])
 		{
 			this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
@@ -77,6 +92,9 @@ EntityButton = ig.Entity.extend(
 		{
 			this.font2.draw( this.buttonText, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 		}
+
+
+
 	},
 	
 	goToNextLevel: function()

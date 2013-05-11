@@ -50,9 +50,9 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	ringColor: 
 	{
-		'current': 'rgba(123, 123, 123, 1)',
+		'current': 'rgba(0, 123, 123, 1)',
 		'targetted': 'rgba(0, 0, 255, 1)',
-		'untargetted': 'rgba(123, 123, 123, 0.2)'
+		'untargetted': 'rgba(0, 123, 123, 0.4)'
 	},
 
 	objectsToTest: [], // Any object added here will be tested and affected by magnetism. 
