@@ -17,9 +17,13 @@ EntityRail = ig.Box2DEntity.extend({
 	checkAgainst: ig.Entity.TYPE.A,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
-	size: {x: 50, y: 50},
+	size: {x: 64, y: 64},
 	spawn: { x: 0, y: 0},
 	zIndex: -1,
+	
+	settings: null,
+	
+	resetable: 1,
 	
 	rails: [],
 	
@@ -39,6 +43,7 @@ EntityRail = ig.Box2DEntity.extend({
 	motorTimer: null,
 	dirMove: 1,
 	
+	icon: 'horizontal', //Used to deside how the rail looks
 	
 	leader: false,
 	conSide: 0, // side the next part of the rail is conected to, 0=r, 1=l, 2=top, 3=bot.
@@ -48,16 +53,25 @@ EntityRail = ig.Box2DEntity.extend({
 	magnetPower: 10000,
 	magnetRadius: 200,
 	
-	animSheet: new ig.AnimationSheet( 'media/gate/gate_slab.png', 50, 50),
+	animSheet: new ig.AnimationSheet( 'media/rail/rail_sheet.png', 64, 64),
 	pushedToMagnets: false,
 
 	init: function( x, y, settings ) 
 	{
 		this.parent(x, y, settings);
+		
+		
+		// The different ways the rail can look
+		this.addAnim( 'downRight', 1, [1] );
+		this.addAnim( 'upRight', 1, [3] );
+		this.addAnim( 'cross', 1, [4] );
+		this.addAnim( 'leftDown', 1, [5] );
+		this.addAnim( 'horizontal', 1, [6] );
+		this.addAnim( 'leftUp', 1, [7] );
+		this.addAnim( 'vertical', 1, [8] );
 
-		this.addAnim( 'idle', 1, [0] );
 
-		this.currentAnim = this.anims['idle'];
+		this.currentAnim = this.anims['horizontal'];
 
 		if( !ig.global.wm ) // if not in weltmeister, create the shape and body. 
 		{
@@ -84,6 +98,39 @@ EntityRail = ig.Box2DEntity.extend({
 		{
 			this.railMotor();
 		}
+		
+		//Here is were the icon on the rail-part change ingame, depending on what icon its told to have.	
+		if(this.icon == 'downRight')
+		{
+			this.currentAnim = this.anims['downRight'];
+		}
+		
+		if(this.icon == 'upRight')
+		{
+			this.currentAnim = this.anims['upRight'];
+		}
+		
+		if(this.icon == 'cross')
+		{
+			this.currentAnim = this.anims['cross'];
+		}
+		
+		if(this.icon == 'leftDown')
+		{
+			this.currentAnim = this.anims['leftDown'];
+		}
+		
+		if(this.icon == 'leftUp')
+		{
+			this.currentAnim = this.anims['leftUp'];
+		}
+		
+		if(this.icon == 'vertical')
+		{
+			this.currentAnim = this.anims['vertical'];
+		}
+		
+		
 	},
 
 	draw: function()
@@ -97,9 +144,9 @@ EntityRail = ig.Box2DEntity.extend({
 		
 		if(this.leader == 'true') // If the leader entity. Create the magnet, and add other entities into the magnets field check. 
 		{
-			var settings = {density: 0, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower, zIndex: 2, interactive: false};
-			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, settings);
-				
+			this.settings = {density: 0, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower, zIndex: 2, interactive: false};
+			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, this.settings);
+			
 			var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
 
 			for (var i = 0; i < magnetsToPush.length; i++) 
@@ -155,6 +202,24 @@ EntityRail = ig.Box2DEntity.extend({
 			
 			ig.game.sortEntitiesDeferred();
 		}
+	},
+	
+	reset: function() 
+	{
+		if(this.leader == 'true') // If the leader entity. Resett the magnet and start from the start again.
+		{
+			this.curPart = 0;
+			this.nextRail = this.rails[1];
+			this.magnet.kill();
+			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, this.settings);
+			this.xMove = this.magnet.body.GetPosition().x - this.nextRail.body.GetPosition().x;
+			this.yMove = this.magnet.body.GetPosition().y - this.nextRail.body.GetPosition().y;
+			this.xStep = this.xMove/this.stepFraction;
+			this.yStep = this.yMove/this.stepFraction;
+			this.dirMove = 1;
+			this.motorTimer.reset();
+			
+		};
 	},
 				
 	railMotor: function()
