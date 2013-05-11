@@ -34,6 +34,12 @@ EntityRail = ig.Box2DEntity.extend({
 	curPart: 0,
 	nextRail: null,
 	
+	magnetsToPush: null,
+	magnets: null,
+	eMagnets: null,
+	gates: null,
+	players: null,
+	
 	xMove: 0,
 	yMove: 0,
 	xStep: 0,
@@ -147,7 +153,7 @@ EntityRail = ig.Box2DEntity.extend({
 			this.settings = {density: 0, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower, zIndex: 2, interactive: false};
 			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, this.settings);
 			
-			var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
+			this.magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
 
 			for (var i = 0; i < magnetsToPush.length; i++) 
 			{
@@ -156,10 +162,10 @@ EntityRail = ig.Box2DEntity.extend({
 
 			this.pushedToMagnets = true;
 			
-			var magnets = ig.game.getEntitiesByType(EntityMagnet);
-			var eMagnets = ig.game.getEntitiesByType(EntityElectromagnet);
-			var gates = ig.game.getEntitiesByType(EntityGate);
-			var players = ig.game.getEntitiesByType(EntityPlayer)[0];
+			this.magnets = ig.game.getEntitiesByType(EntityMagnet);
+			this.eMagnets = ig.game.getEntitiesByType(EntityElectromagnet);
+			this.gates = ig.game.getEntitiesByType(EntityGate);
+			this.players = ig.game.getEntitiesByType(EntityPlayer)[0];
 				
 			for (var i = 0; i < magnets.length; i++)
 			{
@@ -210,8 +216,28 @@ EntityRail = ig.Box2DEntity.extend({
 		{
 			this.curPart = 0;
 			this.nextRail = this.rails[1];
+			
 			this.magnet.kill();
 			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, this.settings);
+			
+			for (var i = 0; i < magnets.length; i++)
+			{
+				magnets[i].objectsToTest.push(this.magnet);
+			}
+			
+			for (var i = 0; i < eMagnets.length; i++)
+			{
+				eMagnets[i].objectsToTest.push(this.magnet);
+			}
+			
+			for (var j = 0; j < gates.length; j++)
+			{
+				this.magnet.objectsToTest.push(gates[j]);
+			}
+			
+			this.magnet.objectsToTest.push(players);	
+			this.magnet.loadObjectsToTest();
+			
 			this.xMove = this.magnet.body.GetPosition().x - this.nextRail.body.GetPosition().x;
 			this.yMove = this.magnet.body.GetPosition().y - this.nextRail.body.GetPosition().y;
 			this.xStep = this.xMove/this.stepFraction;
