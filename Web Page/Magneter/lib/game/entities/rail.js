@@ -155,9 +155,9 @@ EntityRail = ig.Box2DEntity.extend({
 			
 			this.magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
 
-			for (var i = 0; i < magnetsToPush.length; i++) 
+			for (var i = 0; i < this.magnetsToPush.length; i++) 
 			{
-				magnetsToPush[i].objectsToTest.push(this);
+				this.magnetsToPush[i].objectsToTest.push(this);
 			}
 
 			this.pushedToMagnets = true;
@@ -167,22 +167,22 @@ EntityRail = ig.Box2DEntity.extend({
 			this.gates = ig.game.getEntitiesByType(EntityGate);
 			this.players = ig.game.getEntitiesByType(EntityPlayer)[0];
 				
-			for (var i = 0; i < magnets.length; i++)
+			for (var i = 0; i < this.magnets.length; i++)
 			{
-				magnets[i].objectsToTest.push(this.magnet);
+				this.magnets[i].objectsToTest.push(this.magnet);
 			}
 			
-			for (var i = 0; i < eMagnets.length; i++)
+			for (var i = 0; i < this.eMagnets.length; i++)
 			{
-				eMagnets[i].objectsToTest.push(this.magnet);
+				this.eMagnets[i].objectsToTest.push(this.magnet);
 			}
 			
-			for (var j = 0; j < gates.length; j++)
+			for (var j = 0; j < this.gates.length; j++)
 			{
-				this.magnet.objectsToTest.push(gates[j]);
+				this.magnet.objectsToTest.push(this.gates[j]);
 			}
 			
-			this.magnet.objectsToTest.push(players);	
+			this.magnet.objectsToTest.push(this.players);	
 			
 			this.magnet.loadObjectsToTest();
 
@@ -220,22 +220,22 @@ EntityRail = ig.Box2DEntity.extend({
 			this.magnet.kill();
 			this.magnet = ig.game.spawnEntity(EntityElectromagnet, this.pos.x, this.pos.y, this.settings);
 			
-			for (var i = 0; i < magnets.length; i++)
+			for (var i = 0; i < this.magnets.length; i++)
 			{
-				magnets[i].objectsToTest.push(this.magnet);
+				this.magnets[i].objectsToTest.push(this.magnet);
 			}
 			
-			for (var i = 0; i < eMagnets.length; i++)
+			for (var i = 0; i < this.eMagnets.length; i++)
 			{
-				eMagnets[i].objectsToTest.push(this.magnet);
+				this.eMagnets[i].objectsToTest.push(this.magnet);
 			}
 			
-			for (var j = 0; j < gates.length; j++)
+			for (var j = 0; j < this.gates.length; j++)
 			{
-				this.magnet.objectsToTest.push(gates[j]);
+				this.magnet.objectsToTest.push(this.gates[j]);
 			}
 			
-			this.magnet.objectsToTest.push(players);	
+			this.magnet.objectsToTest.push(this.players);	
 			this.magnet.loadObjectsToTest();
 			
 			this.xMove = this.magnet.body.GetPosition().x - this.nextRail.body.GetPosition().x;
