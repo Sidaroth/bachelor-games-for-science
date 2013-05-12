@@ -17,7 +17,7 @@ EntityRail = ig.Box2DEntity.extend({
 	checkAgainst: ig.Entity.TYPE.A,
 	collides: ig.Entity.COLLIDES.NEVER, // Collision is already handled by Box2D!
 	
-	size: {x: 64, y: 64},
+	size: {x: 50, y: 50},
 	spawn: { x: 0, y: 0},
 	zIndex: -1,
 	
@@ -59,7 +59,7 @@ EntityRail = ig.Box2DEntity.extend({
 	magnetPower: 10000,
 	magnetRadius: 200,
 	
-	animSheet: new ig.AnimationSheet( 'media/rail/rail_sheet.png', 64, 64),
+	animSheet: new ig.AnimationSheet( 'media/rail/rail_sheet.png', 50, 50),
 	pushedToMagnets: false,
 
 	init: function( x, y, settings ) 
@@ -68,13 +68,17 @@ EntityRail = ig.Box2DEntity.extend({
 		
 		
 		// The different ways the rail can look
-		this.addAnim( 'downRight', 1, [1] );
-		this.addAnim( 'upRight', 1, [3] );
-		this.addAnim( 'cross', 1, [4] );
-		this.addAnim( 'leftDown', 1, [5] );
-		this.addAnim( 'horizontal', 1, [6] );
-		this.addAnim( 'leftUp', 1, [7] );
-		this.addAnim( 'vertical', 1, [8] );
+		this.addAnim( 'endUp', 1, [1] );
+		this.addAnim( 'downRight', 1, [2] );
+		this.addAnim( 'endRight', 1, [3] );
+		this.addAnim( 'upRight', 1, [5] );
+		this.addAnim( 'cross', 1, [6] );
+		this.addAnim( 'leftDown', 1, [7] );
+		this.addAnim( 'endLeft', 1, [8] );
+		this.addAnim( 'horizontal', 1, [9] );
+		this.addAnim( 'leftUp', 1, [10] );
+		this.addAnim( 'vertical', 1, [11] );
+		this.addAnim( 'endDown', 1, [15] );
 
 
 		this.currentAnim = this.anims['horizontal'];
@@ -136,6 +140,25 @@ EntityRail = ig.Box2DEntity.extend({
 			this.currentAnim = this.anims['vertical'];
 		}
 		
+		if(this.icon == 'endUp')
+		{
+			this.currentAnim = this.anims['endUp'];
+		}
+		
+		if(this.icon == 'endDown')
+		{
+			this.currentAnim = this.anims['endDown'];
+		}
+		
+		if(this.icon == 'endRight')
+		{
+			this.currentAnim = this.anims['endRight'];
+		}
+		
+		if(this.icon == 'endLeft')
+		{
+			this.currentAnim = this.anims['endLeft'];
+		}
 		
 	},
 
