@@ -6,6 +6,7 @@ ig.module(
 )
 .defines(function(){
 
+// A basket entity that was intended to be used in the arcade level where they were supposed to catch the ball and award points. 
 EntityBasket = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,

@@ -7,6 +7,7 @@ ig.module(
 )
 .defines(function()
 {
+	// The main menu controller entity. This entity handles all the interaction and build up of the main menu. 
 	EntityMainMenu = ig.Entity.extend(
 	{
 		// Sounds used for sound effectss
@@ -18,10 +19,10 @@ ig.module(
 
 		muteButton: null,
 
-		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font: new ig.Font( 'media/calibri-32pt-white.png' ),
 		nextScreen: null,
 		size: {x:800, y:640},
-		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/menu/mainMenuBackground.png', 832, 640 ),
 		buttons: null,
 		//button selcted in menu
 		selectedButton: 0,
@@ -36,6 +37,8 @@ ig.module(
 		gravityFactor: 0,
 		//chosen language, if this is not equal to ig.game.language, it will reload the strings
 		language: "NO",
+		lock: new ig.Image('media/menu/lock.png'),
+
 		
 		init: function( x, y, settings ) 
 		{
@@ -50,7 +53,6 @@ ig.module(
 		ready: function()
 		{
 			//load in all the buttons into the buttons array
-
 			this.selectedButton = 0;
 			
 			this.buttons = ig.game.getEntitiesByType(EntityButton);
@@ -83,9 +85,6 @@ ig.module(
 					this.language = ig.game.language;
 					this.loadTextToEntities("lib/game/xml/strings" + ig.game.language + ".xml");
 				}
-				
-				//remove highlight on button selected, will be lit again in the end, in case selected button is changed
-				//this.buttons[this.selectedButton].highlight();
 				
 				if( ig.input.pressed('left') ) 
 				{
@@ -192,18 +191,18 @@ ig.module(
 						this.muteButton.changeVolumeStatus();
 					}
 				}
-
-				//highlight selected button
-				//this.buttons[this.selectedButton].highlight();
 			}
 		},
 		
 		draw: function()
 		{
 			this.parent();
-			var 	x = ig.system.width / 2,
-					y = ig.system.height / 4;
+			
+			var x = ig.system.width / 2;
+			var y = ig.system.height / 4;
+
 			this.font.draw( this.title, x, y, [ig.Font.ALIGN.CENTER] );
+
 		},
 
 		isMouseOnButton: function(i)

@@ -6,11 +6,12 @@ ig.module(
 )
 .defines(function()
 {
+	// The entity that represents all the info screens that give information to the player. 
 	EntityInfoScreen = ig.Entity.extend(
 	{
-		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font: new ig.Font( 'media/calibri-16pt-white.png' ),
 		nextScreen: null,
-		size: {x:800, y:640},
+		size: {x:832, y:640},
 		gravityFactor: 0,
 		//name for the image in the xml ex. game>levelOneInfoScreen>image
 		imageName: "",
@@ -23,7 +24,7 @@ ig.module(
 		infoScreen: true,
 		zIndex: 2,
 		
-		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 800, 640 ),
+		animSheet: new ig.AnimationSheet( 'media/infoScreen/infoScreen.png', 832, 640 ),
 		
 		init: function( x, y, settings ) 
 		{
@@ -45,24 +46,26 @@ ig.module(
 				{
 					this.image.draw(this.pos.x + (this.size.x / 2) - (this.image.height/2), this.pos.y + ((this.size.y / 4) * 3) - (this.image.width/2));
 				}
-				//console.log(this.infoScreen);
 			}
+		},
+
+		ready: function()
+	    {
+	    	// if a message has been specified, but isn't loaded. 
+	    	if(this.messageName != "")
+	    	{
+	    		this.message = ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
+	    	}
+
+	    	if(this.imageName != "")
+	    	{
+	    		this.image = new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
+	    	}
 		},
 
 		update: function() 
 		{
 			this.parent();
-
-			if(this.messageName != "" && this.message == "")
-			{
-				this.message =  ig.game.xml.loadTextFromXML(this.messageName, 0, this.xmlDocument);
-			}
-
-			if(this.imageName != "" && this.image == null)
-			{
-				this.image =  new ig.Image(ig.game.xml.loadTextFromXML(this.imageName, 0, this.xmlDocument));
-				//console.log(this.image);
-			}
 
 			if( ig.input.pressed('enter') || ig.input.pressed('mouse1') && this.nextScreen != null) 
 			{

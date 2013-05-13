@@ -6,6 +6,7 @@ ig.module(
 )
 .defines(function(){
 
+// This entity 
 EntityGate = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,
@@ -35,13 +36,11 @@ EntityGate = ig.Box2DEntity.extend({
 		this.spawn.x = this.pos.x;
 		this.spawn.y = this.pos.y;
 
-		//this.body.DestroyShape();
-
-
-		if( !ig.global.wm )
-		{
+		if( !ig.global.wm ) // if not in weltmeister, create body and shape. 
+ 		{
 			var shapeDef = new b2.PolygonDef();
-			shapeDef.SetAsBox(
+			shapeDef.SetAsBox
+			(
 			 	this.size.x / 2 * b2.SCALE,
 				this.size.y / 2 * b2.SCALE
 			);
@@ -63,12 +62,6 @@ EntityGate = ig.Box2DEntity.extend({
 			this.ready();
 		}
 	},
-	
-	check: function(other)
-	{
-		//other.reset();
-		//this.reset();	  
-	},
 
 	draw: function()
 	{
@@ -87,9 +80,11 @@ EntityGate = ig.Box2DEntity.extend({
 		this.parent();
 		var magnetsToPush = ig.game.getEntitiesByType(EntityMagnet);
 
-		for (var i = 0; i < magnetsToPush.length; i++) {
+		for (var i = 0; i < magnetsToPush.length; i++) 
+		{
 			magnetsToPush[i].objectsToTest.push(this);
 		}
+
 		this.pushedToMagnets = true;
 	}
 	

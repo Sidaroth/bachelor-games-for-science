@@ -4,9 +4,9 @@ ig.module(
 .requires(
 	'impact.entity'
 )
-.defines(function()
-{
+.defines(function(){
 
+// A slider entity. - Currently unused. 
 EntitySlider = ig.Entity.extend(
 {
 	_wmDrawBox: true,
@@ -15,7 +15,6 @@ EntitySlider = ig.Entity.extend(
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,
 	collides: ig.Entity.COLLIDES.NEVER,
-
 
 	gravityFactor: 0,
 	size: {x: 128, y: 32},
@@ -76,7 +75,6 @@ EntitySlider = ig.Entity.extend(
 		// if mouse1 down
 		if( ig.input.state( 'mouse1' ))
 		{
-			// console.log(ig.input.state ( 'mouse1'));
 			// on the box
 			if( ig.input.mouse.x >= this.slider['box'].xpos && ig.input.mouse.x <= (this.slider['box'].xpos + this.slider['box'].image.width)
 			&&  ig.input.mouse.y >= this.slider['box'].ypos && ig.input.mouse.y <= (this.slider['box'].ypos + this.slider['box'].image.height))
@@ -141,9 +139,8 @@ EntitySlider = ig.Entity.extend(
 			}
 		}
 
-		// console.log((this.slider['box'].xpos - this.slider['bar'].xpos));
-		// console.log((this.slider['box'].xpos - this.slider['bar'].xpos) / this.sliderLength * 100 + "%");
 		var newPercent = (this.slider['box'].xpos - this.slider['bar'].xpos) / this.sliderLength; // * 100;
+		
 		if(this.sliderPercent != newPercent)
 		{
 			this.sliderPercent = newPercent;
@@ -155,7 +152,6 @@ EntitySlider = ig.Entity.extend(
 			{
 
 			}
-			//this.target.updateForce(this.sliderPercent);
 		}
 	},
 	
@@ -165,11 +161,7 @@ EntitySlider = ig.Entity.extend(
 
 		this.slider['bar'].image.draw( this.slider['bar'].xpos, this.slider['bar'].ypos );
 		this.slider['box'].image.draw( this.slider['box'].xpos, this.slider['box'].ypos );
-
-		// this.bar.draw(this.pos.x, this.pos.y);
-		// this.box.draw(this.pos.x - 16 + (this.bar.width / 2), this.pos.y);
 	}
-
 });
 
 });

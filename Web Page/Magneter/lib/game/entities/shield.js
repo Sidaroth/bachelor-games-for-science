@@ -6,6 +6,7 @@ ig.module(
 )
 .defines(function()
 {
+	// an entity used for the shield pattern. Brings up an "Are you sure" type window
 	EntityShield = ig.Entity.extend(
 	{
 		size: {x:300, y:200},
@@ -16,6 +17,7 @@ ig.module(
 		},
 
 		font: new ig.Font( 'media/calibri-16pt.png' ),
+		font2: new ig.Font('media/calibri-16pt-white.png'),
 		message: "",
 		yes: "",
 		no: "",
@@ -35,9 +37,9 @@ ig.module(
 			this.currentAnim = this.anims.none;
 
 			this.soundDB['buttonClick'].volume = ig.game.defaultSoundLevel;
-
 			this.soundDB['buttonClick'].play();
 
+			// Loads the appropriate text dependant on language. 
 			this.yes = ig.game.xml.loadTextFromXML("yes", 0, "lib/game/xml/strings"+ ig.game.language +".xml")
 			this.no = ig.game.xml.loadTextFromXML("no", 0, "lib/game/xml/strings"+ ig.game.language +".xml")
 		
@@ -49,6 +51,7 @@ ig.module(
 		{
 			this.parent();
 			this.currentAnim = this.anims['none'];
+			// if mouseover 
 			if(ig.input.mouse.y >= this.pos.y + this.size.y - 50 - ig.game.screen.y && ig.input.mouse.y <= this.pos.y + this.size.y - ig.game.screen.y)
 			{
 				if(ig.input.mouse.x >= this.pos.x - ig.game.screen.x && ig.input.mouse.x < this.pos.x + (this.size.x / 2)  - ig.game.screen.x)
@@ -77,7 +80,7 @@ ig.module(
 		draw: function()
 		{
 			this.parent();
-			this.font.draw( this.message, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
+			this.font2.draw( this.message, this.pos.x + (this.size.x / 2) - ig.game.screen.x, this.pos.y + (this.size.y / 2) - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 			this.font.draw( this.no, this.pos.x + (this.size.x ) - 75 - ig.game.screen.x, this.pos.y + (this.size.y ) - 25  - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 			this.font.draw( this.yes, this.pos.x + 75  - ig.game.screen.x, this.pos.y + (this.size.y ) - 25 - ig.game.screen.y, [ig.Font.ALIGN.CENTER] );
 		}

@@ -12,7 +12,6 @@ ig.module(
 
 	// Entities
 	'game.entities.arrow',
-	'game.entities.basket',
 	'game.entities.button',
 	'game.entities.electromagnet',
 	'game.entities.gate',
@@ -68,6 +67,7 @@ ig.module(
 	'game.levels.level15',
 	'game.levels.splashScreen',
 	'game.levels.mainMenu',
+	'game.levels.credits',
 	
 	// Endscreens
 	'game.levels.level1End',
@@ -103,6 +103,7 @@ MyGame = ig.Box2DGame.extend(
 	currentTrackKey: null,
 
 	defaultSoundLevel: 1,
+	muted: false,
 
 	version: 1.0,
 
@@ -173,12 +174,15 @@ MyGame = ig.Box2DGame.extend(
 		'Level12' : LevelLevel12,
 		'Level13' : LevelLevel13,
 		'Level14' : LevelLevel14,
-		'Level15' : LevelLevel15
+		'Level15' : LevelLevel15,
+
+		'Credits' : LevelCredits
 	},
 
 	// Which background music should be played for which level (screen)
 	musicDB: {
 		'SplashScreen': 'none',
+		'Credits' : 'menuBGSoundtrack',
 		'MainMenu': 'menuBGSoundtrack',
 		'Level1Info': 'menuBGSoundtrack',
 		'Level2Info': 'menuBGSoundtrack',
@@ -221,15 +225,15 @@ MyGame = ig.Box2DGame.extend(
 		'Level7' : 'level1BGSoundtrack',
 		'Level8' : 'level1BGSoundtrack',
 		'Level9' : 'level1BGSoundtrack',
-		'Level9': 'menuBGSoundtrack',
-		'Level10': 'menuBGSoundtrack',
-		'Level11': 'menuBGSoundtrack',
-		'Level12': 'menuBGSoundtrack',
-		'Level13': 'menuBGSoundtrack',
-		'Level14': 'menuBGSoundtrack',
-		'Level15': 'menuBGSoundtrack'
+		'Level10': 'level1BGSoundtrack',
+		'Level11': 'level1BGSoundtrack',
+		'Level12': 'level1BGSoundtrack',
+		'Level13': 'level1BGSoundtrack',
+		'Level14': 'level1BGSoundtrack',
+		'Level15': 'level1BGSoundtrack'
 	},
 
+	// Where should logging be performed? 
 	logLevel: {
 		'SplashScreen': false,
 		'Level1Info': false,
@@ -265,6 +269,7 @@ MyGame = ig.Box2DGame.extend(
 		'Level15End': false,
 
 		'MainMenu' : false,
+		'Credits' : false,
 		'Level1': true,
 		'Level2' : true,
 		'Level3' : true,
@@ -286,7 +291,7 @@ MyGame = ig.Box2DGame.extend(
 	closestMagnetToMouse: 
 	{
 		'magnet': null,
-		'distance': 999999,
+		'distance': 999999
 	},
 
 	//true and false for levels unlocked, see save.xml for details
@@ -340,13 +345,14 @@ MyGame = ig.Box2DGame.extend(
 		ig.music.add('media/sound/level1BGSoundtrack.*', 'level1BGSoundtrack');
 
 		//ig.music.currentTrack = ig.music.tracks[0];
-		ig.music.volume = 0; //this.defaultSoundLevel;
+		ig.music.volume = this.defaultSoundLevel;
 		ig.music.loop = true;
 
 
 		//ig.music.play('menuBGSoundtrack');
 		//run first level
-		if(userId == 0){
+		if(userId == 0)
+		{
 			this.loadLevel( "SplashScreen", true );
 		}
 		// this.debugDrawer = new ig.Box2DDebug( ig.world );
@@ -362,11 +368,11 @@ MyGame = ig.Box2DGame.extend(
 			return;
 		}
 
-		// screen follows the player
 		var player = this.getEntitiesByType( EntityPlayer )[0];
 
 		var threshold = 50;
 
+		// Camera movement !
 		if(ig.game.backgroundMaps[0])
 		{
 			if(ig.game.screen.x < ig.game.backgroundMaps[0].width * ig.game.backgroundMaps[0].tilesize - ig.system.width)
@@ -497,12 +503,14 @@ MyGame = ig.Box2DGame.extend(
 			}
 		}			
 		else
+		{
+			if(this.downArrow != null)
 			{
-				if(this.downArrow != null)
-				{
-					this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
-				}
+				this.downArrow.currentAnim = this.downArrow.anims["downUnselected"];
 			}
+		}
+
+		// Iron shavings
 		if(this.particles)
 		{
 			for(var i = 0; i < this.particle.length; i++)
@@ -518,7 +526,7 @@ MyGame = ig.Box2DGame.extend(
 					}
 			
 					var distanceToPlayer = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
-					if(distanceToPlayer <= player[0].size.x/2 + 3)
+					if(distanceToPlayer <= player[0].size.x/2 + 3 || this.particle[i].dead)
 					{
 						this.particle[i].kill();
 						this.particle[i] = null;
@@ -561,6 +569,7 @@ MyGame = ig.Box2DGame.extend(
 	// represents if it's an ingame screen, or something like a menu. 
 	loadLevel: function(levelKey, gameScreen) 
 	{
+
 		if(this.leftArrow != null)
 		{
 			this.leftArrow.kill();

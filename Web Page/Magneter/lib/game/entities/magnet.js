@@ -29,6 +29,10 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	fieldRadius: 200,		// Radius of the circle the magnet will have an effect on.
 	fieldMagnitude: 10000,  // The strength of the magnetic field (Used to calculate the strength at a location)
+	fieldMagnitudeMin: 10000,
+	fieldMagnitudeMax: 10000,
+	fieldMagnitudeIncRate: 50,
+
 	polarity: -1,		    // Polarities are represented as (-1, 0, 1)(This will Attract, be neutral, or Repel everything!). 
 	density: 0,				// polarity is used to check for equal polarities for repelling. 
 	timer: new ig.Timer(), 
@@ -46,9 +50,9 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	ringColor: 
 	{
-		'current': 'rgba(123, 123, 123, 1)',
+		'current': 'rgba(0, 123, 123, 1)',
 		'targetted': 'rgba(0, 0, 255, 1)',
-		'untargetted': 'rgba(123, 123, 123, 0.2)'
+		'untargetted': 'rgba(0, 123, 123, 0.4)'
 	},
 
 	objectsToTest: [], // Any object added here will be tested and affected by magnetism. 
@@ -59,21 +63,6 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 	targetted: false,
 
-
-	updateTargetStatus: function()
-	{
-		if(this.targetted === false)
-		{
-			this.currentAnim = this.anims['targetted'];
-			this.targetted = true;
-		}
-		else
-		{
-			this.currentAnim = this.anims['idle'];
-			this.targetted = false;
-		}
-	},
-
 	init: function( x, y, settings )
 	{
 		this.parent(x, y, settings);
@@ -82,7 +71,11 @@ EntityMagnet = ig.Box2DEntity.extend({
 		this.addAnim( 'targetted', 1, [1]);
 		this.currentAnim = this.anims['idle'];
 
-		if( !ig.global.wm )
+		// Calculate the min and max field magnitude dependant on how far the fieldRadius can be changed in either direction. 
+		this.fieldMagnitudeMin = this.fieldMagnitude - (this.fieldMagnitudeIncRate * (this.fieldRadius - this.fieldRadiusMin));
+		this.fieldMagnitudeMax = this.fieldMagnitude + (this.fieldMagnitudeIncRate * (this.fieldRadiusMax - this.fieldRadius));
+
+		if( !ig.global.wm ) // Not in the level editor
 		{
 			var shapeDef = new b2.PolygonDef();
 			shapeDef.SetAsBox(
@@ -106,6 +99,7 @@ EntityMagnet = ig.Box2DEntity.extend({
 		this.loadObjectsToTest();
 	},
 	
+	// loads all magnets into the objects to test list. 
 	loadObjectsToTest: function()
 	{
 		for(var i = 0; i < ig.game.getEntitiesByType(EntityMagnet).length; i++)
@@ -126,13 +120,14 @@ EntityMagnet = ig.Box2DEntity.extend({
 		// Dragging / Field Manipulation start
 		var distanceToMouse = Math.sqrt( Math.pow ( distanceVec.x, 2) + Math.pow( distanceVec.y, 2) );
 		
+
+		// Dragging and field manipulation mess... 
 		if(distanceToMouse <= this.fieldRadius)
 		{
 			if(distanceToMouse < ig.game.closestMagnetToMouse['distance'])
 			{
 				if(ig.game.closestMagnetToMouse['magnet'] == null)
 				{
-					//ig.game.closestMagnetToMouse['magnet'].ringColor['current'] = ig.game.closestMagnetToMouse['magnet'].ringColor['untargetted'];
 					ig.game.closestMagnetToMouse['magnet'] = this;
 					ig.game.closestMagnetToMouse['distance'] = distanceToMouse;
 					
@@ -207,27 +202,39 @@ EntityMagnet = ig.Box2DEntity.extend({
 				this.timer.set(1);
 			}
 
+			console.log(this.fieldMagnitude);
+
 			// Enlarge the field
 			if(distanceToMouse > this.drag['distance'])
 			{
 				this.fieldRadius += distanceToMouse - this.drag['distance'];
-				this.fieldMagnitude += 50 * Math.abs(distanceToMouse - this.drag['distance']);
+				this.fieldMagnitude += this.fieldMagnitudeIncRate * Math.abs(distanceToMouse - this.drag['distance']);
 				this.drag['distance'] = distanceToMouse;
 
 				if(this.fieldRadius > this.fieldRadiusMax)
 				{
 					this.fieldRadius = this.fieldRadiusMax;
 				}
+
+				if(this.fieldMagnitude > this.fieldMagnitudeMax)
+				{
+					this.fieldMagnitude = this.fieldMagnitudeMax;
+				}
 			}
 			else if(distanceToMouse < this.drag['distance']) // Decrease the size of the field
 			{
 				this.fieldRadius -= this.drag['distance'] - distanceToMouse;
-				this.fieldMagnitude -= 50 * Math.abs(distanceToMouse - this.drag['distance']);
+				this.fieldMagnitude -= this.fieldMagnitudeIncRate * Math.abs(distanceToMouse - this.drag['distance']);
 				this.drag['distance'] = distanceToMouse;
 
 				if(this.fieldRadius < this.fieldRadiusMin)
 				{
 					this.fieldRadius = this.fieldRadiusMin;
+				}
+
+				if(this.fieldMagnitude < this.fieldMagnitudeMin)
+				{
+					this.fieldMagnitude = this.fieldMagnitudeMin;
 				}
 			}
 		}
@@ -285,11 +292,13 @@ EntityMagnet = ig.Box2DEntity.extend({
 
 			var forceDirection = -1;
 
+			// If same polarity, change force direction to repel. 
 			if (entity.polarity != undefined && entity.polarity == this.polarity)
 			{
 				forceDirection = 1;
 			}
 			
+			// Calculate the acceleration, and apply it.  
 			var acceleration = 
 			{
 				x: forceDirection * ((magneticForce * unitDistVec.x * this.fieldMagnitude) / mass), // + gravity... 0 in X.

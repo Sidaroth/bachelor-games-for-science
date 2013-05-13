@@ -6,6 +6,8 @@ ig.module(
 	)
 .defines(function()
 {
+	// Creates a popup message that slides up from the bottom of the screen containing information such as 
+	// tips & hints, or informing the player that he's earned an achievement. Currently unused. 
 	EntityPopUpMessage = EntityInfoScreen.extend(
 	{
 
@@ -43,10 +45,9 @@ ig.module(
 		draw: function() 
 		{
 			this.parent();
-			//console.log(this.pos.y);
 			this.closeButton.draw(ig.system.width/2 + this.size.x/2 - this.closeButton.width, ig.system.height + this.yOffset);
-			//console.log();
 			this.font.draw( this.message, ig.system.width/2, ig.system.height + this.yOffset + this.size.y/3, [ig.Font.ALIGN.CENTER] );
+			
 			if(this.image != null)
 			{
 				this.image.draw(ig.system.width/2 - this.size.x/2, ig.system.height + this.yOffset);

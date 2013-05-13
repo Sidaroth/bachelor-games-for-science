@@ -7,9 +7,9 @@ ig.module(
 .defines(function()
 {
 
+// A mute button entity that turns on or off the music and sound effects. 
 EntityMuteButton = ig.Entity.extend(
-	{
-	
+{
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(255, 255, 0, 0.7)',
 
@@ -34,11 +34,17 @@ EntityMuteButton = ig.Entity.extend(
 		this.addAnim('on', .1, [1]);
 		
 		this.currentAnim = this.anims['on'];
-
-		//REMOVE THIS BEFORE RELEASE!!!
-		this.changeVolumeStatus();
 	},
 
+	ready: function()
+	{
+		if(ig.game.muted === true)
+		{
+			this.changeVolumeStatus();
+		}
+	},
+
+	// if on, turns sound off, else vice-versa. 
 	changeVolumeStatus: function()
 	{
 		if(this.volumeStatus == 'on')
@@ -51,6 +57,8 @@ EntityMuteButton = ig.Entity.extend(
 			{
 				ig.music.volume = 0;
 			}
+
+			ig.game.muted = true;
 		}
 		else
 		{
@@ -59,13 +67,14 @@ EntityMuteButton = ig.Entity.extend(
 
 			ig.soundManager.volume = ig.game.defaultSoundLevel;
 			ig.music.volume = ig.game.defaultSoundLevel;
+
+			ig.game.muted = false;
 		}
 	},
 	
 	draw: function() 
 	{
 		this.parent();
-		//this.font.draw( this.buttonText, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 2), [ig.Font.ALIGN.CENTER] );
 	}
 });
 

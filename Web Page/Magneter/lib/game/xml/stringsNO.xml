@@ -8,13 +8,13 @@
 		<image>media/popUpMessage/popUpMessageImage.png </image>
 	</popUpMessageTemp>
 	<shield>
-		<yes> Ja </yes>
-		<no> Nei </no>
+		<yes> Yes / Ja </yes>
+		<no> No / Nei </no>
 	</shield>
 	<mainMenu>
 		<title> Magneter </title>
-		<language> Er du sikker på at du vil 
-bytte språk til engelsk? 
+		<language> Are you sure you want to swap
+language to english?
 		</language>
 		<buttons>
 			<button> en </button>
@@ -37,7 +37,7 @@ bytte språk til engelsk?
 	<levelOneInfoScreen>
 		<info> Velkommen til Magneter!
 Dette er første level, her skal vi bli kjent med magneten.
-Prøv å manipuler ringen rund magneten for å endre styrken.
+Prøv å manipuler ringen rundt magneten for å endre styrken og størrelsen.
 Poenget er å bruke magneten til å få ballen i mål!
 Lykke til.
 		</info>
@@ -57,8 +57,8 @@ Lykke til.
 		<image>media/endScreen/endScreenTwoImage.png </image>
 	</levelTwoEndScreen>
 	<levelThreeInfoScreen>
-		<info> Nå er du klar for en støre level med mange magneter.
-For å flyte kamera rundt så følg dem hvite pillene med musen.
+		<info> Nå er du klar for en større level med flere magneter.
+Prøv å flytt kameraet rundt ved å holde over de hvite pilene med musen.
 		</info>
 		<image>media/infoScreen/infoScreenThreeImage.png </image>
 	</levelThreeInfoScreen>
@@ -67,7 +67,7 @@ For å flyte kamera rundt så følg dem hvite pillene med musen.
 		<image>media/endScreen/endScreenThreeImage.png </image>
 	</levelThreeEndScreen>
 	<levelFourInfoScreen>
-		<info> Dette er en elektrisk magnet!
+		<info> Dette er en elektromagnet!
 Ved å trykke på den så kan du velge om den skal være av eller på.
 		</info>
 		<image>media/infoScreen/infoScreenFourImage.png </image>
@@ -78,7 +78,7 @@ Ved å trykke på den så kan du velge om den skal være av eller på.
 	</levelFourEndScreen>
 	<levelFiveInfoScreen>
 		<info> Prøv å bruke styrken på elektromagneten
-sammen med evenen til å skru den av og på.
+sammen med evnen til å skru den av og på.
 		</info>
 		<image>media/infoScreen/infoScreenFiveImage.png </image>
 	</levelFiveInfoScreen>
@@ -87,7 +87,7 @@ sammen med evenen til å skru den av og på.
 		<image>media/endScreen/endScreenFiveImage.png </image>
 	</levelFiveEndScreen>
 	<levelSixInfoScreen>
-		<info> Prøv å skru av magnetene i riktig rekefølge
+		<info> Prøv å skru av magnetene i riktig rekkefølge
 så ballen klatrer opp veggen.
 		</info>
 		<image>media/infoScreen/infoScreenSixImage.png </image>
@@ -97,8 +97,8 @@ så ballen klatrer opp veggen.
 		<image>media/endScreen/endScreenSixImage.png </image>
 	</levelSixEndScreen>
 	<levelSevenInfoScreen>
-		<info> Dette er en Motorisert magnet på skinner.
-Bruk den for å flytte ballen over grøfta.
+		<info> Dette er en motorisert magnet på skinner.
+Bruk den for å flytte ballen over hullet.
 		</info>
 		<image>media/infoScreen/infoScreenSevenImage.png </image>
 	</levelSevenInfoScreen>
@@ -126,7 +126,7 @@ Knapper skrur av eller på magneter.
 		<image>media/endScreen/endScreenNineImage.png </image>
 	</levelNineEndScreen>
 	<levelTenInfoScreen>
-		<info> Magneter dytter bort hvarandre.
+		<info> Magneter med samme polaritet dytter bort hverandre.
 og husk, knapper skrur også av magneter.
 		</info>
 		<image>media/infoScreen/infoScreenTenImage.png </image>
@@ -147,7 +147,7 @@ Lykke til!
 	</levelElevenEndScreen>
 	<levelTwelveInfoScreen>
 		<info> Bruk elektromagnetene til å flytte deg fra
-motorisert magnet til neste motorisert magnet.
+en motorisert magnet til neste motorisert magnet.
 		</info>
 		<image>media/infoScreen/infoScreenTwelveImage.png </image>
 	</levelTwelveInfoScreen>
@@ -156,7 +156,7 @@ motorisert magnet til neste motorisert magnet.
 		<image>media/endScreen/endScreenTwelveImage.png </image>
 	</levelTwelveEndScreen>
 	<levelThirteenInfoScreen>
-		<info> Nå starter dem avangserte levelene!
+		<info> Nå starter de avanserte levelene!
 		</info>
 		<image>media/infoScreen/infoScreenThirteenImage.png </image>
 	</levelThirteenInfoScreen>
@@ -165,8 +165,8 @@ motorisert magnet til neste motorisert magnet.
 		<image>media/endScreen/endScreenThirteenImage.png </image>
 	</levelThirteenEndScreen>
 	<levelFourteenInfoScreen>
-		<info> Denne er et pendulum, det vil si den svinger fra side til side.
-Prøv å bruke den for å komme over hullet.
+		<info> Dette er et pendulum, det vil si det svinger fra side til side.
+Prøv å bruke det for å komme over hullet.
 		</info>
 		<image>media/infoScreen/infoScreenFourteenImage.png </image>
 	</levelFourteenInfoScreen>
@@ -175,14 +175,16 @@ Prøv å bruke den for å komme over hullet.
 		<image>media/endScreen/endScreenFourteenImage.png </image>
 	</levelFourteenEndScreen>
 	<levelFifteenInfoScreen>
-		<info> Har du kommet helt hitt?
+		<info> Har du kommet helt hit?
 Bra jobbet, men du kommer ikke lengre!
 Advarsel: VANSKELIG!
 		</info>
 		<image>media/infoScreen/infoScreenFifteenImage.png </image>
 	</levelFifteenInfoScreen>
 	<levelFifteenEndScreen>
-		<info> Gratulerer, du Vant over Level 15! </info>
+		<info> Gratulerer, du Vant over Level 15!
+		Dette var det siste levelet i spillet! Gratulerer, du klarte alle 
+		levelene! Takk for at du spilte spillet! </info>
 		<image>media/endScreen/endScreenFifteenImage.png </image>
 	</levelFifteenEndScreen>
 	<restartButton>
@@ -195,4 +197,29 @@ Advarsel: VANSKELIG!
 		<buttonText>Meny</buttonText>
 		<shieldText>Vil du gå tilbake til menyen?</shieldText>
 	</menuButton>	
+	<creditsButton>
+		<buttonText>Credits</buttonText>
+	</creditsButton>
+	<creditsPage>
+		<title>Credits</title>
+		<content>
+Kode og Produksjon:
+Øyvind Nordli
+Christian Holt
+Morten Møller Andersen
+Christian Stokkebekk
+
+Lyd:
+Martin Kvale
+Stefan Hedberg
+
+Grafikk:
+Eivind Eriksrud
+William Stewart
+
+
+Trykk enter eller klikk med musen
+for å gå tilbake til hovedmenyen.
+		</content>
+	</creditsPage>
 </game>

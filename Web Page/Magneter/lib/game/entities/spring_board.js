@@ -6,11 +6,11 @@ ig.module(
 )
 .defines(function(){
 
+// A springboard entity that holds a magnet on one end and utilizes box2D joints.
 EntitySpring_board = ig.Box2DEntity.extend({
 	
 	_wmDrawBox: true,
 	_wmBoxColor: 'rgba(0, 255, 150, 0.5)',
-	//_wmScalable: true,
 	
 	type: ig.Entity.TYPE.NONE,
 	checkAgainst: ig.Entity.TYPE.NONE,
@@ -41,7 +41,7 @@ EntitySpring_board = ig.Box2DEntity.extend({
 
 		this.currentAnim = this.anims['idle'];
 		
-		if( !ig.global.wm )
+		if( !ig.global.wm ) // If not in weltmeister (level editor).
 		{
 			
 			// Building a circle for the Joint
@@ -50,11 +50,9 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			shapeDef.friction = 0;
 			shapeDef.density = 0;
 			shapeDef.restitution = 0.5;
-			//current = this;
 			
 			var circleBd = new b2.BodyDef();
 			circleBd.position.Set(this.pos.x / 10, this.pos.y / 10);
-			//circleBd.position.Set(20, 20);
 			var circleBody = ig.world.CreateBody(circleBd);
 			circleBody.CreateShape(shapeDef);
 			circleBody.SetMassFromShapes();
@@ -66,16 +64,12 @@ EntitySpring_board = ig.Box2DEntity.extend({
 			 	this.size.x / 2 * b2.SCALE,
 				this.size.y / 2 * b2.SCALE
 			);
-			//shapeDef.SetAsBox(this.size.x, this.size.y);
-
 
 			shapeDef.friction = 5;
 			shapeDef.density = 1;
 			shapeDef.restitution = 1;
 			
 			var boxBd = new b2.BodyDef();
-			//boxBd.position.Set(this.pos.x, this.pos.y)
-			//boxBd.position.Set(20, 20)
 			this.body.CreateShape( shapeDef );
 			this.body.SetMassFromShapes();
 		   
@@ -101,14 +95,11 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		//add the joint to the world
     		ig.world.CreateJoint(revolDef);
 			
+			// A weld joint to "weld" the manget onto the springboard body. 
 			var weldDef = new b2.RevoluteJointDef();
-			console.log(weldDef);
 			var settings = {density: 1, fieldRadius: this.magnetRadius, fieldMagnitude: this.magnetPower};
 			
-			
-			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings );
-    		console.log('etter denne');
-    		console.log(this.magnet);
+			this.magnet = new EntityMagnet( this.pos.x + this.size.x - 50, this.pos.y + 10, settings ); // Creates the magnet
     		weldDef.body1 = this.body;
     		weldDef.body2 = this.magnet.body;
     		
@@ -116,7 +107,6 @@ EntitySpring_board = ig.Box2DEntity.extend({
     		weldDef.lowerAngle = 0;
     		weldDef.upperAngle = 0;
     		weldDef.enableLimit = true;
-    		
      
 		    weldDef.localAnchor1 = new b2.Vec2(8.5, 0.5);
 		    weldDef.localAnchor2 = new b2.Vec2(2.5, -2.5);
@@ -129,6 +119,8 @@ EntitySpring_board = ig.Box2DEntity.extend({
 
 	},	
 	
+	// This function is called when everything in the level has finished loading. 
+	// Sets up magnetism effect arrays. 
 	ready: function()
 	{
 		this.parent();
@@ -138,17 +130,11 @@ EntitySpring_board = ig.Box2DEntity.extend({
 		var gates = ig.game.getEntitiesByType(EntityGate);
 		var players = ig.game.getEntitiesByType(EntityPlayer)[0];
 			
-		console.log(this.magnet);
 		for (var i = 0; i < magnets.length; i++)
 		{
 			magnets[i].objectsToTest.push(this.magnet);
 		};
-		/*
-		for (var i = 0; i < eMagnets.length; i++)
-		{
-			eMagnets[i].objectsToTest.push(this.magnet);
-		};
-		*/
+	
 		for (var j = 0; j < gates.length; j++)
 		{
 			this.magnet.objectsToTest.push(gates[j]);
@@ -157,28 +143,23 @@ EntitySpring_board = ig.Box2DEntity.extend({
 		this.magnet.objectsToTest.push(players);	
 		
 		this.magnet.loadObjectsToTest();
-		console.log(this.magnet.objectsToTest);
 	},
 
 	update: function() 
 	{
 		this.parent();
 		this.magnet.update();
-	
 	},
 	
 
 	draw: function()
 	{
 		this.parent();
+		
 		if( !ig.global.wm )
 		{
 			this.magnet.draw();
 		}
-		//this.board['ball'].image.draw( this.board['ball'].xpos, this.board['ball'].ypos );
-		//this.board['box'].image.draw( this.board['box'].xpos, this.board['box'].ypos );
 	}
-	
-	
 });
 });
