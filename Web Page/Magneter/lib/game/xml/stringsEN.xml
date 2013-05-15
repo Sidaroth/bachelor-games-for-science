@@ -96,7 +96,7 @@ and changing its power to navigate levels.
 		<image>media/endScreen/endScreenSixImage.png </image>
 	</levelSixEndScreen>
 	<levelSevenInfoScreen>
-		<info> This is an motorized Electromagnet on a rail.
+		<info> This is a motorized Electromagnet on a rail.
 Use it to move the ball over the chasm.
 		</info>
 		<image>media/infoScreen/infoScreenSevenImage.png </image>
@@ -106,7 +106,7 @@ Use it to move the ball over the chasm.
 		<image>media/endScreen/endScreenSevenImage.png </image>
 	</levelSevenEndScreen>
 	<levelEightInfoScreen>
-		<info> This is a button, the ball activates it when it rolls over it.
+		<info> This is a button. The ball activates it when it rolls over it.
 The button turns a magnet on or off.
 		</info>
 		<image>media/infoScreen/infoScreenEightImage.png </image>
