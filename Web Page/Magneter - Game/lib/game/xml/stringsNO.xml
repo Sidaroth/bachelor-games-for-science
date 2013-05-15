@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<game>
+	<splashScreen>
+		<info> Press 'enter' eller venste museknapp for å forsette </info>
+	</splashScreen>
+	<popUpMessageTemp>
+		<info> Test test test test test </info>
+		<image>media/popUpMessage/popUpMessageImage.png </image>
+	</popUpMessageTemp>
+	<shield>
+		<yes> Yes / Ja </yes>
+		<no> No / Nei </no>
+	</shield>
+	<mainMenu>
+		<title> Magneter </title>
+		<language> Are you sure you want to swap
+language to english?
+		</language>
+		<buttons>
+			<button> en </button>
+			<button> to </button>
+			<button> tre </button>
+			<button> fire </button>
+			<button> fem </button>
+			<button> seks </button>
+			<button> sju </button>
+			<button> åtte </button>
+			<button> ni </button>
+			<button> ti </button>
+			<button> elleve </button>
+			<button> tolv </button>
+			<button> tretten </button>
+			<button> fjorten </button>
+			<button> femten </button>
+		</buttons>
+	</mainMenu>
+	<levelOneInfoScreen>
+		<info> Velkommen til Magneter!
+Dette er første level, her skal vi bli kjent med magneten.
+Prøv å manipuler ringen rundt magneten for å endre styrken og størrelsen.
+Poenget er å bruke magneten til å få ballen i mål!
+Lykke til.
+		</info>
+		<image>media/infoScreen/infoScreenOneImage.png </image>
+	</levelOneInfoScreen>
+	<levelOneEndScreen>
+		<info> Gratulerer, du Vant over Level 1! </info>
+		<image>media/infoScreen/endScreenOneImage.png </image>
+	</levelOneEndScreen>
+	<levelTwoInfoScreen>
+		<info> Noen ganger så er magnetene en hindring og ikke en venn!  
+		</info>
+		<image>media/infoScreen/infoScreentwoImage.png </image>
+	</levelTwoInfoScreen>
+	<levelTwoEndScreen>
+		<info> Gratulerer, du Vant over Level 2! </info>
+		<image>media/endScreen/endScreenTwoImage.png </image>
+	</levelTwoEndScreen>
+	<levelThreeInfoScreen>
+		<info> Nå er du klar for en større level med flere magneter.
+Prøv å flytt kameraet rundt ved å holde over de hvite pilene med musen.
+		</info>
+		<image>media/infoScreen/infoScreenThreeImage.png </image>
+	</levelThreeInfoScreen>
+	<levelThreeEndScreen>
+		<info> Gratulerer, du Vant over Level 3! </info>
+		<image>media/endScreen/endScreenThreeImage.png </image>
+	</levelThreeEndScreen>
+	<levelFourInfoScreen>
+		<info> Dette er en elektromagnet!
+Ved å trykke på den så kan du velge om den skal være av eller på.
+		</info>
+		<image>media/infoScreen/infoScreenFourImage.png </image>
+	</levelFourInfoScreen>
+	<levelFourEndScreen>
+		<info> Gratulerer, du Vant over Level 4! </info>
+		<image>media/endScreen/endScreenFourImage.png </image>
+	</levelFourEndScreen>
+	<levelFiveInfoScreen>
+		<info> Prøv å bruke styrken på elektromagneten
+sammen med evnen til å skru den av og på.
+		</info>
+		<image>media/infoScreen/infoScreenFiveImage.png </image>
+	</levelFiveInfoScreen>
+	<levelFiveEndScreen>
+		<info> Gratulerer, du Vant over Level 5! </info>
+		<image>media/endScreen/endScreenFiveImage.png </image>
+	</levelFiveEndScreen>
+	<levelSixInfoScreen>
+		<info> Prøv å skru av magnetene i riktig rekkefølge
+så ballen klatrer opp veggen.
+		</info>
+		<image>media/infoScreen/infoScreenSixImage.png </image>
+	</levelSixInfoScreen>
+	<levelSixEndScreen>
+		<info> Gratulerer, du Vant over Level 6! </info>
+		<image>media/endScreen/endScreenSixImage.png </image>
+	</levelSixEndScreen>
+	<levelSevenInfoScreen>
+		<info> Dette er en motorisert magnet på skinner.
+Bruk den for å flytte ballen over hullet.
+		</info>
+		<image>media/infoScreen/infoScreenSevenImage.png </image>
+	</levelSevenInfoScreen>
+	<levelSevenEndScreen>
+		<info> Gratulerer, du Vant over Level 7! </info>
+		<image>media/endScreen/endScreenSevenImage.png </image>
+	</levelSevenEndScreen>
+	<levelEightInfoScreen>
+		<info> Dette er en knapp, ballen vil trykke på den om den ruller over.
+Knapper skrur av eller på magneter.			
+		</info>
+		<image>media/infoScreen/infoScreenEightImage.png </image>
+	</levelEightInfoScreen>
+	<levelEightEndScreen>
+		<info> Gratulerer, du Vant over Level 8! </info>
+		<image>media/endScreen/endScreenEightImage.png </image>
+	</levelEightEndScreen>
+	<levelNineInfoScreen>
+		<info> Ikke la ballen rulle over knappen så porten faller ned.
+		</info>
+		<image>media/infoScreen/infoScreenNineImage.png </image>
+	</levelNineInfoScreen>
+	<levelNineEndScreen>
+		<info> Gratulerer, du Vant over Level 9! </info>
+		<image>media/endScreen/endScreenNineImage.png </image>
+	</levelNineEndScreen>
+	<levelTenInfoScreen>
+		<info> Magneter med samme polaritet dytter bort hverandre.
+og husk, knapper skrur også av magneter.
+		</info>
+		<image>media/infoScreen/infoScreenTenImage.png </image>
+	</levelTenInfoScreen>
+	<levelTenEndScreen>
+		<info> Gratulerer, du Vant over Level 10! </info>
+		<image>media/endScreen/endScreenTenImage.png </image>
+	</levelTenEndScreen>
+	<levelElevenInfoScreen>
+		<info> Denne levelen har mange forskjelige hindringer.
+Lykke til!
+		</info>
+		<image>media/infoScreen/infoScreenElevenImage.png </image>
+	</levelElevenInfoScreen>
+	<levelElevenEndScreen>
+		<info> Gratulerer, du Vant over Level 11! </info>
+		<image>media/endScreen/endScreenElevenImage.png </image>
+	</levelElevenEndScreen>
+	<levelTwelveInfoScreen>
+		<info> Bruk elektromagnetene til å flytte deg fra
+en motorisert magnet til neste motorisert magnet.
+		</info>
+		<image>media/infoScreen/infoScreenTwelveImage.png </image>
+	</levelTwelveInfoScreen>
+	<levelTwelveEndScreen>
+		<info> Gratulerer, du Vant over Level 12! </info>
+		<image>media/endScreen/endScreenTwelveImage.png </image>
+	</levelTwelveEndScreen>
+	<levelThirteenInfoScreen>
+		<info> Nå starter de avanserte levelene!
+		</info>
+		<image>media/infoScreen/infoScreenThirteenImage.png </image>
+	</levelThirteenInfoScreen>
+	<levelThirteenEndScreen>
+		<info> Gratulerer, du Vant over Level 13! </info>
+		<image>media/endScreen/endScreenThirteenImage.png </image>
+	</levelThirteenEndScreen>
+	<levelFourteenInfoScreen>
+		<info> Dette er et pendulum, det vil si det svinger fra side til side.
+Prøv å bruke det for å komme over hullet.
+		</info>
+		<image>media/infoScreen/infoScreenFourteenImage.png </image>
+	</levelFourteenInfoScreen>
+	<levelFourteenEndScreen>
+		<info> Gratulerer, du Vant over Level 14! </info>
+		<image>media/endScreen/endScreenFourteenImage.png </image>
+	</levelFourteenEndScreen>
+	<levelFifteenInfoScreen>
+		<info> Har du kommet helt hit?
+Bra jobbet, men du kommer ikke lengre!
+Advarsel: VANSKELIG!
+		</info>
+		<image>media/infoScreen/infoScreenFifteenImage.png </image>
+	</levelFifteenInfoScreen>
+	<levelFifteenEndScreen>
+		<info> Gratulerer, du Vant over Level 15!
+		Dette var det siste levelet i spillet! Gratulerer, du klarte alle 
+		levelene! Takk for at du spilte spillet! </info>
+		<image>media/endScreen/endScreenFifteenImage.png </image>
+	</levelFifteenEndScreen>
+	<restartButton>
+		<buttonText>
+			<restart>Restart</restart>
+			<start>Start</start>
+		</buttonText>
+	</restartButton>
+	<menuButton>
+		<buttonText>Meny</buttonText>
+		<shieldText>Vil du gå tilbake til menyen?</shieldText>
+	</menuButton>	
+	<creditsButton>
+		<buttonText>Credits</buttonText>
+	</creditsButton>
+	<creditsPage>
+		<title>Credits</title>
+		<content>
+Kode og Produksjon:
+Øyvind Nordli
+Christian Holt
+Morten Møller Andersen
+Christian Stokkebekk
+
+Lyd:
+Martin Kvale
+Stefan Hedberg
+
+Grafikk:
+Eivind Eriksrud
+William Stewart
+
+
+Trykk enter eller klikk med musen
+for å gå tilbake til hovedmenyen.
+		</content>
+	</creditsPage>
+</game>

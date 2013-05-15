@@ -1,0 +1,2 @@
+It is not allowed to copy and use ImpactJS. If any further developent is to be done a new licence is required.
+It is only included in this project so the sensors can run the game and look at weltmeister.
