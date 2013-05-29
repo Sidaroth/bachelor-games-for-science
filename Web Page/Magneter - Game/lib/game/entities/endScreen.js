@@ -58,7 +58,7 @@ ig.module(
 		// loads the assets...
 		ready: function()
 		{
-			this.soundDB.levelCleared.play();
+			// this.soundDB.levelCleared.play();
 
 			if(this.messageName != "")
 			{

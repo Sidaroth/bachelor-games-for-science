@@ -295,9 +295,9 @@ MyGame = ig.Box2DGame.extend(
 	},
 
 	//true and false for levels unlocked, see save.xml for details
-	unlockedLevels: [	true, false, false, false, false,
-						false, false, false, false, false,
-						false, false, false, false, false	],
+	unlockedLevels: [	true, true, true, true, true,
+						true, true, true, true, true,
+						true, true, true, true, true	],
 	save: null,
 	//chosen language, default Norwegian(NO), see save.xml for saved language
 	language: "NO",
